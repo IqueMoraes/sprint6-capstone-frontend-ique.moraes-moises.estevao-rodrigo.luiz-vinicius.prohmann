@@ -11,7 +11,7 @@ export const AuthTokenProvider = ({ children }) => {
   );
 
   const [authToken, setAuthToken] = useState(
-    () => JSON.parse(localStorage.getItem("@tm/token")) || ""
+    () => localStorage.getItem("@tm/token") || ""
   );
 
   const history = useHistory();
@@ -30,7 +30,6 @@ export const AuthTokenProvider = ({ children }) => {
     api
       .post("/login", data)
       .then((res) => {
-        toast.success("Login realizado com sucesso");
         const token = res.data.accessToken;
         const userId = res.data.user.id;
         window.localStorage.clear();
@@ -38,9 +37,10 @@ export const AuthTokenProvider = ({ children }) => {
         window.localStorage.setItem("@tm/userId", userId);
         setAuthToken(token);
         setUserId(userId);
+        toast.success("Login realizado com sucesso");
         history.push("/dashboard");
       })
-      .catch((err) => toast.error("Email ou senha incorretos."));
+      .catch((_) => toast.error("Email ou senha incorretos."));
   };
 
   const handleLogout = () => {

@@ -24,6 +24,7 @@ export const FormRoutine = () => {
 
   const submitData = (data) => {
     createRoutines(data);
+    console.log(data)
   };
 
   return (
@@ -33,7 +34,7 @@ export const FormRoutine = () => {
         <input {...register("name")} />
         <label>categoria</label>
         <input type="text" {...register("category")} />
-        <input value={userId} disabled {...register("userId")} />
+        <input {...register("userId")} value={userId} disabled type="number" />
         <button type="submit">criar</button>
       </form>
 

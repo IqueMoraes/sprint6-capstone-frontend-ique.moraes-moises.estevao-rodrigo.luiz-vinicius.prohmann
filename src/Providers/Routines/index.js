@@ -18,7 +18,8 @@ export const RoutinesProvider = ({ children }) => {
                 headers: { Authorization: "Bearer " + authToken },
             })
             .then(res => {
-                setUserRoutines([...userRotines, res.data]) 
+                console.log(res.data)
+                // setUserRoutines([...userRotines, res.data]) 
             })
             .catch(err => console.log("Não criou rotina"))
     }
