@@ -1,52 +1,66 @@
-import { Route, Switch } from "react-router"
-import { Advertising } from "../Pages/Advertising"
-import { Dashboard } from "../Pages/Dashboard"
-import { Forum } from "../Pages/Forum"
-import { Home } from "../Pages/Home"
-import { Login } from "../Pages/Login"
-import { Register } from "../Pages/Register"
-import { Routines } from "../Pages/Routines"
-import { ShowUsers } from "../Pages/ShowUsers"
-
+import { Route, Switch } from "react-router";
+import { NavigationMenu } from "../Components/MenuNavigation";
+import { Achievments } from "../Pages/Achievments";
+import { Advertising } from "../Pages/Advertising";
+import { Dashboard } from "../Pages/Dashboard";
+import { Forum } from "../Pages/Forum";
+import { Home } from "../Pages/Home";
+import { Login } from "../Pages/Login";
+import { Register } from "../Pages/Register";
+import { Routines } from "../Pages/Routines";
+import { ShowUsers } from "../Pages/ShowUsers";
 
 export const Routes = () => {
+  return (
+    <Switch>
+      <Route exact path="/">
+        <NavigationMenu />
+        <Home />
+      </Route>
 
-    return (
-        <Switch>
+      <Route path="/login">
+        <Login />
+      </Route>
 
-            <Route exact path="/">
-                <Home />
-            </Route>
+      <Route path="/cadastro">
+        <Register />
+      </Route>
 
-            <Route path="/login">
-                <Login />
-            </Route>
+      <Route path="/dashboard">
+        <NavigationMenu />
 
-            <Route path="/cadastro">
-                <Register />
-            </Route>
+        <Dashboard />
+      </Route>
 
-            <Route path="/dashboard">
-                <Dashboard />
-            </Route>
+      <Route path="/routines">
+        <NavigationMenu />
 
-            <Route path="/rotina">
-                <Routines />
-            </Route>
+        <Routines />
+      </Route>
 
-            <Route path="/forum">
-                <Forum />
-            </Route>
+      <Route path="/forum">
+        <NavigationMenu />
 
-            <Route path="/anuncios">
-                <Advertising />
-            </Route>
+        <Forum />
+      </Route>
 
-            <Route path="/membros">
-                <ShowUsers />
-            </Route>
+      <Route path="/adverts">
+        <NavigationMenu />
 
-        </Switch>
-    )
-}
+        <Advertising />
+      </Route>
 
+      <Route path="/members">
+        <NavigationMenu />
+
+        <ShowUsers />
+      </Route>
+
+      <Route path="/achievments">
+        <NavigationMenu />
+
+        <Achievments />
+      </Route>
+    </Switch>
+  );
+};
