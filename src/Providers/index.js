@@ -1,5 +1,13 @@
-import { UserProvider } from "./User";
+import { AuthTOkenProvider } from "./AuthToken";
+import { RoutinesProvider } from "./Routines";
 
 export const Providers = ({ children }) => {
-  return <UserProvider>{children}</UserProvider>;
+  return (
+
+    <AuthTOkenProvider>
+      <RoutinesProvider>
+        {children}
+      </RoutinesProvider>
+    </AuthTOkenProvider>
+  ) 
 };
