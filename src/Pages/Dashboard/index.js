@@ -114,7 +114,7 @@ export const Dashboard = () => {
               <h5>
                 Busque novas conquistas e ganhe pontos para subir de nível
               </h5>
-              }<Link to="/achievments">Ver conquistas </Link>
+              <Link to="/achievments">Ver conquistas </Link>
             </>
           )}
         </ul>
