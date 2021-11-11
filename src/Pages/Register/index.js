@@ -3,7 +3,9 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useHistory } from "react-router-dom";
 import { api } from "../../Services";
+import { useUser } from "../../Providers/User/index";
 import jwt_decode from "jwt-decode";
+import { toast } from "react-toastify";
 
 export const Register = () => {
   const formSchema = yup.object().shape({
@@ -27,7 +29,7 @@ export const Register = () => {
       .required("Confirmação de senha é obrigatória")
       .oneOf([yup.ref("password"), null], "As senhas devem ser iguais"),
   });
-
+  const { setUserInfo } = useUser();
   const {
     register,
     handleSubmit,
@@ -52,15 +54,16 @@ export const Register = () => {
       level: 1,
     };
     console.log(sendToRegister);
+    toast.configure();
     api
       .post("/register/", sendToRegister)
       .then((response) => {
+        toast.success("Cadastro feito com sucesso.");
         const decoded = jwt_decode(response.data.accessToken);
-        console.log("decoded", decoded);
-        console.log("response", response);
+        setUserInfo(response.data.accessToken, response.data.user.id);
         history.push("/dashboard");
       })
-      .catch((err) => console.log(err));
+      .catch((err) => toast.error("Usuario já cadastrado"));
   };
 
   return (

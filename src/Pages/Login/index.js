@@ -4,12 +4,15 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useHistory } from "react-router-dom";
 import { api } from "../../Services";
 import jwt_decode from "jwt-decode";
+import { toast } from "react-toastify";
+import { useUser } from "../../Providers/User/index";
 
 export const Login = () => {
   const formSchema = yup.object().shape({
     email: yup.string().required("Email Obrigatório"),
     password: yup.string().required("Digite sua Senha"),
   });
+  const { setUserInfo } = useUser();
 
   const {
     register,
@@ -19,19 +22,19 @@ export const Login = () => {
     resolver: yupResolver(formSchema),
   });
 
-  console.log(errors);
   const history = useHistory();
 
   const handleLogin = (data) => {
+    toast.configure();
     api
       .post("/login/", data)
       .then((response) => {
+        toast.success("Login Realizado com Sucesso");
         const decoded = jwt_decode(response.data.accessToken);
-        console.log("decoded", decoded);
-        console.log("response", response);
+        setUserInfo(response.data.accessToken, response.data.user.id);
         history.push("/dashboard");
       })
-      .catch((err) => console.log(err));
+      .catch((err) => toast.error("Email ou senha incorretos."));
   };
 
   return (

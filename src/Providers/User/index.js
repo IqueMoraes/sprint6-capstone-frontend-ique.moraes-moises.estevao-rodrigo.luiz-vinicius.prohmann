@@ -7,10 +7,19 @@ const UserContext = createContext({});
 
 export const UserProvider = ({ children }) => {
   const [authToken, setAuthToken] = useState(
-    () => localStorage.getItem("@tm/token") || ""
+    () => JSON.parse(localStorage.getItem("@tm/token")) || ""
   );
 
+  const [userId, setUserId] = useState();
+
   const history = useHistory();
+
+  const setUserInfo = (token, userId) => {
+    localStorage.setItem("@tm/token", JSON.stringify(token));
+    localStorage.setItem("@tm/userId", JSON.stringify(userId));
+    setAuthToken(token);
+    setUserId(userId);
+  };
 
   const handleRegister = (data) => {
     api
@@ -43,7 +52,14 @@ export const UserProvider = ({ children }) => {
 
   return (
     <UserContext.Provider
-      value={{ authToken, handleLogin, handleLogout, handleRegister }}
+      value={{
+        authToken,
+        handleLogin,
+        handleLogout,
+        handleRegister,
+        setUserInfo,
+        userId,
+      }}
     >
       {children}
     </UserContext.Provider>
