@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useHistory } from "react-router-dom";
 import { api } from "../../Services";
-import { useUser } from "../../Providers/User/index";
+import { useAuthToken } from "../../Providers/AuthToken/index";
 import jwt_decode from "jwt-decode";
 import { toast } from "react-toastify";
 
@@ -29,7 +29,7 @@ export const Register = () => {
       .required("Confirmação de senha é obrigatória")
       .oneOf([yup.ref("password"), null], "As senhas devem ser iguais"),
   });
-  const { setUserInfo } = useUser();
+  const { setUserInfo } = useAuthToken();
   const {
     register,
     handleSubmit,
