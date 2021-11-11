@@ -1,7 +1,5 @@
 import axios from "axios";
 
-const api = axios.create({
-    baseURL: ""
-})
-
-export default api
+export const api = axios.create({
+  baseURL: "https://capstone-backend-tchau-mamae.herokuapp.com/",
+});
