@@ -8,7 +8,7 @@ function App() {
     <>
       
         <GlobalStyles />
-    <Routes />
+        <Routes />
         
     
     </>

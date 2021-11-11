@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useAuthToken } from "../../Providers/AuthToken";
 
-const FormRoutine = () => {
+export const FormRoutine = () => {
 
     const { userRotines, createRoutines } = useRoutines()
     const { userId } = useAuthToken()
@@ -27,6 +27,7 @@ const FormRoutine = () => {
         createRoutines(data)
     }
 
+    console.log(userRotines)
 
     return (
         <div>
@@ -51,4 +52,3 @@ const FormRoutine = () => {
     )
 }
 
-export default FormRoutine

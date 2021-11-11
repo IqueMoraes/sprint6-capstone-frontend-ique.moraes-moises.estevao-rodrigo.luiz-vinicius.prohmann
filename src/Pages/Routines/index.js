@@ -1,4 +1,4 @@
-import FormRoutine from "../../Components/FormRoutine"
+import { FormRoutine } from "../../Components/FormRoutine"
 
 
 

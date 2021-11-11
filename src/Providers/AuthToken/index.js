@@ -5,7 +5,7 @@ import { api } from "../../Services";
 
 const AuthTokenContext = createContext({});
 
-export const AuthTOkenProvider = ({ children }) => {
+export const AuthTokenProvider = ({ children }) => {
 
   const [userId, setUserId] = useState(
     () => localStorage.getItem("@tm/userId") || ""
