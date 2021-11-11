@@ -5,14 +5,13 @@ import { api } from "../../Services";
 
 const AuthTokenContext = createContext({});
 
-export const AuthTOkenProvider = ({ children }) => {
-
+export const AuthTokenProvider = ({ children }) => {
   const [userId, setUserId] = useState(
     () => localStorage.getItem("@tm/userId") || ""
-  )
-  
+  );
+
   const [authToken, setAuthToken] = useState(
-    () => localStorage.getItem("@tm/token") || ""
+    () => JSON.parse(localStorage.getItem("@tm/token")) || ""
   );
 
   const history = useHistory();
@@ -31,16 +30,17 @@ export const AuthTOkenProvider = ({ children }) => {
     api
       .post("/login", data)
       .then((res) => {
+        toast.success("Login realizado com sucesso");
         const token = res.data.accessToken;
-        const userId = res.data.user.id
+        const userId = res.data.user.id;
         window.localStorage.clear();
-        window.localStorage.setItem("@tm/token", token)
+        window.localStorage.setItem("@tm/token", token);
         window.localStorage.setItem("@tm/userId", userId);
         setAuthToken(token);
-        setUserId(userId)
+        setUserId(userId);
         history.push("/dashboard");
       })
-      .catch((err) => console.log(err));
+      .catch((err) => toast.error("Email ou senha incorretos."));
   };
 
   const handleLogout = () => {
