@@ -1,7 +1,7 @@
 import { createContext, useContext, useState } from "react";
 import { useHistory } from "react-router";
-import { api } from "../../Services";
 import { toast } from "react-toastify";
+import { api } from "../../Services";
 
 const UserContext = createContext({});
 
