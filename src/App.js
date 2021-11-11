@@ -1,10 +1,13 @@
-import './App.css';
+import GlobalStyles from "./styles/globalStyle";
 
 function App() {
   return (
-    <div>
-      Tchau, mamãe
-    </div>
+    <>
+      <div>
+        <GlobalStyles />
+        <p>Tchau Mamãe</p>
+      </div>
+    </>
   );
 }
 
