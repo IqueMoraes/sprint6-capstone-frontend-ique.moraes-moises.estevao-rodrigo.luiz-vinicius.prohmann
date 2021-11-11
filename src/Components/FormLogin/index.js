@@ -20,7 +20,7 @@ export const FormLogin = () => {
     resolver: yupResolver(formSchema),
   });
 
-  console.log(errors)
+  // console.log(errors)
 
   const submitData = (data) => {
       handleLogin(data)
