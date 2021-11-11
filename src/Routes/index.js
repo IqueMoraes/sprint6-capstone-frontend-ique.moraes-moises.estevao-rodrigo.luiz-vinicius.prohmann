@@ -6,6 +6,7 @@ import { Home } from "../Pages/Home"
 import { Login } from "../Pages/Login"
 import { Register } from "../Pages/Register"
 import { Routines } from "../Pages/Routines"
+import { ShowUsers } from "../Pages/ShowUsers"
 
 
 export const Routes = () => {
@@ -39,6 +40,10 @@ export const Routes = () => {
 
             <Route path="/anuncios">
                 <Advertising />
+            </Route>
+
+            <Route>
+                <ShowUsers />
             </Route>
 
         </Switch>
