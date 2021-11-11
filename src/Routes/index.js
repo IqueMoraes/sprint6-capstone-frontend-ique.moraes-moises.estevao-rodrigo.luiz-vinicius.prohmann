@@ -42,7 +42,7 @@ export const Routes = () => {
                 <Advertising />
             </Route>
 
-            <Route>
+            <Route path="/membros">
                 <ShowUsers />
             </Route>
 
