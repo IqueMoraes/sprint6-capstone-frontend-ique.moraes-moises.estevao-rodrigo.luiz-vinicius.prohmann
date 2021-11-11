@@ -1,11 +1,9 @@
-
-
+import { FormRoutine } from "../../Components/FormRoutine";
 
 export const Routines = () => {
-    return (
-        <div>
-            Rotina
-            
-        </div>
-    )
-}
+  return (
+    <div>
+      <FormRoutine />
+    </div>
+  );
+};

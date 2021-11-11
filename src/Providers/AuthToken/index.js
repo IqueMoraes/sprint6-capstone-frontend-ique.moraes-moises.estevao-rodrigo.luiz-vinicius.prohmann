@@ -3,11 +3,15 @@ import { useHistory } from "react-router";
 import { toast } from "react-toastify";
 import { api } from "../../Services";
 
-const UserContext = createContext({});
+const AuthTokenContext = createContext({});
 
-export const UserProvider = ({ children }) => {
+export const AuthTokenProvider = ({ children }) => {
+  const [userId, setUserId] = useState(
+    () => localStorage.getItem("@tm/userId") || ""
+  );
+
   const [authToken, setAuthToken] = useState(
-    () => localStorage.getItem("@tm/token") || ""
+    () => JSON.parse(localStorage.getItem("@tm/token")) || ""
   );
 
   const history = useHistory();
@@ -26,13 +30,17 @@ export const UserProvider = ({ children }) => {
     api
       .post("/login", data)
       .then((res) => {
+        toast.success("Login realizado com sucesso");
         const token = res.data.accessToken;
+        const userId = res.data.user.id;
         window.localStorage.clear();
         window.localStorage.setItem("@tm/token", token);
+        window.localStorage.setItem("@tm/userId", userId);
         setAuthToken(token);
+        setUserId(userId);
         history.push("/dashboard");
       })
-      .catch((_) => toast.error("Email ou senha incorretos."));
+      .catch((err) => toast.error("Email ou senha incorretos."));
   };
 
   const handleLogout = () => {
@@ -42,12 +50,12 @@ export const UserProvider = ({ children }) => {
   };
 
   return (
-    <UserContext.Provider
-      value={{ authToken, handleLogin, handleLogout, handleRegister }}
+    <AuthTokenContext.Provider
+      value={{ authToken, handleLogin, handleLogout, handleRegister, userId }}
     >
       {children}
-    </UserContext.Provider>
+    </AuthTokenContext.Provider>
   );
 };
 
-export const useUser = () => useContext(UserContext);
+export const useAuthToken = () => useContext(AuthTokenContext);
