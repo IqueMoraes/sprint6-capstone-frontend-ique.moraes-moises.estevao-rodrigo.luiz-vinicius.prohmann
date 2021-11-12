@@ -46,7 +46,6 @@ export const AuthTokenProvider = ({ children }) => {
 
   const handleLogout = () => {
     window.localStorage.clear();
-    setAuthToken("");
     history.push("/");
   };
 
