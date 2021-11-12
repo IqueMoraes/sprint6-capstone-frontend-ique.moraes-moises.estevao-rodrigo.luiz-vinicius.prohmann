@@ -1,5 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import { useHistory } from "react-router";
+
 import { toast } from "react-toastify";
 import { api } from "../../Services";
 
@@ -42,7 +43,6 @@ export const AuthTokenProvider = ({ children }) => {
       })
       .catch((_) => toast.error("Email ou senha incorretos."));
   };
-
 
   const handleLogout = () => {
     window.localStorage.clear();

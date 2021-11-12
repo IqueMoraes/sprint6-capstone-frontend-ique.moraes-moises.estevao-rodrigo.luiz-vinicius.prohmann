@@ -2,10 +2,10 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useAuthToken } from "../../Providers/AuthToken";
+import { Grid, GridItem } from "@chakra-ui/react";
 
 export const FormLogin = () => {
-
-  const { handleLogin } = useAuthToken()
+  const { handleLogin } = useAuthToken();
 
   const formSchema = yup.object().shape({
     email: yup.string().required("Email Obrigatório"),
@@ -23,8 +23,8 @@ export const FormLogin = () => {
   // console.log(errors)
 
   const submitData = (data) => {
-      handleLogin(data)
-  }
+    handleLogin(data);
+  };
 
   return (
     <div>
