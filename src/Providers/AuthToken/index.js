@@ -31,17 +31,18 @@ export const AuthTokenProvider = ({ children }) => {
       .post("/login", data)
       .then((res) => {
         const token = res.data.accessToken;
-        const userId = res.data.user.id;
+        const idUser = res.data.user.id;
         window.localStorage.clear();
         window.localStorage.setItem("@tm/token", token);
-        window.localStorage.setItem("@tm/userId", userId);
+        window.localStorage.setItem("@tm/userId", idUser);
         setAuthToken(token);
-        setUserId(userId);
+        setUserId(idUser);
         toast.success("Login realizado com sucesso");
         history.push("/dashboard");
       })
       .catch((_) => toast.error("Email ou senha incorretos."));
   };
+
 
   const handleLogout = () => {
     window.localStorage.clear();
