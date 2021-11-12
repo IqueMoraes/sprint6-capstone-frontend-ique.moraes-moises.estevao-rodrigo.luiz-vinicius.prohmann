@@ -72,29 +72,6 @@ export const FormRoutine = () => {
         })
       }
 
-=======
-  const { userRotines, createRoutines } = useRoutines();
-  const { userId } = useAuthToken();
-
-  const formSchema = yup.object().shape({
-    name: yup.string(),
-    category: yup.string(),
-    userId: yup.string(),
-  });
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(formSchema),
-  });
-
-  const submitData = (data) => {
-    createRoutines(data);
-    console.log(data)
-  };
-
   return (
     <div>
       <form onSubmit={handleSubmit(submitData)}>
