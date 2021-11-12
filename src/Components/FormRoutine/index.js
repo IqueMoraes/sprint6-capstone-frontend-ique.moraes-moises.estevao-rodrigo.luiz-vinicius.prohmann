@@ -71,27 +71,4 @@ export const FormRoutine = () => {
             </div>
         })
       }
-
-  return (
-    <div>
-      <form onSubmit={handleSubmit(submitData)}>
-        <label>nome</label>
-        <input {...register("name")} />
-        <label>categoria</label>
-        <input type="text" {...register("category")} />
-        <input {...register("userId")} value={userId} disabled type="number" />
-        <button type="submit">criar</button>
-      </form>
-
-      {userRotines.map((item) => {
-        return (
-          <div key={item.id}>
-            <p> {item.name} </p>
-            <p> {item.category} </p>
-          </div>
-        );
-      })}
-
-    </div>
-  );
 };
