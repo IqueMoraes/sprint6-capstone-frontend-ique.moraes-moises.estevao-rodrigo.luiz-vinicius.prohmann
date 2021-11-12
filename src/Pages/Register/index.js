@@ -1,11 +1,12 @@
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useHistory } from "react-router-dom";
+
 import { api } from "../../Services";
 import { useAuthToken } from "../../Providers/AuthToken/index";
 import jwt_decode from "jwt-decode";
 import { toast } from "react-toastify";
+import { useHistory } from "react-router";
 
 export const Register = () => {
   const formSchema = yup.object().shape({
