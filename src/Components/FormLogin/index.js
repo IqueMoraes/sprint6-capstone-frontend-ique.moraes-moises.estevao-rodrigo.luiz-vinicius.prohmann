@@ -2,10 +2,12 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useAuthToken } from "../../Providers/AuthToken";
-import { Grid, GridItem } from "@chakra-ui/react";
+import { LoginForm } from "../input/inputForm";
+import { useState } from "react";
 
 export const FormLogin = () => {
   const { handleLogin } = useAuthToken();
+  const [loading, setLoading] = useState(false);
 
   const formSchema = yup.object().shape({
     email: yup.string().required("Email Obrigatório"),
@@ -20,21 +22,18 @@ export const FormLogin = () => {
     resolver: yupResolver(formSchema),
   });
 
-  // console.log(errors)
-
   const submitData = (data) => {
     handleLogin(data);
   };
 
   return (
     <div>
-      <form onSubmit={handleSubmit(submitData)}>
-        <label>Email</label>
-        <input {...register("email")} />
-        <label>Senha</label>
-        <input type="password" {...register("password")} />
-        <button type="submit">Enviar</button>
-      </form>
+      <LoginForm
+        errors={errors}
+        handleSignIn={handleSubmit(submitData)}
+        loading={loading}
+        register={register}
+      />
     </div>
   );
 };
