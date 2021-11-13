@@ -1,8 +1,13 @@
 import { Box, Grid, Text, VStack } from "@chakra-ui/layout";
-import { FaEnvelope, FaLock } from "react-icons/fa";
+import {
+  FaEnvelope,
+  FaLock,
+  FaUserCheck,
+  FaGlobeAmericas,
+} from "react-icons/fa";
 import { Button } from "@chakra-ui/button";
 import { useHistory } from "react-router-dom";
-import { Input } from "../inputLogin";
+import { Input } from "../input";
 
 export const RegisterForm = ({ handleSignIn, errors, register, loading }) => {
   const history = useHistory();
@@ -22,7 +27,7 @@ export const RegisterForm = ({ handleSignIn, errors, register, loading }) => {
         <Box w="100%">
           <Input
             placeholder="Digite seu nome"
-            icon={FaLock}
+            icon={FaUserCheck}
             label="Nome"
             error={errors.name}
             {...register("name")}
@@ -44,7 +49,7 @@ export const RegisterForm = ({ handleSignIn, errors, register, loading }) => {
 
         <Input
           placeholder="Digite sua rede social"
-          icon={FaLock}
+          icon={FaGlobeAmericas}
           label="Rede Social"
           error={errors.urlSocialMedia}
           {...register("urlSocialMedia")}
@@ -79,16 +84,16 @@ export const RegisterForm = ({ handleSignIn, errors, register, loading }) => {
           Entrar
         </Button>
         <Text textColor="gray.400" textAlign="center">
-          Crie sua conta para saborear muitas delicias e matar sua fome!
+          Já tem Conta ?
         </Text>
         <Button
           bg="gray.100"
           color="gray.400"
-          onClick={() => history.push("/cadastro")}
+          onClick={() => history.push("/login")}
           mt="20px"
           _hover={{ background: "gray.200" }}
         >
-          Cadastrar
+          Logar-se
         </Button>
       </VStack>
     </Grid>

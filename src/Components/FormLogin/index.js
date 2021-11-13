@@ -23,7 +23,9 @@ export const FormLogin = () => {
   });
 
   const submitData = (data) => {
+    setLoading(true);
     handleLogin(data);
+    setTimeout(() => setLoading(false), 1500);
   };
 
   return (

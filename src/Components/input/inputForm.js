@@ -59,7 +59,7 @@ export const LoginForm = ({ handleSignIn, errors, register, loading }) => {
           Entrar
         </Button>
         <Text textColor="gray.400" textAlign="center">
-          Crie sua conta para saborear muitas delicias e matar sua fome!
+          Crie sua conta para agora para começar a usar nosso site.
         </Text>
         <Button
           bg="gray.100"

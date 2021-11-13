@@ -40,6 +40,8 @@ export const FormRegister = () => {
   });
 
   const submitData = (data) => {
+    setLoading(true);
+
     const { birth, email, name, outSince, password, urlSocialMedia } = data;
     const sendToRegister = {
       birth: birth,
@@ -52,6 +54,7 @@ export const FormRegister = () => {
       level: 1,
     };
     handleRegister(sendToRegister);
+    setTimeout(() => setLoading(false), 1500);
   };
 
   return (
