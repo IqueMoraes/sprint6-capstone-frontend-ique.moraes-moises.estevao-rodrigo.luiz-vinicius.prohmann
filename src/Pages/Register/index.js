@@ -1,12 +1,13 @@
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { Flex } from "@chakra-ui/react";
+import { FormLogin } from "../../Components/FormLogin";
+import { VStack } from "@chakra-ui/layout";
 
-import { api } from "../../Services";
 import { useAuthToken } from "../../Providers/AuthToken/index";
-import jwt_decode from "jwt-decode";
-import { toast } from "react-toastify";
-import { useHistory } from "react-router";
+
+import { FormRegister } from "../../Components/FormRegister";
 
 export const Register = () => {
   const formSchema = yup.object().shape({
@@ -40,52 +41,32 @@ export const Register = () => {
   });
 
   console.log(errors);
-  const history = useHistory();
-
-  const handleLogin = (data) => {
-    const { birth, email, name, outSince, password, urlSocialMedia } = data;
-    const sendToRegister = {
-      birth: birth,
-      email: email,
-      name: name,
-      outSince: outSince,
-      password: password,
-      urlSocialMedia: urlSocialMedia,
-      points: 0,
-      level: 1,
-    };
-    console.log(sendToRegister);
-    toast.configure();
-    api
-      .post("/register/", sendToRegister)
-      .then((response) => {
-        toast.success("Cadastro feito com sucesso.");
-        const decoded = jwt_decode(response.data.accessToken);
-        setUserInfo(response.data.accessToken, response.data.user.id);
-        history.push("/dashboard");
-      })
-      .catch((err) => toast.error("Usuario já cadastrado"));
-  };
 
   return (
     <div>
-      <form onSubmit={handleSubmit(handleLogin)}>
-        <label>Nome</label>
-        <input {...register("name")} />
-        <label>Email</label>
-        <input {...register("email")} />
-        <label>Rede Social</label>
-        <input {...register("urlSocialMedia")} />
-        <label>Data de Nascimento: </label>
-        <input type="date" {...register("birth")} />
-        <label>Sai de casa em: </label>
-        <input type="date" {...register("outSince")} />
-        <label>Senha</label>
-        <input type="password" {...register("password")} />
-        <label>Confirmação de Senha</label>
-        <input type="password" {...register("passwordConfirmation")} />
-        <button type="submit">Enviar</button>
-      </form>
+      <Flex
+        height="100%"
+        p="25px"
+        bgGradient="linear(to-r, bg.200 60%, white 40%)"
+      >
+        <Flex
+          alignItems="center"
+          justifyContent="center"
+          padding="15px 15px"
+          height={["auto", "auto"]}
+        >
+          <Flex
+            w={["100%", "100%", "90%", "90%"]}
+            flexDirection={["column", "column", "row", "row"]}
+            justifyContent="center"
+            alignItems="center"
+          >
+            <VStack spacing="6">
+              <FormRegister />
+            </VStack>
+          </Flex>
+        </Flex>
+      </Flex>
     </div>
   );
 };
