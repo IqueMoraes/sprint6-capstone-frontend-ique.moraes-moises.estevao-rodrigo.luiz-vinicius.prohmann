@@ -26,6 +26,8 @@ const GlobalStyles = createGlobalStyle`
         --lightRed: #FF6666;
         --red: #EC4F4F;
         --hoverBlue: #191970;
+        --blueGradient: #5F4D93
+        --pinkGradient: #DB7483
  }
 ol, ul {
 	list-style: none;
