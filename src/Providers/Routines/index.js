@@ -9,8 +9,12 @@ const RoutinesContext = createContext({})
 export const RoutinesProvider = ({ children }) => {
 
     const [userRotines, setUserRoutines] = useState([])
-    const [name, setName] = useState("")
-    const [category, setCategory] = useState("")
+    const [title, setTitle] = useState("")
+    const [date, setDate] = useState("")
+    const [day, setDay] = useState("")
+    const [month, setMonth] = useState("")
+    const [timeStart, setTimeStart] = useState("")
+    const [timeFinish, setTimeFinish] = useState("")
     
     const { authToken, userId } = useAuthToken()
 
@@ -22,16 +26,77 @@ export const RoutinesProvider = ({ children }) => {
             .then(res => {
                 setUserRoutines(res.data)
             })
-            .catch(err => console.log("não pegou minhas rotinas"))
+            .catch(_ => console.log("não pegou minhas rotinas"))
     }, [userId])
+
+    const createDate = () => {
+        const newDate = date.split("-")
+
+            setDay(newDate[2])
+
+            if(newDate[1] === "01") {
+                setMonth("Jan")
+            }
+
+            if(newDate[1] === "02") {
+                setMonth("Fev")
+            }
+
+            if(newDate[1] === "03") {
+                setMonth("Mar")
+            }
+
+            if(newDate[1] === "04") {
+                setMonth("Abr")
+            }
+
+            if(newDate[1] === "05") {
+                setMonth("Mai")
+            }
+
+            if(newDate[1] === "06") {
+                setMonth("Jun")
+            }
+
+            if(newDate[1] === "07") {
+                setMonth("Jul")
+            }
+
+            if(newDate[1] === "08") {
+                setMonth("Ago")
+            }
+
+            if(newDate[1] === "09") {
+                setMonth("Set")
+            }
+
+            if(newDate[1] === "10") {
+                setMonth("Out")
+            }
+
+            if(newDate[1] === "11") {
+                setMonth("Nov")
+            }
+
+            if(newDate[1] === "12") {
+                setMonth("Dez")
+            }
+    }
 
     const createRoutines = () => {
 
+        createDate()
+
         const data = {
-            name: name,
-            category: category,
+            title: title,
+            month: month,
+            day: day,
+            timeStart: timeStart,
+            timeFinish: timeFinish,
             userId: userId,
         }
+
+        console.log(data)
 
         api
             .post("/routines", data,  {
@@ -47,8 +112,13 @@ export const RoutinesProvider = ({ children }) => {
     const editRoutine = (routineId) => {
 
         const data = {};
-        if (name) data.name = name;
-        if (category) data.category = category;
+        if (title) data.title = title;
+        if (month) data.month = month;
+        if (day) data.day = day;
+        if (timeStart) data.timeStart = timeStart;
+        if (timeFinish) data.timeFinish = timeFinish;
+
+        createDate()
 
         api
             .patch(`/routines/${routineId}`, data, {
@@ -58,6 +128,7 @@ export const RoutinesProvider = ({ children }) => {
                 const edited = userRotines.filter((item) => item.id !== routineId);
                 setUserRoutines([...edited, res.data]);
                 toast.success("Rotina editada com sucesso!");
+                console.log(data)
               })
               .catch((_) => toast.error("Não foi possível editar a rotina"));
     }
@@ -84,10 +155,14 @@ export const RoutinesProvider = ({ children }) => {
             createRoutines, 
             editRoutine, 
             deleteRoutine,
-            name,
-            category,
-            setName,
-            setCategory, 
+            title,
+            setTitle,
+            date,
+            setDate,
+            timeStart,
+            setTimeStart,
+            timeFinish,
+            setTimeFinish, 
         }}>
             {children}
         </RoutinesContext.Provider>

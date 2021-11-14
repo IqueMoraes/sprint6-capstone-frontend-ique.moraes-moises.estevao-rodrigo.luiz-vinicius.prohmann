@@ -1,13 +1,18 @@
 import { useRoutines } from "../../Providers/Routines";
-import { useAuthToken } from "../../Providers/AuthToken";
 import { useState } from "react";
+import { Checkbox, CheckboxGroup, Button, ButtonGroup, Input } from "@chakra-ui/react"
+
 
 export const FormRoutine = () => {
   const {
-    name,
-    category,
-    setName,
-    setCategory,
+    title,
+    setTitle,
+    date,
+    setDate,
+    timeStart,
+    setTimeStart,
+    timeFinish,
+    setTimeFinish,
     userRotines,
     createRoutines,
     editRoutine,
@@ -26,47 +31,80 @@ return (
 
   <div>
     <div className="inputContainer">
-      <input
-        placeholder="Nome"
-        value={name}
+      <Input
+        variant="outline"
+        placeholder="Título"
+        value={title}
         type="text"
-        onChange={(e) => setName(e.target.value)}
+        onChange={(e) => setTitle(e.target.value)}
         required
         />
-      <input
-        placeholder="Categoria"
-        value={category}
-        type="text"
-        onChange={(e) => setCategory(e.target.value)}
+      <Input
+        placeholder="Dia"
+        value={date}
+        type="date"
+        onChange={(e) => setDate(e.target.value)}
         required
         />
-      <button onClick={createRoutines}> Criar </button>
+      <Input
+        placeholder="Horário"
+        value={timeStart}
+        type="time"
+        onChange={(e) => setTimeStart(e.target.value)}
+        required
+        min={Date.now()}
+        />
+      <Input
+        placeholder="Horário"
+        value={timeFinish}
+        type="time"
+        onChange={(e) => setTimeFinish(e.target.value)}
+        required
+        />
+      <Button colorScheme="teal" size="sm" onClick={createRoutines}> Criar </Button>
     </div>
 
     {userRotines.map((item) => {
       return <div key={item.id}>
-          <p> {item.name} </p>
-          <p> {item.category} </p>
-          <button onClick={() => setShowFormEdit(true)}> Editar </button>
-          <button onClick={() => deleteRoutine(item.id)}> deletar </button>
+          <p> {item.title} </p>
+          <p> {item.month} </p>
+          <p> {item.day} </p>
+          <p> {item.timeStart} </p>
+          <p> {item.timeFinish} </p>
+          <Button colorScheme="yellow" size="sm" onClick={() => setShowFormEdit(true)}> Editar </Button>
+          <Button colorScheme="red" size="sm" onClick={() => deleteRoutine(item.id)}> deletar </Button>
 
           {showFormEdit && 
             <div className="inputContainer">
               <input
                 placeholder="Nome"
-                value={name}
+                value={title}
                 type="text"
-                onChange={(e) => setName(e.target.value)}
+                onChange={(e) => setTitle(e.target.value)}
                 required
-                />
+              />
               <input
-                placeholder="Categoria"
-                value={category}
-                type="text"
-                onChange={(e) => setCategory(e.target.value)}
+                placeholder="Dia"
+                value={date}
+                type="date"
+                onChange={(e) => setDate(e.target.value)}
                 required
-                />
-              <button onClick={() => handleEdit(item.id)}> editar </button>
+              />
+              <input
+                placeholder="Horário"
+                value={timeStart}
+                type="time"
+                onChange={(e) => setTimeStart(e.target.value)}
+                required
+              />
+              <input
+                placeholder="Horário"
+                value={timeFinish}
+                type="time"
+                onChange={(e) => setTimeFinish(e.target.value)}
+                required
+              />
+              <Button colorScheme="teal" size="sm" variant="outline" onClick={() => handleEdit(item.id)}> Editar </Button>
             </div>
           }
         </div>

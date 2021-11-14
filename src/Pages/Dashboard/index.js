@@ -44,10 +44,10 @@ export const Dashboard = () => {
   const UserAge = (birthUser) => {
     const birthArray = birthUser.split("/").map((str) => Number(str));
     console.log(birthArray);
-    const birthDate = new Date(birthArray[2], birthArray[0], birthUser[1]);
+    const birthDate = new Date(birthArray[2], birthArray[0], birthUser[1]); 
     const date_ms = Date.now() - birthDate.getTime();
     const age_ms = new Date(date_ms);
-
+    
     return Math.abs(age_ms.getUTCFullYear() - 1970);
   };
 
