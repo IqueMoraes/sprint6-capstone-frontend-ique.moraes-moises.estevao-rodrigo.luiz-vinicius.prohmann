@@ -19,14 +19,14 @@ export const AdvertsCards = ({
   description,
 }) => {
   return (
-    <>
-      <div key={index}>
+    <div key={index}>
+      <div>
         <div>{name}</div>
         <div>{date}</div>
         <div>{localization}</div>
         <div>{category}</div>
         <div>{description}</div>
       </div>
-    </>
+    </div>
   );
 };
