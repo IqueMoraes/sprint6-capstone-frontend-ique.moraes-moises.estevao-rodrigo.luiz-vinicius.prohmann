@@ -16,6 +16,10 @@ export const theme = extendTheme({
       100: "#E0E0E0",
       0: "#F5F5F5",
     },
+    bg: {
+      100: "#DB7483",
+      200: "#5F4D93",
+    },
     negative: {
       100: "#E60000",
     },

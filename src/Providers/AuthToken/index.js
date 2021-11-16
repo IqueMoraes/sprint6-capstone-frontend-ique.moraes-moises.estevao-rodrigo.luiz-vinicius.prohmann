@@ -20,11 +20,15 @@ export const AuthTokenProvider = ({ children }) => {
   const handleRegister = (data) => {
     api
       .post("/users", data)
-      .then((_) => {
+      .then((res) => {
         toast.success("Cadastro feito com sucesso.");
         history.push("/");
+        return res;
       })
-      .catch((_) => toast.error("Email já cadastrado!"));
+      .catch((err) => {
+        toast.error("Email já cadastrado!");
+        return err;
+      });
   };
 
   const handleLogin = (data) => {
@@ -41,7 +45,9 @@ export const AuthTokenProvider = ({ children }) => {
         toast.success("Login realizado com sucesso");
         history.push("/dashboard");
       })
-      .catch((_) => toast.error("Email ou senha incorretos."));
+      .catch((err) => {
+        toast.error("Email ou senha incorretos.");
+      });
   };
 
   const handleLogout = () => {
