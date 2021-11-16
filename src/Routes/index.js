@@ -16,10 +16,11 @@ export const Routes = () => {
   return (
     <Switch>
       <Route exact path="/">
+        {/* <NavigationMenu /> */}
+        
         <Initial />
 
-        {/* <NavigationMenu />
-        <Home /> */}
+        {/* <Home /> */}
       </Route>
 
       <Route path="/login">

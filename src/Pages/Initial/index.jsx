@@ -1,6 +1,8 @@
+import { BarNavigation, BoxBody, FullScreen } from "./styled";
+
 const Initial = () => {
   return (
-    <main>
+    <FullScreen>
       <section>
         <figure>
           <img src="#" alt="#" />
@@ -18,14 +20,14 @@ const Initial = () => {
         </div>
       </section>
 
-      <article>
-        <nav>
+      <BoxBody>
+        <BarNavigation>
           <ul>
             <li> Introdução</li>
             <li> Creditos</li>
             <li> Começar</li>
           </ul>
-        </nav>
+        </BarNavigation>
 
         <section>
           <div>
@@ -126,8 +128,8 @@ const Initial = () => {
             <button>Cadastro</button>
           </section>
         </section>
-      </article>
-    </main>
+      </BoxBody>
+    </FullScreen>
   );
 };
 
