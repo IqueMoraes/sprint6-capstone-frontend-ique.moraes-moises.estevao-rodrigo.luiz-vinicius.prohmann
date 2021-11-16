@@ -1,13 +1,3 @@
-const teste = {
-  userId: 1,
-  date: "10/11/2021",
-  localization: "São Paulo - SP",
-  description: "generc description",
-  name: "Manutenção de geladeira",
-  category: "Serviços",
-  id: 1,
-};
-
 export const AdvertsCards = ({
   index,
   name,
@@ -17,6 +7,7 @@ export const AdvertsCards = ({
   id,
   userId,
   description,
+  delet,
 }) => {
   return (
     <div key={index}>
@@ -26,6 +17,7 @@ export const AdvertsCards = ({
         <div>{localization}</div>
         <div>{category}</div>
         <div>{description}</div>
+        <button onClick={() => delet(id)}>Delete</button>
       </div>
     </div>
   );
