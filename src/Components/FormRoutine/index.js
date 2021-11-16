@@ -1,113 +1,91 @@
 import { useRoutines } from "../../Providers/Routines";
-import { useState } from "react";
-import { Checkbox, CheckboxGroup, Button, ButtonGroup, Input } from "@chakra-ui/react"
+
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  useDisclosure,
+  Button,
+  Input,
+  Flex,
+  Text,
+  VStack
+} from "@chakra-ui/react"
+
 
 
 export const FormRoutine = () => {
   const {
-    title,
-    setTitle,
-    date,
+    setDescription,
     setDate,
-    timeStart,
     setTimeStart,
-    timeFinish,
     setTimeFinish,
-    userRotines,
     createRoutines,
-    editRoutine,
-    deleteRoutine,
   } = useRoutines();
 
-  const [showFormEdit, setShowFormEdit] = useState(false);
 
-  const handleEdit = (routineId) => {
-    editRoutine(routineId);
-    setShowFormEdit(false);
+  const { isOpen, onOpen, onClose } = useDisclosure()
+
+
+  const handleCreateRoutine = () => {
+    createRoutines()
+    onClose()
   };
 
-
 return (
-
-  <div>
-    <div className="inputContainer">
-      <Input
-        variant="outline"
-        placeholder="Título"
-        value={title}
-        type="text"
-        onChange={(e) => setTitle(e.target.value)}
-        required
-        />
-      <Input
-        placeholder="Dia"
-        value={date}
-        type="date"
-        onChange={(e) => setDate(e.target.value)}
-        required
-        />
-      <Input
-        placeholder="Horário"
-        value={timeStart}
-        type="time"
-        onChange={(e) => setTimeStart(e.target.value)}
-        required
-        min={Date.now()}
-        />
-      <Input
-        placeholder="Horário"
-        value={timeFinish}
-        type="time"
-        onChange={(e) => setTimeFinish(e.target.value)}
-        required
-        />
-      <Button colorScheme="teal" size="sm" onClick={createRoutines}> Criar </Button>
-    </div>
-
-    {userRotines.map((item) => {
-      return <div key={item.id}>
-          <p> {item.title} </p>
-          <p> {item.month} </p>
-          <p> {item.day} </p>
-          <p> {item.timeStart} </p>
-          <p> {item.timeFinish} </p>
-          <Button colorScheme="yellow" size="sm" onClick={() => setShowFormEdit(true)}> Editar </Button>
-          <Button colorScheme="red" size="sm" onClick={() => deleteRoutine(item.id)}> deletar </Button>
-
-          {showFormEdit && 
-            <div className="inputContainer">
-              <input
-                placeholder="Nome"
-                value={title}
-                type="text"
-                onChange={(e) => setTitle(e.target.value)}
-                required
-              />
-              <input
-                placeholder="Dia"
-                value={date}
-                type="date"
-                onChange={(e) => setDate(e.target.value)}
-                required
-              />
-              <input
-                placeholder="Horário"
-                value={timeStart}
-                type="time"
-                onChange={(e) => setTimeStart(e.target.value)}
-                required
-              />
-              <input
-                placeholder="Horário"
-                value={timeFinish}
-                type="time"
-                onChange={(e) => setTimeFinish(e.target.value)}
-                required
-              />
-              <Button colorScheme="teal" size="sm" variant="outline" onClick={() => handleEdit(item.id)}> Editar </Button>
-            </div>
-          }
-        </div>
-    })}
-  </div>
+  <>
+      <Button bg="#FEA800" color="white" fontSize="18px" lineHeight="27px" border="8px solid #FEA800" borderRadius="47px" mt={4} onClick={onOpen}>
+        Criar rotina
+      </Button>
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent bg="#FEA800" padding="6px">
+          <ModalHeader color="white">Criar rotina</ModalHeader>
+          <ModalCloseButton color="white" />
+          <ModalBody bg="white" borderTopRadius="20px">
+            <Text> Dia </Text>
+            <Input
+              placeholder="Dia"
+              type="date"
+              onChange={(e) => setDate(e.target.value)}
+              required
+            />
+            <Flex alignItems="center">
+              <Text> De: </Text>
+            <Input
+              placeholder="Horário"
+              type="time"
+              onChange={(e) => setTimeStart(e.target.value)}
+              required
+              min={Date.now()}
+            />
+            <Text> Até: </Text>
+            <Input
+              placeholder="Horário"
+              type="time"
+              onChange={(e) => setTimeFinish(e.target.value)}
+              required
+            />
+            <Text> Descrição </Text>
+            <Input
+              placeholder="Descrição"
+              type="text"
+              onChange={(e) => setDescription(e.target.value)}
+              required
+            />
+            </Flex>
+          </ModalBody>
+          <ModalFooter bg="white" borderBottomRadius="20px">
+            <Button bg="#FEA800" color="white" w="150px" mr={4} fontSize="18px" lineHeight="27px" border="8px solid #FEA800" borderRadius="47px" onClick={handleCreateRoutine}> Criar </Button>
+            <Button bg="white" color="#FEA800" w="150px" fontSize="18px" lineHeight="27px" border="2px solid #FEA800" borderRadius="47px" onClick={onClose}>
+              Cancelar
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+      </>
 )}

@@ -9,7 +9,7 @@ const RoutinesContext = createContext({})
 export const RoutinesProvider = ({ children }) => {
 
     const [userRotines, setUserRoutines] = useState([])
-    const [title, setTitle] = useState("")
+    const [description, setDescription] = useState("")
     const [date, setDate] = useState("")
     const [day, setDay] = useState("")
     const [month, setMonth] = useState("")
@@ -88,11 +88,11 @@ export const RoutinesProvider = ({ children }) => {
         createDate()
 
         const data = {
-            title: title,
             month: month,
             day: day,
             timeStart: timeStart,
             timeFinish: timeFinish,
+            description: description,
             userId: userId,
         }
 
@@ -112,13 +112,12 @@ export const RoutinesProvider = ({ children }) => {
     const editRoutine = (routineId) => {
 
         const data = {};
-        if (title) data.title = title;
         if (month) data.month = month;
         if (day) data.day = day;
         if (timeStart) data.timeStart = timeStart;
         if (timeFinish) data.timeFinish = timeFinish;
+        if (description) data.description = description;
 
-        createDate()
 
         api
             .patch(`/routines/${routineId}`, data, {
@@ -155,8 +154,7 @@ export const RoutinesProvider = ({ children }) => {
             createRoutines, 
             editRoutine, 
             deleteRoutine,
-            title,
-            setTitle,
+            setDescription,
             date,
             setDate,
             timeStart,
