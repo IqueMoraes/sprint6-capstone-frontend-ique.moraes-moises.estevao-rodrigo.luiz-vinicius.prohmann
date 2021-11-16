@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { AchievmentCard } from "../../Components/Achievments";
+import { useAuthToken } from "../../Providers/AuthToken";
 
 const exampleUser = {
   email: "kenzinho@mail.com",
@@ -16,26 +17,37 @@ const exampleUser = {
     {
       title: "Limpar espelho",
       category: "cleaning",
+      id: 1
     },
     {
       title: "Limpar vidro",
       category: "cleaning",
+      id: 2
+
     },
     {
       title: "Descongelar carne",
       category: "cooking",
+      id: 3
+
     },
     {
       title: "Passar roupa",
       category: "maintenance",
+      id: 4
+
     },
     {
       title: "Furar parede",
       category: "maintenance",
+      id: 5
+
     },
     {
       title: "Trocar resistência do chuveiro",
       category: "eletricity",
+      id: 6
+
     },
   ],
 };
@@ -43,7 +55,6 @@ const exampleUser = {
 export const Dashboard = () => {
   const UserAge = (birthUser) => {
     const birthArray = birthUser.split("/").map((str) => Number(str));
-    console.log(birthArray);
     const birthDate = new Date(birthArray[2], birthArray[0], birthUser[1]); 
     const date_ms = Date.now() - birthDate.getTime();
     const age_ms = new Date(date_ms);
@@ -70,19 +81,24 @@ export const Dashboard = () => {
 
     return monthArray[leavingDateArray[0]] + " de " + leavingDateArray[2];
   };
+   const { userProfile } = useAuthToken();
+   
+
+  // const { userInfoProfile, ShowProfile } = useUserProfile()
+  // console.log(ShowProfile);
 
   return (
     <div>
       <div>
         {/* div de informações do usuário */}
         <div>
-          <h2>{exampleUser.name}</h2>
-          <h4>{UserAge(exampleUser.birth)} anos</h4>
-          <h4>Fora desde {OutSince(exampleUser.outSince)}</h4>
-          <h4>Bio: {exampleUser.bio}</h4>
+          <h2>{userProfile.name}</h2>
+          <h4>{UserAge(userProfile.birth)} anos</h4>
+          <h4>Fora desde {OutSince(userProfile.outSince)}</h4>
+          <h4>Bio: {userProfile.bio}</h4>
         </div>
         <div>
-          <h2>Nível {exampleUser.level}</h2>
+          <h2>Nível {userProfile.level}</h2>
         </div>
       </div>
       <br />
@@ -96,14 +112,15 @@ export const Dashboard = () => {
       <br />
       <div>
         <h3>Conquistas</h3>
-        <ul style={{ display: "flex", overflow: "auto" }}>
-          {exampleUser.achievments ? (
+        <ul style={{ display: "flex", overflowX: "scroll", overflowY:"hidden" }}>
+          {userProfile.achievments ? (
             exampleUser.achievments.map((item) => (
-              <li
+              <li key={item.id}
                 style={{
+                  width: "fit-content",
                   margin: "20px",
                   padding: "15px",
-                  backgroundColor: "gray",
+                  boxSizing:"border-box"
                 }}
               >
                 <AchievmentCard category={item.category} title={item.title} />
