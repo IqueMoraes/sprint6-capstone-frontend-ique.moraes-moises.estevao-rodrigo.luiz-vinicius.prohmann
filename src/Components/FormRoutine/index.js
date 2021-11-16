@@ -1,5 +1,5 @@
 import { useRoutines } from "../../Providers/Routines";
-import { useState } from "react";
+
 import {
   Modal,
   ModalOverlay,
@@ -10,127 +10,82 @@ import {
   ModalCloseButton,
   useDisclosure,
   Button,
-  Input
+  Input,
+  Flex,
+  Text,
+  VStack
 } from "@chakra-ui/react"
-import { RoutineCard } from "./RoutineCart";
-import { ModalEditRoutine } from "./ModalEditeRoutine";
+
 
 
 export const FormRoutine = () => {
   const {
-    title,
-    setTitle,
-    date,
+    setDescription,
     setDate,
-    timeStart,
     setTimeStart,
-    timeFinish,
     setTimeFinish,
-    userRotines,
     createRoutines,
-    editRoutine,
-    deleteRoutine,
   } = useRoutines();
 
 
   const { isOpen, onOpen, onClose } = useDisclosure()
 
-  // const handleEdit = (routineId) => {
-  //   editRoutine(routineId);
-  //   setShowFormEdit(false);
-  // };
 
+  const handleCreateRoutine = () => {
+    createRoutines()
+    onClose()
+  };
 
 return (
   <>
-      <Button mt={4} onClick={onOpen}>
+      <Button bg="#FEA800" color="white" fontSize="18px" lineHeight="27px" border="8px solid #FEA800" borderRadius="47px" mt={4} onClick={onOpen}>
         Criar rotina
       </Button>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Criar rotina</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-          <Input
-            variant="outline"
-            placeholder="Título"
-            value={title}
-            type="text"
-            onChange={(e) => setTitle(e.target.value)}
-            required
+        <ModalContent bg="#FEA800" padding="6px">
+          <ModalHeader color="white">Criar rotina</ModalHeader>
+          <ModalCloseButton color="white" />
+          <ModalBody bg="white" borderTopRadius="20px">
+            <Text> Dia </Text>
+            <Input
+              placeholder="Dia"
+              type="date"
+              onChange={(e) => setDate(e.target.value)}
+              required
             />
-          <Input
-            placeholder="Dia"
-            value={date}
-            type="date"
-            onChange={(e) => setDate(e.target.value)}
-            required
+            <Flex alignItems="center">
+              <Text> De: </Text>
+            <Input
+              placeholder="Horário"
+              type="time"
+              onChange={(e) => setTimeStart(e.target.value)}
+              required
+              min={Date.now()}
             />
-          <Input
-            placeholder="Horário"
-            value={timeStart}
-            type="time"
-            onChange={(e) => setTimeStart(e.target.value)}
-            required
-            min={Date.now()}
+            <Text> Até: </Text>
+            <Input
+              placeholder="Horário"
+              type="time"
+              onChange={(e) => setTimeFinish(e.target.value)}
+              required
             />
-          <Input
-            placeholder="Horário"
-            value={timeFinish}
-            type="time"
-            onChange={(e) => setTimeFinish(e.target.value)}
-            required
+            <Text> Descrição </Text>
+            <Input
+              placeholder="Descrição"
+              type="text"
+              onChange={(e) => setDescription(e.target.value)}
+              required
             />
+            </Flex>
           </ModalBody>
-
-          <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={onClose}>
-              Close
+          <ModalFooter bg="white" borderBottomRadius="20px">
+            <Button bg="#FEA800" color="white" w="150px" mr={4} fontSize="18px" lineHeight="27px" border="8px solid #FEA800" borderRadius="47px" onClick={handleCreateRoutine}> Criar </Button>
+            <Button bg="white" color="#FEA800" w="150px" fontSize="18px" lineHeight="27px" border="2px solid #FEA800" borderRadius="47px" onClick={onClose}>
+              Cancelar
             </Button>
-            <Button colorScheme="teal" size="sm" onClick={createRoutines}> Criar </Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
-      <RoutineCard />
-      <ModalEditRoutine />
       </>
-
-
-  //         {showFormEdit && 
-  //           <div className="inputContainer">
-  //             <input
-  //               placeholder="Nome"
-  //               value={title}
-  //               type="text"
-  //               onChange={(e) => setTitle(e.target.value)}
-  //               required
-  //             />
-  //             <input
-  //               placeholder="Dia"
-  //               value={date}
-  //               type="date"
-  //               onChange={(e) => setDate(e.target.value)}
-  //               required
-  //             />
-  //             <input
-  //               placeholder="Horário"
-  //               value={timeStart}
-  //               type="time"
-  //               onChange={(e) => setTimeStart(e.target.value)}
-  //               required
-  //             />
-  //             <input
-  //               placeholder="Horário"
-  //               value={timeFinish}
-  //               type="time"
-  //               onChange={(e) => setTimeFinish(e.target.value)}
-  //               required
-  //             />
-  //             <Button colorScheme="teal" size="sm" variant="outline" onClick={() => handleEdit(item.id)}> Editar </Button>
-  //           </div>
-  //         }
-  //       </div>
-  //   })}
-  // </div>
 )}

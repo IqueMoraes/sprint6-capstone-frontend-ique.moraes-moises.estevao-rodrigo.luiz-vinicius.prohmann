@@ -31,17 +31,18 @@ export const ModalEditRoutine = () => {
       } = useRoutines();
 
     const { isOpen, onOpen, onClose } = useDisclosure()
+    
 
 
     return (
         <>
         <Button mt={4} onClick={onOpen}>
-          Criar rotina
+          Adicionar rotina
         </Button>
         <Modal isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
           <ModalContent>
-            <ModalHeader>Criar rotina</ModalHeader>
+            <ModalHeader>Adicionar</ModalHeader>
             <ModalCloseButton />
             <ModalBody>
             <Input
