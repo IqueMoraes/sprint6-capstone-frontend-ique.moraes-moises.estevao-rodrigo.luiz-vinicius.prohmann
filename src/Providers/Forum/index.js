@@ -10,7 +10,7 @@ export const ForumProvider = ({ children }) => {
     const [topics, setTopics] = useState([])
     const [searchTopic, setSearchTopic] = useState("")
 
-    const { authToken, userId } = useAuthToken()
+    const { authToken, userProfile } = useAuthToken()
 
 
     useEffect(() => {
@@ -22,17 +22,15 @@ export const ForumProvider = ({ children }) => {
             .catch(_ => console.log("não pegou os tópicos"))
     }, [])
 
-    const createTopic = (data) => {
+    const createTopic = (data) => { 
+
         api
             .post("/forum", data,  {
                 headers: { Authorization: "Bearer " + authToken },
             })
             .then(res => {
-                if(res.data) {
-                    setTopics([...topics, res.data])
-                    console.log(topics)
-                }
-
+                setTopics([...topics, res.data])
+                console.log(res.data)
             })
             .catch(_ => console.log("não criou tópicos"))
     }
