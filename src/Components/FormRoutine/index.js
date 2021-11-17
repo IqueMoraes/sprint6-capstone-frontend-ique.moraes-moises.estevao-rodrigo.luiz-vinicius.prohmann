@@ -38,7 +38,7 @@ export const FormRoutine = () => {
 
 return (
   <>
-      <Button bg="#FEA800" color="white" fontSize="18px" lineHeight="27px" border="8px solid #FEA800" borderRadius="47px" mt={4} onClick={onOpen}>
+      <Button bg="#FEA800" color="white" fontSize="18px" lineHeight="27px" border="2px solid #FEA800" borderRadius="47px" mt={4} _hover={{bg:"#FEA800"}} onClick={onOpen}>
         Criar rotina
       </Button>
       <Modal isOpen={isOpen} onClose={onClose}>
@@ -80,7 +80,7 @@ return (
             </Flex>
           </ModalBody>
           <ModalFooter bg="white" borderBottomRadius="20px">
-            <Button bg="#FEA800" color="white" w="150px" mr={4} fontSize="18px" lineHeight="27px" border="8px solid #FEA800" borderRadius="47px" onClick={handleCreateRoutine}> Criar </Button>
+            <Button bg="#FEA800" color="white" w="150px" mr={4} fontSize="18px" lineHeight="27px" border="2px solid #FEA800" borderRadius="47px" _hover={{bg:"#FEA800"}} onClick={handleCreateRoutine}> Criar </Button>
             <Button bg="white" color="#FEA800" w="150px" fontSize="18px" lineHeight="27px" border="2px solid #FEA800" borderRadius="47px" onClick={onClose}>
               Cancelar
             </Button>
