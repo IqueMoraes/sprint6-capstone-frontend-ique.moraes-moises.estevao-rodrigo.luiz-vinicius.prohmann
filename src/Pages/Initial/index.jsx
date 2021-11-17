@@ -1,5 +1,6 @@
 import { BarNavigation, BoxBody, FullScreen } from "./styled";
 import { Button } from "@chakra-ui/button";
+import CardDevs from "../../Components/CardDevs";
 
 const Initial = () => {
   return (
@@ -97,33 +98,17 @@ const Initial = () => {
           <h2>Quem Somos</h2>
 
           <section className="section_tean_devs">
-            <div>
-              <figure>
-                <img src="#" alt="#" />
-                <figcaption>#</figcaption>
-              </figure>
-            </div>
+            <CardDevs name="Rodrigo Luiz" devOffice="Q.A" />
 
-            <div>
-              <figure>
-                <img src="#" alt="#" />
-                <figcaption>#</figcaption>
-              </figure>
-            </div>
+            <CardDevs name="Rodrigo Luiz" devOffice="Q.A" />
 
-            <div>
-              <figure>
-                <img src="#" alt="#" />
-                <figcaption>#</figcaption>
-              </figure>
-            </div>
+            <CardDevs name="Rodrigo Luiz" devOffice="Q.A" />
 
-            <div>
-              <figure>
-                <img src="#" alt="#" />
-                <figcaption>#</figcaption>
-              </figure>
-            </div>
+            <CardDevs
+              name="Vinicius"
+              devOffice="Q.A"
+              devLinkedin="http://intranet.pe.senac.br/dr/intranet.net/psgnet/editais/Processo%20de%20Inscri%C3%A7%C3%A3o_PSG%202021.18.pdf"
+            />
           </section>
         </section>
 

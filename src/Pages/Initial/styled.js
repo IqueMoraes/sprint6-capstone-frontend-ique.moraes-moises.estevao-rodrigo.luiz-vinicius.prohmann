@@ -71,7 +71,7 @@ export const BoxBody = styled.article`
   }
 
   .section_min_cards {
-    width: 70%;
+    width: 80%;
 
     display: flex;
     align-items: center;
@@ -86,8 +86,8 @@ export const BoxBody = styled.article`
   }
 
   .section_tean {
-    width: 70%;
-    background-color: aliceblue;
+    width: 100%;
+    /* background-color: aliceblue; */
 
     display: flex;
     flex-direction: column;
