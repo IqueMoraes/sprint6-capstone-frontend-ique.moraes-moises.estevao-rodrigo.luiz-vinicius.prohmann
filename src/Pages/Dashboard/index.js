@@ -36,11 +36,10 @@ export const Dashboard = () => {
    const { userProfile } = useAuthToken();
    
 
-  console.log(userProfile);
 
   return (
     <div>
-      <Flex>
+      { userProfile && <Flex>
         <div style={{marginRight:"50px"}}>
         <Heading as="h3" size="lg" color="#1B2357" p="15px 0 5px">
           {userProfile.name}
@@ -52,7 +51,7 @@ export const Dashboard = () => {
         <div>
           <Heading as="h2" size="4xl" h="100%" lineHeight="" color="#FEA800">{userProfile.level}</Heading>
         </div>
-      </Flex>
+      </Flex>}
       <br />
       <div>
         {/* <Link to="/routines">Minha rotina</Link> */}
@@ -63,7 +62,7 @@ export const Dashboard = () => {
     Minhas conquistas
   </Heading>
         <Flex overflowX="scroll" w="100%" bg="#E0DFFD" borderRadius="10px" p="20px 0 0 20px">
-          {userProfile.achievments ? (
+          {userProfile?.achievments ? (
             userProfile.achievments.map((item) => (              
                 <AchievmentCard key={item.id} category={item.category} title={item.title} />          
             ))
