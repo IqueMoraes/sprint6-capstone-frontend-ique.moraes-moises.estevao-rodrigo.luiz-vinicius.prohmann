@@ -11,6 +11,7 @@ const GlobalStyles = createGlobalStyle`
  }
  body{
   background: linear-gradient(#5F4D93, #DB7483);
+  background-attachment: fixed;
 }
  :root{
         --darkBlue: #1B2357;
