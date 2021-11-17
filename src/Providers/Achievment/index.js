@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { createContext, useContext, useState } from "react";
 
-import { toast } from "react-toastify";
 import { api } from "../../Services";
 
 import { useUserProfile } from "../UserProfile";
@@ -21,7 +20,6 @@ export const AchievmentProvider = ({ children }) => {
       })
       .then((res) => {
         setAchievmentsList(res.data);
-        console.log(res.data, "entrei no provider achivments");
       })
       .catch((_) => {
         console.log("Não foi possível carregar os emblemas das conquistas");
@@ -33,7 +31,6 @@ export const AchievmentProvider = ({ children }) => {
     console.log("useEffect do provider ");
   }, []);
 
-  console.log(achievmentsList, "lista do achievment no provider");
 
   const AddAchievments = (achievmentObject) => {
     const newAchievments = [...userProfile.achievments, achievmentObject];

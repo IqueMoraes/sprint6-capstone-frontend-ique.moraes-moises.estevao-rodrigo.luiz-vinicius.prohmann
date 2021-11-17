@@ -30,7 +30,6 @@ export const AuthTokenProvider = ({ children }) => {
       .then((res) => {
         toast.success("Cadastro feito com sucesso.");
         history.push("/");
-        // setUserInfoProfile(res.data);
         return res;
       })
       .catch((err) => {
@@ -70,7 +69,7 @@ export const AuthTokenProvider = ({ children }) => {
 
   return (
     <AuthTokenContext.Provider
-      value={{ authToken, handleLogin, handleLogout, handleRegister, userId, userProfile }}
+      value={{ authToken, handleLogin, handleLogout, handleRegister, userId, userProfile, setUserProfile }}
     >
       {children}
     </AuthTokenContext.Provider>
