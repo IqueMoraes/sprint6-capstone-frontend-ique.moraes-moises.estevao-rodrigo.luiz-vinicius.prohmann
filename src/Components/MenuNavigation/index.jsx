@@ -1,9 +1,11 @@
-import { useHistory, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useAuthToken } from "../../Providers/AuthToken";
 
 export const NavigationMenu = () => {
+  const { handleLogout } = useAuthToken();
   return (
     <>
-      <ul  style={{marginBottom:"30px"}}>
+      <ul style={{ marginBottom: "30px" }}>
         <li>
           <Link to="/dashboard">Home</Link>
         </li>
@@ -22,6 +24,7 @@ export const NavigationMenu = () => {
         <li>
           <Link to="/achievments">Conquistas</Link>
         </li>
+        <h5 onClick={() => handleLogout()} style={{cursor:"pointer"}}>Sair</h5>
       </ul>
     </>
   );

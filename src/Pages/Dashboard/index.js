@@ -36,8 +36,7 @@ export const Dashboard = () => {
    const { userProfile } = useAuthToken();
    
 
-  // const { userInfoProfile, ShowProfile } = useUserProfile()
-  // console.log(ShowProfile);
+  console.log(userProfile);
 
   return (
     <div>
