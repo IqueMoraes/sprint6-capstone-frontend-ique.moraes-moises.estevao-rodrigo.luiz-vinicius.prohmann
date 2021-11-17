@@ -1,49 +1,12 @@
 import { Link } from "react-router-dom";
 import { AchievmentCard } from "../../Components/Achievments";
+import { useAuthToken } from "../../Providers/AuthToken";
+import { Flex, Heading } from "@chakra-ui/react";
 
-const exampleUser = {
-  email: "kenzinho@mail.com",
-  password: "$2a$10$YQiiz0ANVwIgpOjYXPxc0O9H2XeX3m8OoY1xk7OGgxTnOJnsZU7FO",
-  name: "Kenzinho",
-  birth: "05/16/1983",
-  urlSocialMedia: "instagram.com/ffafelipe/",
-  outSince: "10/10/2021",
-  bio: "generic Description",
-  id: 1,
-  points: 325,
-  level: 2,
-  achievments: [
-    {
-      title: "Limpar espelho",
-      category: "cleaning",
-    },
-    {
-      title: "Limpar vidro",
-      category: "cleaning",
-    },
-    {
-      title: "Descongelar carne",
-      category: "cooking",
-    },
-    {
-      title: "Passar roupa",
-      category: "maintenance",
-    },
-    {
-      title: "Furar parede",
-      category: "maintenance",
-    },
-    {
-      title: "Trocar resistência do chuveiro",
-      category: "eletricity",
-    },
-  ],
-};
 
 export const Dashboard = () => {
   const UserAge = (birthUser) => {
     const birthArray = birthUser.split("/").map((str) => Number(str));
-    console.log(birthArray);
     const birthDate = new Date(birthArray[2], birthArray[0], birthUser[1]); 
     const date_ms = Date.now() - birthDate.getTime();
     const age_ms = new Date(date_ms);
@@ -70,44 +33,40 @@ export const Dashboard = () => {
 
     return monthArray[leavingDateArray[0]] + " de " + leavingDateArray[2];
   };
+   const { userProfile } = useAuthToken();
+   
+
+  // const { userInfoProfile, ShowProfile } = useUserProfile()
+  // console.log(ShowProfile);
 
   return (
     <div>
-      <div>
-        {/* div de informações do usuário */}
-        <div>
-          <h2>{exampleUser.name}</h2>
-          <h4>{UserAge(exampleUser.birth)} anos</h4>
-          <h4>Fora desde {OutSince(exampleUser.outSince)}</h4>
-          <h4>Bio: {exampleUser.bio}</h4>
+      <Flex>
+        <div style={{marginRight:"50px"}}>
+        <Heading as="h3" size="lg" color="#1B2357" p="15px 0 5px">
+          {userProfile.name}
+  </Heading>
+          <Heading as="h4" size="md" color="#1B2357">{UserAge(userProfile.birth)} anos</Heading>
+          <Heading as="h4" size="md" color="#1B2357">Fora desde {OutSince(userProfile.outSince)}</Heading>
+          <Heading as="h4" size="md" color="#1B2357">Bio: {userProfile.bio}</Heading>
         </div>
         <div>
-          <h2>Nível {exampleUser.level}</h2>
+          <Heading as="h2" size="4xl" h="100%" lineHeight="" color="#FEA800">{userProfile.level}</Heading>
         </div>
-      </div>
-      <br />
-      <br />
+      </Flex>
       <br />
       <div>
-        <Link to="/routines">Minha rotina</Link>
+        {/* <Link to="/routines">Minha rotina</Link> */}
       </div>
       <br />
-      <br />
-      <br />
       <div>
-        <h3>Conquistas</h3>
-        <ul style={{ display: "flex", overflow: "auto" }}>
-          {exampleUser.achievments ? (
-            exampleUser.achievments.map((item) => (
-              <li
-                style={{
-                  margin: "20px",
-                  padding: "15px",
-                  backgroundColor: "gray",
-                }}
-              >
-                <AchievmentCard category={item.category} title={item.title} />
-              </li>
+      <Heading as="h3" size="md" color="#1B2357" p="15px 0">
+    Minhas conquistas
+  </Heading>
+        <Flex overflowX="scroll" w="100%" bg="#E0DFFD" borderRadius="10px" p="20px 0 0 20px">
+          {userProfile.achievments ? (
+            userProfile.achievments.map((item) => (              
+                <AchievmentCard key={item.id} category={item.category} title={item.title} />          
             ))
           ) : (
             <>
@@ -117,7 +76,7 @@ export const Dashboard = () => {
               <Link to="/achievments">Ver conquistas </Link>
             </>
           )}
-        </ul>
+        </Flex>
       </div>
 
       <br />
