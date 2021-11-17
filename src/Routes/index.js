@@ -1,70 +1,134 @@
-import { Route } from "react-router-dom";
-import { Switch } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
+import { toast } from "react-toastify";
 import { NavigationMenu } from "../Components/MenuNavigation";
 import { Achievments } from "../Pages/Achievments";
 import { Adverts } from "../Pages/Adverts";
 import { Dashboard } from "../Pages/Dashboard";
 import { Forum } from "../Pages/Forum";
-import { Home } from "../Pages/Home";
 import Initial from "../Pages/Initial";
 import { Login } from "../Pages/Login";
 import { Register } from "../Pages/Register";
 import { Routines } from "../Pages/Routines";
 import { ShowUsers } from "../Pages/ShowUsers";
+import { useAuthToken } from "../Providers/AuthToken";
 
 export const Routes = () => {
+  const { authToken } = useAuthToken();
+
   return (
     <Switch>
       <Route exact path="/">
-        {/* <NavigationMenu /> */}
-        
         <Initial />
-
-        {/* <Home /> */}
       </Route>
 
       <Route path="/login">
-        <Login />
+        {!!authToken ? (
+          <>
+            <Redirect to="/dashboard" />
+            {/* {toast.warn("Você já está logado em sua conta.")} */}
+          </>
+        ) : (
+          <>
+            <Login />
+          </>
+        )}
       </Route>
 
-      <Route path="/cadastro">
-        <Register />
+      <Route path="/register">
+        {!!authToken ? (
+          <>
+            <Redirect to="/dashboard" />
+            {/* {toast.warn("Você já está cadastrado e logado em sua conta.")} */}
+          </>
+        ) : (
+          <>
+            <Register />
+          </>
+        )}
       </Route>
 
       <Route path="/dashboard">
-        <NavigationMenu />
-
-        <Dashboard />
+        {!!authToken ? (
+          <>
+            <NavigationMenu />
+            <Dashboard />
+          </>
+        ) : (
+          <>
+            <Redirect to="/login" />
+            {/* {toast.warn("Faça o login para acessar sua página.")} */}
+          </>
+        )}
       </Route>
 
       <Route path="/routines">
-        <NavigationMenu />
-
-        <Routines />
+        {!!authToken ? (
+          <>
+            <NavigationMenu />
+            <Routines />
+          </>
+        ) : (
+          <>
+            <Redirect to="/login" />
+            {/* {toast.warn("Faça o login para acessar sua página.")} */}
+          </>
+        )}
       </Route>
 
       <Route path="/forum">
-        <NavigationMenu />
-
-        <Forum />
+        {!!authToken ? (
+          <>
+            <NavigationMenu />
+            <Forum />
+          </>
+        ) : (
+          <>
+            <Redirect to="/login" />
+            {/* {toast.warn("Faça o login para acessar sua página.")} */}
+          </>
+        )}
       </Route>
 
       <Route path="/adverts">
-        <NavigationMenu />
-
-        <Adverts />
+        {!!authToken ? (
+          <>
+            <NavigationMenu />
+            <Adverts />
+          </>
+        ) : (
+          <>
+            <Redirect to="/login" />
+            {/* {toast.warn("Faça o login para acessar sua página.")} */}
+          </>
+        )}
       </Route>
 
       <Route path="/members">
-        <NavigationMenu />
-
-        <ShowUsers />
+        {!!authToken ? (
+          <>
+            <NavigationMenu />
+            <ShowUsers />
+          </>
+        ) : (
+          <>
+            <Redirect to="/login" />
+            {/* {toast.warn("Faça o login para acessar sua página.")} */}
+          </>
+        )}
       </Route>
 
       <Route path="/achievments">
-        <NavigationMenu />
-
-        <Achievments />
+        {!!authToken ? (
+          <>
+            <NavigationMenu />
+            <Achievments />
+          </>
+        ) : (
+          <>
+            <Redirect to="/login" />
+            {/* {toast.warn("Faça o login para acessar sua página.")} */}
+          </>
+        )}
       </Route>
     </Switch>
   );
