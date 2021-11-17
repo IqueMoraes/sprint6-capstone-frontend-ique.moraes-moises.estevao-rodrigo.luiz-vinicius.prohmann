@@ -25,39 +25,12 @@ import { useAuthToken } from "../../Providers/AuthToken";
 import { api } from "../../Services";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useAdverts } from "../../Providers/Adverts";
 
 export const Adverts = () => {
   const { authToken, userId } = useAuthToken();
-  const [adverts, setAdverts] = useState([]);
+  const { adverts, getAdverts, postAdverts, deletAdverts } = useAdverts();
   const { isOpen, onOpen, onClose } = useDisclosure();
-
-  const getAdverts = () => {
-    api
-      .get("/adverts", {
-        headers: { Authorization: "Bearer " + authToken },
-      })
-      .then((response) => {
-        setAdverts(response.data);
-      });
-  };
-  const postAdverts = (data) => {
-    api
-      .post("/adverts", data, {
-        headers: { Authorization: "Bearer " + authToken },
-      })
-      .then((response) => console.log(response))
-      .then((_) => getAdverts())
-      .catch((err) => console.log(err));
-  };
-  const deletAdverts = (id) => {
-    api
-      .delete(`/adverts/${id}`, {
-        headers: { Authorization: "Bearer " + authToken },
-      })
-      .then((response) => console.log(response))
-      .then((_) => getAdverts())
-      .catch((err) => console.log(err));
-  };
 
   useEffect(() => {
     getAdverts();
