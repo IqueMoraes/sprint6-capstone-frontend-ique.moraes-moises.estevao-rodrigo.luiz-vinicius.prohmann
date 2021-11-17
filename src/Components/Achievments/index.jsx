@@ -9,9 +9,9 @@ import {
 } from "react-icons/fa";
 import achievmentFront from "../../assets/images/achievmentFront.png";
 import achievmentBack from "../../assets/images/achievment-back.svg";
-import { Box } from "@chakra-ui/react";
+import { Box, Button } from "@chakra-ui/react";
 
-export const AchievmentCard = ({ category, title }) => {
+export const AchievmentCard = ({ category, title, onClick, ...rest }) => {
   const [frontFace, setFrontFace] = useState(true);
 
   return (
@@ -31,72 +31,79 @@ export const AchievmentCard = ({ category, title }) => {
             alt="emblema de conquista"
             style={{ width: "100px", height: "124px" }}
           />
-          { category === "maintenance" ? 
+          {category === "maintenance" ? (
             <FaTools
-            style={{
-              position: "absolute",
-              top: "40%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              height: "40px",
-              width: "40px",
-            }}
-          /> :
-          category === "cleaning" ? <FaBroom
-            style={{
-              position: "absolute",
-              top: "40%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              height: "40px",
-              width: "40px",
-            }}
-          /> :
-          category === "hydraulic" ? (<FaTint
-            style={{
-              position: "absolute",
-              top: "40%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              height: "40px",
-              width: "40px",
-            }}
-          />) : 
-          category === "cooking" ? (<FaUtensils
-            style={{
-              position: "absolute",
-              top: "40%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              height: "40px",
-              width: "40px",
-            }}
-          />) :
-          category === "eletricity" ? (<FaBolt
-            style={{
-              position: "absolute",
-              top: "40%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              height: "40px",
-              width: "40px",
-            }}
-          />) :
-          (<FaMoneyBillWave
-            style={{
-              position: "absolute",
-              top: "40%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              height: "40px",
-              width: "40px",
-            }}
-          />)
-          
-          }
+              style={{
+                position: "absolute",
+                top: "40%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                height: "40px",
+                width: "40px",
+              }}
+            />
+          ) : category === "cleaning" ? (
+            <FaBroom
+              style={{
+                position: "absolute",
+                top: "40%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                height: "40px",
+                width: "40px",
+              }}
+            />
+          ) : category === "hydraulic" ? (
+            <FaTint
+              style={{
+                position: "absolute",
+                top: "40%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                height: "40px",
+                width: "40px",
+              }}
+            />
+          ) : category === "cooking" ? (
+            <FaUtensils
+              style={{
+                position: "absolute",
+                top: "40%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                height: "40px",
+                width: "40px",
+              }}
+            />
+          ) : category === "eletricity" ? (
+            <FaBolt
+              style={{
+                position: "absolute",
+                top: "40%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                height: "40px",
+                width: "40px",
+              }}
+            />
+          ) : (
+            <FaMoneyBillWave
+              style={{
+                position: "absolute",
+                top: "40%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                height: "40px",
+                width: "40px",
+              }}
+            />
+          )}
         </figure>
       ) : (
-        <figure style={{ position: "relative", cursor: "pointer" }}>
+        <figure
+          onClick={() => onClick()}
+          style={{ position: "relative", cursor: "pointer" }}
+        >
           <img
             src={achievmentBack}
             alt="título da conquista"

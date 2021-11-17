@@ -54,16 +54,16 @@ export const AuthTokenProvider = ({ children }) => {
         setUserId(idUser);
         setUserProfile(dataUserProfile);
         toast.success("Login realizado com sucesso");
-        console.log(res);
+        history.push("/dashboard");
       })
-      .then((_) => history.push("/dashboard"))
       .catch((err) => {
         toast.error("Email ou senha incorretos.");
       });
   };
 
   const handleLogout = () => {
-    localStorage.clear();
+    window.localStorage.clear();
+
     history.push("/");
   };
 

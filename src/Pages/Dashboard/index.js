@@ -34,52 +34,37 @@ export const Dashboard = () => {
   };
   const { userProfile } = useAuthToken();
 
-  console.log(userProfile);
 
   return (
     <div>
-      <Flex>
-        <div style={{ marginRight: "50px" }}>
-          <Heading as="h3" size="lg" color="#1B2357" p="15px 0 5px">
-            {userProfile.name}
-          </Heading>
-          <Heading as="h4" size="md" color="#1B2357">
-            {UserAge(userProfile.birth)} anos
-          </Heading>
-          <Heading as="h4" size="md" color="#1B2357">
-            Fora desde {OutSince(userProfile.outSince)}
-          </Heading>
-          <Heading as="h4" size="md" color="#1B2357">
-            Bio: {userProfile.bio}
-          </Heading>
+      { userProfile && <Flex>
+        <div style={{marginRight:"50px"}}>
+        <Heading as="h3" size="lg" color="#1B2357" p="15px 0 5px">
+          {userProfile.name}
+  </Heading>
+          <Heading as="h4" size="md" color="#1B2357">{UserAge(userProfile.birth)} anos</Heading>
+          <Heading as="h4" size="md" color="#1B2357">Fora desde {OutSince(userProfile.outSince)}</Heading>
+          <Heading as="h4" size="md" color="#1B2357">Bio: {userProfile.bio}</Heading>
+
         </div>
         <div>
           <Heading as="h2" size="4xl" h="100%" lineHeight="" color="#FEA800">
             {userProfile.level}
           </Heading>
         </div>
-      </Flex>
+      </Flex>}
       <br />
       <div>{/* <Link to="/routines">Minha rotina</Link> */}</div>
       <br />
       <div>
-        <Heading as="h3" size="md" color="#1B2357" p="15px 0">
-          Minhas conquistas
-        </Heading>
-        <Flex
-          overflowX="scroll"
-          w="100%"
-          bg="#E0DFFD"
-          borderRadius="10px"
-          p="20px 0 0 20px"
-        >
-          {userProfile.achievments ? (
-            userProfile.achievments.map((item) => (
-              <AchievmentCard
-                key={item.id}
-                category={item.category}
-                title={item.title}
-              />
+      <Heading as="h3" size="md" color="#1B2357" p="15px 0">
+    Minhas conquistas
+  </Heading>
+        <Flex overflowX="scroll" w="100%" bg="#E0DFFD" borderRadius="10px" p="20px 0 0 20px">
+          {userProfile?.achievments ? (
+            userProfile.achievments.map((item) => (              
+                <AchievmentCard key={item.id} category={item.category} title={item.title} />          
+
             ))
           ) : (
             <>
