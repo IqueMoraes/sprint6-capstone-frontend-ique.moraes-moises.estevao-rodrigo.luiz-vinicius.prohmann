@@ -38,7 +38,7 @@ export const AdvertsProvider = ({ children }) => {
       .post("/adverts", data, {
         headers: { Authorization: "Bearer " + authToken },
       })
-      .then((response) => console.log(response))
+      .then((response) => toast.success("Atividade Criada"))
       .then((_) => getAdverts())
       .catch((err) => console.log(err));
   };
@@ -48,7 +48,7 @@ export const AdvertsProvider = ({ children }) => {
       .delete(`/adverts/${id}`, {
         headers: { Authorization: "Bearer " + authToken },
       })
-      .then((response) => console.log(response))
+      .then((response) => toast.success("Atividade Apagada"))
       .then((_) => getAdverts())
       .catch((err) => console.log(err));
   };
