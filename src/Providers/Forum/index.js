@@ -7,6 +7,7 @@ const ForumContext = createContext({})
 export const ForumProvider = ({ children }) => {
 
     const [topics, setTopics] = useState([])
+    const [searchTopic, setSearchTopic] = useState("")
 
 
     useEffect(() => {
@@ -34,7 +35,7 @@ export const ForumProvider = ({ children }) => {
     }
 
     return (
-        <ForumContext.Provider value={{ topics }}>
+        <ForumContext.Provider value={{ topics, setSearchTopic, searchTopic }}>
             {children}
         </ForumContext.Provider>
     )
