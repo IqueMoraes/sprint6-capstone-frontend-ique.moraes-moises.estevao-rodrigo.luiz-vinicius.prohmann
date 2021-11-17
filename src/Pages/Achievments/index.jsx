@@ -1,7 +1,18 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { AchievmentCard } from "../../Components/Achievments";
 import { useAchievment } from "../../Providers/Achievment";
 import { useAuthToken } from "../../Providers/AuthToken";
+
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+} from "@chakra-ui/react"
+import { useDisclosure } from "@chakra-ui/core";
 
 export const Achievments = () => {
   const { achievmentsList, AddAchievments, RemoveAchievments } =
@@ -30,17 +41,24 @@ export const Achievments = () => {
     }
   };
 
+  function InitialFocus() {
+    const { isOpen, onOpen, onClose } = useDisclosure()
+  
+    const initialRef = React.useRef()
+    const finalRef = React.useRef()
+  }
+
   return (
     <div>
       <div>
         <h2>Conquistas</h2>
         <h3>
-          {userList.length}/
+          {userList.length}/{achievmentsList.length}
         </h3>
       </div>
       <div>
         <ul>
-          {/* {achievmentsList.map((item, index) => (
+          {achievmentsList.map((item, index) => (
             <li
               key={index}
               onClick={() => {
@@ -50,23 +68,45 @@ export const Achievments = () => {
             >
               <AchievmentCard category={item.category} title={item.title} />
             </li>
-          ))} */}
+          ))}
         </ul>
       </div>
-      {showForm && (
-        <div>
-          <div>
-            <h3>{achievmentInfo.title}</h3>
-            <h4>Categoria: {translateCategory()}</h4>
-            <h4>15 pontos</h4>
-            <input
-              type="checkbox"
-              checked={userList.includes(achievmentInfo)}
-              onChange={() => changeInput()}
-            />
-          </div>
-        </div>
-      )}
+      
+       <Button onClick={onOpen}>Open Modal</Button>
+      <Button ml={4} ref={finalRef}>
+        I'll receive focus on close
+      </Button>
+
+      <Modal
+        initialFocusRef={initialRef}
+        finalFocusRef={finalRef}
+        isOpen={isOpen}
+        onClose={onClose}
+      >
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Create your account</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody pb={6}>
+            <FormControl>
+              <FormLabel>First name</FormLabel>
+              <Input ref={initialRef} placeholder="First name" />
+            </FormControl>
+
+            <FormControl mt={4}>
+              <FormLabel>Last name</FormLabel>
+              <Input placeholder="Last name" />
+            </FormControl>
+          </ModalBody>
+
+          <ModalFooter>
+            <Button colorScheme="blue" mr={3}>
+              Salvar
+            </Button>
+            <Button onClick={onClose}>Cancelar</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </div>
   );
 };

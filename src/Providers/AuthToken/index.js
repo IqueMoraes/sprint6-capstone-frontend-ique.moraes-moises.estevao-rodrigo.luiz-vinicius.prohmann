@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 
 import { toast } from "react-toastify";
 import { api } from "../../Services";
+import { useAchievment } from "../Achievment";
 
 
 const AuthTokenContext = createContext({});
@@ -22,7 +23,6 @@ export const AuthTokenProvider = ({ children }) => {
 
   const history = useHistory();
 
-  // const { setUserInfoProfile }= useUserProfile();
 
   const handleRegister = (data) => {
     api
