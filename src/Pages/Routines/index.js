@@ -1,6 +1,6 @@
 import { Box, Heading, Button, Text, Flex } from "@chakra-ui/react";
 import { useRoutines } from "../../Providers/Routines";
-import { RoutineCard } from "../../Components/FormRoutine/RoutineCart";
+import { RoutineCard } from "../../Components/FormRoutine/RoutineCard";
 import { FormRoutine } from "../../Components/FormRoutine";
 
 export const Routines = () => {
