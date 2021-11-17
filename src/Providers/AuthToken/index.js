@@ -44,8 +44,8 @@ export const AuthTokenProvider = ({ children }) => {
         const idUser = res.data.user.id;
         const dataUserProfile = res.data.user;
         window.localStorage.clear();
-        window.localStorage.setItem("@tm/token", res.data.accessToken);
-        window.localStorage.setItem("@tm/userId", res.data.user.id);
+        window.localStorage.setItem("@tm/token", token);
+        window.localStorage.setItem("@tm/userId", idUser);
         window.localStorage.setItem(
           "@tm/userProfile",
           JSON.stringify(dataUserProfile)
@@ -63,6 +63,7 @@ export const AuthTokenProvider = ({ children }) => {
 
   const handleLogout = () => {
     window.localStorage.clear();
+
     history.push("/");
   };
 
