@@ -30,6 +30,7 @@ export const Achievments = () => {
     id: 1,
   });
   const [changeCheckbox, setChangeCheckbox] = useState(false);
+  console.log(changeCheckbox);
 
   const translateCategory = () => {
     const cat = achievmentInfo.category;
@@ -76,28 +77,28 @@ export const Achievments = () => {
       </div>
       <div>
         <Flex overflow="auto" p="15px" wrap="wrap">
-          <ul>
+          {/* <ul> */}
 
           {achievmentsList.map((item) => (
-            <li
-              key={item.id}
-              onClick={() => {
-                  onOpen();
-                  setAchievmentInfo(item);
-                }}
-              >
+            // <li
+            //   key={item.id}
+            //   onClick={() => {
+            //       onOpen();
+            //       setAchievmentInfo(item);
+            //     }}
+            //   >
              <AchievmentCard
-            // key={item.id}
+            key={item.id}
             category={item.category}
             title={item.title}
-            // onClick={() => {
-            //   onOpen();
-            //   setAchievmentInfo(item);
-            // }}
+            onClick={() => {
+              onOpen();
+              setAchievmentInfo(item);
+            }}
             />
-            </li>
+            // </li>
             ))}
-            </ul>
+            {/* </ul> */}
         </Flex>
       </div>
 
