@@ -76,25 +76,28 @@ export const Achievments = () => {
       </div>
       <div>
         <Flex overflow="auto" p="15px" wrap="wrap">
+          <ul>
+
           {achievmentsList.map((item) => (
-            // <li
-            //   key={index}
-            //   onClick={() => {
-            //     onOpen();
-            //     setAchievmentInfo(item);
-            //   }}
-            // >
-            <AchievmentCard
+            <li
               key={item.id}
-              category={item.category}
-              title={item.title}
               onClick={() => {
-                onOpen();
-                setAchievmentInfo(item);
-              }}
+                  onOpen();
+                  setAchievmentInfo(item);
+                }}
+              >
+             <AchievmentCard
+            // key={item.id}
+            category={item.category}
+            title={item.title}
+            // onClick={() => {
+            //   onOpen();
+            //   setAchievmentInfo(item);
+            // }}
             />
-            // </li>
-          ))}
+            </li>
+            ))}
+            </ul>
         </Flex>
       </div>
 
