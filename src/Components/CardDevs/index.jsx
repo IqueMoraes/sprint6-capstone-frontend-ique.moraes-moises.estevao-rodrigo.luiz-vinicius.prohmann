@@ -1,8 +1,17 @@
 import { Link } from "react-router-dom";
 import { BoxDevs } from "./style";
-import { FaGithub, FaLinkedin, FaLinkedinIn } from "react-icons/fa";
 
-const CardDevs = ({ image, name, devOffice, devLinkedin }) => {
+import { FaGithub, FaLinkedin } from "react-icons/fa";
+
+const CardDevs = ({ image, name, devOffice, devLinkedin, devGithub }) => {
+  const handlerLinkedin = () => {
+    window.location.href = devLinkedin;
+  };
+
+  const handlerGithub = () => {
+    window.location.href = devGithub;
+  };
+
   return (
     <BoxDevs>
       <div className="BoxImage">
@@ -16,13 +25,13 @@ const CardDevs = ({ image, name, devOffice, devLinkedin }) => {
 
       <ul className="SocialBox">
         <li>
-          <Link to="#">
+          <Link onClick={handlerGithub}>
             <FaGithub size={30} style={{ fill: "#5f4d93" }} />
           </Link>
         </li>
 
         <li>
-          <Link src={devLinkedin}>
+          <Link onClick={handlerLinkedin}>
             <FaLinkedin size={30} style={{ fill: "#5f4d93" }} />
           </Link>
         </li>

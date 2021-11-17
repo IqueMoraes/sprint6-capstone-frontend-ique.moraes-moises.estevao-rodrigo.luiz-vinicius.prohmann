@@ -98,16 +98,32 @@ const Initial = () => {
           <h2>Quem Somos</h2>
 
           <section className="section_tean_devs">
-            <CardDevs name="Rodrigo Luiz" devOffice="Q.A" />
-
-            <CardDevs name="Rodrigo Luiz" devOffice="Q.A" />
-
-            <CardDevs name="Rodrigo Luiz" devOffice="Q.A" />
+            <CardDevs
+              name="Ique Moraes"
+              devOffice="Q.A"
+              devGithub="https://github.com/IqueMoraes"
+              devLinkedin="https://www.linkedin.com/in/ique-moraes-814129212/"
+            />
 
             <CardDevs
-              name="Vinicius"
+              name="Rodrigo Luiz"
               devOffice="Q.A"
-              devLinkedin="http://intranet.pe.senac.br/dr/intranet.net/psgnet/editais/Processo%20de%20Inscri%C3%A7%C3%A3o_PSG%202021.18.pdf"
+              devGithub="https://github.com/rodrigorugal"
+              devLinkedin="www.linkedin.com/in/rodrigo-andrade-a02898197"
+            />
+
+            <CardDevs
+              name="Moisés Gaioli"
+              devOffice="Q.A"
+              devGithub="https://github.com/moisesgaioli"
+              devLinkedin="https://www.linkedin.com/in/moises-gaioli-estevao"
+            />
+
+            <CardDevs
+              name="Vinicius Prohmann"
+              devOffice="Q.A"
+              devGithub="https://github.com/vinapro91"
+              devLinkedin="https://www.linkedin.com/in/viniciusprohmann/"
             />
           </section>
         </section>
