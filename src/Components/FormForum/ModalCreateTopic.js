@@ -18,6 +18,7 @@ import {
 import { useForm } from "react-hook-form";
 import * as yup from "yup"
 import { yupResolver } from "@hookform/resolvers/yup"
+import { useForum } from "../../Providers/Forum"
 
 
 
@@ -27,7 +28,6 @@ export const ModalCreateTopic = () => {
         subject: yup.string().required("Campo obrigatório"),
         category: yup.string().required("Selecione uma opção"),
         text: yup.string().required("Campo obrigatório"),
-        author: yup.string().required("Campo obrigatório"),
         assistantSites: yup.string()
     })
 
@@ -38,9 +38,13 @@ export const ModalCreateTopic = () => {
 
     const { isOpen, onOpen, onClose } = useDisclosure()
 
+    const { createTopic } = useForum()
+ 
 
     const handleCreateTopic = (data) => {
         console.log(data)
+        createTopic()
+        // onClose()
     };
 
     return (
@@ -55,14 +59,14 @@ export const ModalCreateTopic = () => {
             <ModalCloseButton color="white" />
             <ModalBody bg="white" borderTopRadius="20px">
                 <VStack spacing="4" mt="3">
-                    <Text> Qual seu nome? </Text>
+                    {/* <Text> Qual seu nome? </Text>
                     <Input
                         placeholder="Seu nome"
                         type="text"
                         {...register("author")}
                         errors={(errors.author?.message)}
                     />
-                     <span style={{color: "red" , fontSize:"10px"}}> {errors.author?.message} </span>
+                     <span style={{color: "red" , fontSize:"10px"}}> {errors.author?.message} </span> */}
                     <Text> Assunto </Text>
                     <Input
                         placeholder="Assunto"
@@ -72,12 +76,12 @@ export const ModalCreateTopic = () => {
                     />
                      <span style={{color: "red" , fontSize:"10px"}}> {errors.subject?.message} </span>
                     <Text> Categoria </Text>
-                    <Select placeholder="Selecione uma opção" size="md" {...register("category")} errors={(errors.category?.message)}>
-                        <option value="electric">Elétrica</option>
-                        <option value="cleaning">Limpeza</option>
-                        <option value="organization">Organização</option>
-                        <option value="hydraulics">Hidráulica</option>
-                        <option value="bill">Contas</option>
+                    <Select placeholder="Selecione uma opção" size="md" {...register("category")}>
+                        <option value="Elétrica">Elétrica</option>
+                        <option value="Limpeza">Limpeza</option>
+                        <option value="Organização">Organização</option>
+                        <option value="Hidráulica">Hidráulica</option>
+                        <option value="Contas">Contas</option>
                     </Select>
                     <span style={{color: "red" , fontSize:"10px"}}> {errors.category?.message} </span>
                     <Text> Texto </Text>

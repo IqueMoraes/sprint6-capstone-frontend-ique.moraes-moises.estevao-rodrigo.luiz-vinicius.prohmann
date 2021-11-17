@@ -46,8 +46,8 @@ export const CardTopics = () => {
                                             </h2>
                                             <AccordionPanel pb={4} bg="#E0DFFD" border="2px solid black">
                                                 <Box> 
-                                                    <Text> {item.comments.author} </Text>
-                                                    <Text> {item.comments.text} </Text>  
+                                                    {/* <Text> {item.comments.author} </Text>
+                                                    <Text> {item.comments.text} </Text>   */}
                                                 </Box>
                                             </AccordionPanel>
                                         </AccordionItem>
