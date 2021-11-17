@@ -21,6 +21,8 @@ export const FormRegister = () => {
     urlSocialMedia: yup
       .string()
       .required("Insira aqui o endereço da sua rede social preferida"),
+    birth: yup.string().required("data de nascimento Obrigatória"),
+    outSince: yup.string(),
     password: yup
       .string()
       .required("Digite sua Senha")
@@ -47,7 +49,7 @@ export const FormRegister = () => {
       birth: birth,
       email: email,
       name: name,
-      outSince: outSince,
+      outSince: outSince || "00/00/00",
       password: password,
       urlSocialMedia: urlSocialMedia,
       points: 0,

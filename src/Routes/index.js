@@ -5,7 +5,7 @@ import { Achievments } from "../Pages/Achievments";
 import { Adverts } from "../Pages/Adverts";
 import { Dashboard } from "../Pages/Dashboard";
 import { Forum } from "../Pages/Forum";
-import Initial from "../Pages/Initial";
+import Home from "../Pages/Home";
 import { Login } from "../Pages/Login";
 import { Register } from "../Pages/Register";
 import { Routines } from "../Pages/Routines";
@@ -18,7 +18,7 @@ export const Routes = () => {
   return (
     <Switch>
       <Route exact path="/">
-        <Initial />
+        <Home />
       </Route>
 
       <Route path="/login">
