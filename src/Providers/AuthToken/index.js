@@ -1,8 +1,10 @@
 import { createContext, useContext, useState } from "react";
-import { useHistory } from "react-router";
+import { useHistory } from "react-router-dom";
 
 import { toast } from "react-toastify";
 import { api } from "../../Services";
+import { useAchievment } from "../Achievment";
+
 
 const AuthTokenContext = createContext({});
 
@@ -15,7 +17,12 @@ export const AuthTokenProvider = ({ children }) => {
     () => localStorage.getItem("@tm/token") || ""
   );
 
+  const [userProfile, setUserProfile] = useState(
+    () => JSON.parse(localStorage.getItem("@tm/userProfile" || ""))
+  );
+
   const history = useHistory();
+
 
   const handleRegister = (data) => {
     api
@@ -37,12 +44,17 @@ export const AuthTokenProvider = ({ children }) => {
       .then((res) => {
         const token = res.data.accessToken;
         const idUser = res.data.user.id;
+        const dataUserProfile = res.data.user;
         window.localStorage.clear();
         window.localStorage.setItem("@tm/token", token);
         window.localStorage.setItem("@tm/userId", idUser);
+        window.localStorage.setItem("@tm/userProfile", JSON.stringify(dataUserProfile));
         setAuthToken(token);
         setUserId(idUser);
+        setUserProfile(dataUserProfile);
         toast.success("Login realizado com sucesso");
+        console.log(res)
+        // setUserInfoProfile(res.data.user);
         history.push("/dashboard");
       })
       .catch((err) => {
@@ -51,13 +63,13 @@ export const AuthTokenProvider = ({ children }) => {
   };
 
   const handleLogout = () => {
-    window.localStorage.clear();
+    window.localStorage.removeItem("@tm/token");
     history.push("/");
   };
 
   return (
     <AuthTokenContext.Provider
-      value={{ authToken, handleLogin, handleLogout, handleRegister, userId }}
+      value={{ authToken, handleLogin, handleLogout, handleRegister, userId, userProfile, setUserProfile }}
     >
       {children}
     </AuthTokenContext.Provider>

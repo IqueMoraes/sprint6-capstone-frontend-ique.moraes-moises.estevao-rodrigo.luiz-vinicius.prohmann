@@ -52,6 +52,7 @@ export const FormRegister = () => {
       urlSocialMedia: urlSocialMedia,
       points: 0,
       level: 1,
+      achievments: [],
     };
     handleRegister(sendToRegister);
     setTimeout(() => setLoading(false), 1500);
