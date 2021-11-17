@@ -1,5 +1,15 @@
 import { Button } from "@chakra-ui/button";
+import { useDisclosure } from "@chakra-ui/hooks";
 import { Badge, Box, Flex, Grid } from "@chakra-ui/layout";
+import {
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
+} from "@chakra-ui/modal";
 import { FaTrashAlt } from "react-icons/fa";
 export const AdvertsProfile = ({
   index,
@@ -12,26 +22,57 @@ export const AdvertsProfile = ({
   description,
   delet,
 }) => {
-  return (
-    <Grid
-      templateColumns="repeat(7, 1fr)"
-      gap={6}
-      bg="white"
-      borderRadius="10px"
-      alignItems="center"
-      mt="5px"
-    >
-      <Flex alignItems="center" justifyContent="center">
-        <Badge>{category} </Badge>
-      </Flex>
-      <Box fontSize="14px">{name}</Box>
-      <Box fontSize="14px" fontWeight="Bold">
-        {localization}
-      </Box>
-      <Box fontSize="14px"> {category}</Box>
-      <Box fontSize="14px">{date} </Box>
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
-      <FaTrashAlt onClick={() => delet(id)} colSpan={1} />
-    </Grid>
+  return (
+    <>
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Descrição:</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>{description}</ModalBody>
+
+          <ModalFooter></ModalFooter>
+        </ModalContent>
+      </Modal>
+
+      <Grid
+        templateColumns="repeat(7, 1fr)"
+        gap={6}
+        bg="white"
+        borderRadius="10px"
+        alignItems="center"
+        mt="5px"
+      >
+        <Flex
+          onClick={onOpen}
+          alignItems="center"
+          justifyContent="center"
+          cursor="pointer"
+        >
+          <Badge>{category} </Badge>
+        </Flex>
+        <Box onClick={onOpen} fontSize="14px" cursor="pointer">
+          {name}
+        </Box>
+        <Box
+          onClick={onOpen}
+          fontSize="14px"
+          fontWeight="Bold"
+          cursor="pointer"
+        >
+          {localization}
+        </Box>
+        <Box onClick={onOpen} fontSize="14px" cursor="pointer">
+          {category}
+        </Box>
+        <Box onClick={onOpen} fontSize="14px" cursor="pointer">
+          {date}
+        </Box>
+
+        <FaTrashAlt onClick={() => delet(id)} cursor="pointer" />
+      </Grid>
+    </>
   );
 };
