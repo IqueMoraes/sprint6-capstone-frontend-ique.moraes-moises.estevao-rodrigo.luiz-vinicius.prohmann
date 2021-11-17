@@ -42,6 +42,7 @@ export const FullScreen = styled.main`
     .text_open {
       width: 80%;
       text-align: center;
+      color: aliceblue;
     }
   }
 
@@ -87,7 +88,7 @@ export const BoxBody = styled.article`
 
   .section_tean {
     width: 100%;
-    /* background-color: aliceblue; */
+    background-color: aliceblue;
 
     display: flex;
     flex-direction: column;

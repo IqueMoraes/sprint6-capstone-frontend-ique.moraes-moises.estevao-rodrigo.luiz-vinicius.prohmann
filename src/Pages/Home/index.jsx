@@ -1,14 +1,21 @@
 import { BarNavigation, BoxBody, FullScreen } from "./styled";
 import { Button } from "@chakra-ui/button";
 import CardDevs from "../../Components/CardDevs";
+import { HStack } from "@chakra-ui/layout";
+import { useHistory } from "react-router";
 
-const Initial = () => {
+const Home = () => {
+  const history = useHistory();
+
+  const handlerAccess = (local) => {
+    history.push(`/${local}`);
+  };
+
   return (
     <FullScreen>
       <section className="top_section">
         <figure>
-          <img src="#" alt="#" />
-          <figcaption>#</figcaption>
+          <img src="#" />
         </figure>
 
         <div className="text_open">
@@ -34,7 +41,7 @@ const Initial = () => {
         <section className="section_about">
           <div>
             <figure>
-              <img src="#" alt="#" />
+              <img src="#" />
               <figcaption>#</figcaption>
             </figure>
           </div>
@@ -53,7 +60,7 @@ const Initial = () => {
         <section className="section_min_cards">
           <div className="section_min_cards_box">
             <figure>
-              <img src="#" alt="#" />
+              <img src="#" />
               <figcaption>#</figcaption>
             </figure>
 
@@ -67,7 +74,7 @@ const Initial = () => {
 
           <div className="section_min_cards_box">
             <figure>
-              <img src="#" alt="#" />
+              <img src="#" />
               <figcaption>#</figcaption>
             </figure>
 
@@ -81,7 +88,7 @@ const Initial = () => {
 
           <div className="section_min_cards_box">
             <figure>
-              <img src="#" alt="#" />
+              <img src="#" />
               <figcaption>#</figcaption>
             </figure>
 
@@ -100,7 +107,7 @@ const Initial = () => {
           <section className="section_tean_devs">
             <CardDevs
               name="Ique Moraes"
-              devOffice="Q.A"
+              devOffice="QA"
               devGithub="https://github.com/IqueMoraes"
               devLinkedin="https://www.linkedin.com/in/ique-moraes-814129212/"
             />
@@ -132,30 +139,35 @@ const Initial = () => {
           <h2>Começe Agora</h2>
           <p>Faça login ou cadastre-se para começar agora</p>
 
-          <section>
+          <HStack spacing="24px" mt="20px">
             <Button
               type="submit"
               bgGradient="linear(to-b, bg.200, pink.500)"
               color="white"
-              mt="20px"
               _hover={{ bgGradient: "linear(to-b,  pink.500, bg.200)" }}
+              onClick={() => {
+                handlerAccess("login");
+              }}
             >
               Login
             </Button>
+
             <Button
               type="submit"
               bgGradient="linear(to-b, bg.200, #e05a70)"
               color="white"
-              mt="20px"
               _hover={{ bgGradient: "linear(to-b,  #b12139, bg.200)" }}
+              onClick={() => {
+                handlerAccess("register");
+              }}
             >
               Cadastro
             </Button>
-          </section>
+          </HStack>
         </section>
       </BoxBody>
     </FullScreen>
   );
 };
 
-export default Initial;
+export default Home;
