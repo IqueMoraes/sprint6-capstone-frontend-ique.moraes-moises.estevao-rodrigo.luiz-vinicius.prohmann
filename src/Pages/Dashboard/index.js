@@ -2,8 +2,12 @@ import { Link } from "react-router-dom";
 import { AchievmentCard } from "../../Components/Achievments";
 import { useAuthToken } from "../../Providers/AuthToken";
 import { Flex, Heading } from "@chakra-ui/react";
+import { useAdverts } from "../../Providers/Adverts";
+import { AdvertsCards } from "../../Components/AdvertsCards";
+import { useEffect } from "react";
 
 export const Dashboard = () => {
+  const { myAdverts, deletAdverts, getMyAdverts } = useAdverts();
   const UserAge = (birthUser) => {
     const birthArray = birthUser.split("/").map((str) => Number(str));
     const birthDate = new Date(birthArray[2], birthArray[0], birthUser[1]);
@@ -12,7 +16,9 @@ export const Dashboard = () => {
 
     return Math.abs(age_ms.getUTCFullYear() - 1970);
   };
-
+  useEffect(() => {
+    getMyAdverts();
+  }, []);
   const OutSince = (leavingDate) => {
     const monthArray = [
       "Janeiro",
@@ -77,13 +83,21 @@ export const Dashboard = () => {
         </Flex>
       </div>
 
-      <br />
-      <br />
-      <br />
-
       <div>
         <h3>Meus anúncios</h3>
-        <ul>{}</ul>
+        {myAdverts.map((item, index) => (
+          <AdvertsCards
+            index={index}
+            name={item.name}
+            date={item.date}
+            localization={item.localization}
+            category={item.category}
+            id={item.id}
+            userId={item.userId}
+            description={item.description}
+            delet={deletAdverts}
+          />
+        ))}
       </div>
     </div>
   );

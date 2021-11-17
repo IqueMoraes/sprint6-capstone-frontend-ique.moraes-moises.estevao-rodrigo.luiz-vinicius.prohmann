@@ -11,6 +11,7 @@ const AdvertsToken = createContext({});
 export const AdvertsProvider = ({ children }) => {
   const { authToken, userId } = useAuthToken();
   const [adverts, setAdverts] = useState([]);
+  const [myAdverts, setMyAdverts] = useState([]);
 
   const getAdverts = () => {
     api
@@ -19,6 +20,16 @@ export const AdvertsProvider = ({ children }) => {
       })
       .then((response) => {
         setAdverts(response.data);
+      });
+  };
+
+  const getMyAdverts = () => {
+    api
+      .get(`/adverts?userId=${userId}`, {
+        headers: { Authorization: "Bearer " + authToken },
+      })
+      .then((response) => {
+        setMyAdverts(response.data);
       });
   };
 
@@ -42,13 +53,16 @@ export const AdvertsProvider = ({ children }) => {
       .catch((err) => console.log(err));
   };
 
-  //   useEffect(() => {
-  //     getAdverts();
-  //   }, []);
-
   return (
     <AdvertsToken.Provider
-      value={{ adverts, getAdverts, postAdverts, deletAdverts }}
+      value={{
+        adverts,
+        getAdverts,
+        postAdverts,
+        deletAdverts,
+        getMyAdverts,
+        myAdverts,
+      }}
     >
       {children}
     </AdvertsToken.Provider>
