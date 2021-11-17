@@ -1,15 +1,16 @@
 import { BarNavigation, BoxBody, FullScreen } from "./styled";
+import { Button } from "@chakra-ui/button";
 
 const Initial = () => {
   return (
     <FullScreen>
-      <section>
+      <section className="top_section">
         <figure>
           <img src="#" alt="#" />
           <figcaption>#</figcaption>
         </figure>
 
-        <div>
+        <div className="text_open">
           <h1>Tchau Mamãe</h1>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus,
@@ -29,7 +30,14 @@ const Initial = () => {
           </ul>
         </BarNavigation>
 
-        <section>
+        <section className="section_about">
+          <div>
+            <figure>
+              <img src="#" alt="#" />
+              <figcaption>#</figcaption>
+            </figure>
+          </div>
+
           <div>
             <h3>Sobre o aplicativo</h3>
             <p>
@@ -39,17 +47,10 @@ const Initial = () => {
               voluptatibus ad amet recusandae, veritatis unde nam.
             </p>
           </div>
-
-          <div>
-            <figure>
-              <img src="#" alt="#" />
-              <figcaption>#</figcaption>
-            </figure>
-          </div>
         </section>
 
-        <section>
-          <div>
+        <section className="section_min_cards">
+          <div className="section_min_cards_box">
             <figure>
               <img src="#" alt="#" />
               <figcaption>#</figcaption>
@@ -63,7 +64,7 @@ const Initial = () => {
             </p>
           </div>
 
-          <div>
+          <div className="section_min_cards_box">
             <figure>
               <img src="#" alt="#" />
               <figcaption>#</figcaption>
@@ -77,7 +78,7 @@ const Initial = () => {
             </p>
           </div>
 
-          <div>
+          <div className="section_min_cards_box">
             <figure>
               <img src="#" alt="#" />
               <figcaption>#</figcaption>
@@ -92,10 +93,17 @@ const Initial = () => {
           </div>
         </section>
 
-        <section>
+        <section className="section_tean">
           <h2>Quem Somos</h2>
 
-          <section>
+          <section className="section_tean_devs">
+            <div>
+              <figure>
+                <img src="#" alt="#" />
+                <figcaption>#</figcaption>
+              </figure>
+            </div>
+
             <div>
               <figure>
                 <img src="#" alt="#" />
@@ -119,13 +127,29 @@ const Initial = () => {
           </section>
         </section>
 
-        <section>
+        <section className="section_start">
           <h2>Começe Agora</h2>
           <p>Faça login ou cadastre-se para começar agora</p>
 
           <section>
-            <button>Login</button>
-            <button>Cadastro</button>
+            <Button
+              type="submit"
+              bgGradient="linear(to-b, bg.200, pink.500)"
+              color="white"
+              mt="20px"
+              _hover={{ bgGradient: "linear(to-b,  pink.500, bg.200)" }}
+            >
+              Login
+            </Button>
+            <Button
+              type="submit"
+              bgGradient="linear(to-b, bg.200, #e05a70)"
+              color="white"
+              mt="20px"
+              _hover={{ bgGradient: "linear(to-b,  #b12139, bg.200)" }}
+            >
+              Cadastro
+            </Button>
           </section>
         </section>
       </BoxBody>
