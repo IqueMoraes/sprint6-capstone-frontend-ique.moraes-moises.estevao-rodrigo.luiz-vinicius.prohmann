@@ -6,6 +6,7 @@ export const BoxDevs = styled.div`
   margin: 10px 5px;
   background-image: linear-gradient(#5f4d93, #db7483);
   border-radius: 20px;
+  color: aliceblue;
 
   display: flex;
   flex-direction: column;
