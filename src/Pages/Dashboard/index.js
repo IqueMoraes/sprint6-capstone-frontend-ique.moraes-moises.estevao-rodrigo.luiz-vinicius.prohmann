@@ -43,7 +43,7 @@ export const Dashboard = () => {
   const { userProfile } = useAuthToken();
 
   return (
-    <Box w="100vw" h="100vh" p="15px 15px 55px 15px" mb="20px">
+    <Box w="100vw" h="100vh">
       {userProfile && (
         <Flex
           w="100"
@@ -115,16 +115,27 @@ export const Dashboard = () => {
           minWidth="100%"
           overflow="auto"
         >
-          <div>
+          <Box display="flex" flexDirection="column" w="635px">
             <Box
               bg="#e3e"
+              p="0 10px"
               borderRadius="10px"
               w="100%"
+              h="30px"
               display="flex"
               alignItems="center"
+              justifyContent="space-evenly"
             >
-              <Box minWidth="100px" m="0 10px" fontSize="14px">
-                Categoria
+              <Box
+                minWidth="200px"
+                m="0 10px"
+                paddingLeft="25px"
+                fontSize="14px"
+                display="flex"
+                alignItems="center"
+                justifyContent="center"
+              >
+                <Box as="h3">Categoria</Box>
               </Box>
               <Box minWidth="100px" m="0 10px" fontSize="14px">
                 Titulo
@@ -157,7 +168,7 @@ export const Dashboard = () => {
                 delet={deletAdverts}
               />
             ))}
-          </div>
+          </Box>
         </Flex>
       </Box>
       <Box h="10px" w="100%"></Box>

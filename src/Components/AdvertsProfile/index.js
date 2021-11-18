@@ -36,10 +36,10 @@ export const AdvertsProfile = ({
         </ModalContent>
       </Modal>
 
-      <Flex bg="white" borderRadius="10px" alignItems="center" mt="5px">
+      <Flex bg="#e3e3" borderRadius="10px" alignItems="center" mt="5px">
         <Flex
           m="0 10px"
-          minWidth="100px"
+          minWidth="150px"
           onClick={onOpen}
           alignItems="center"
           justifyContent="center"
@@ -50,6 +50,7 @@ export const AdvertsProfile = ({
         <Box
           m="0 10px"
           minWidth="100px"
+          maxWidth="100px"
           onClick={onOpen}
           fontSize="14px"
           cursor="pointer"
@@ -70,6 +71,7 @@ export const AdvertsProfile = ({
         <Box
           m="0 10px"
           minWidth="100px"
+          minHeight="50px"
           onClick={onOpen}
           fontSize="14px"
           cursor="pointer"
@@ -77,12 +79,14 @@ export const AdvertsProfile = ({
           {date}
         </Box>
 
-        <FaTrashAlt
-          m="0 10px"
-          minWidth="20px"
-          onClick={() => delet(id)}
-          cursor="pointer"
-        />
+        <Box m="0 10px" minWidth="70px" display="flex" justifyContent="center">
+          <FaTrashAlt
+            m="0 10px"
+            minWidth="20px"
+            onClick={() => delet(id)}
+            cursor="pointer"
+          />
+        </Box>
       </Flex>
     </Box>
   );

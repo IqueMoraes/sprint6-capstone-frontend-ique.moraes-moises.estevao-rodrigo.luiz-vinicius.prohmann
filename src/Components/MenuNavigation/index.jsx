@@ -57,7 +57,11 @@ export const NavigationMenu = () => {
                   <Link to="/">App Tchau, mamãe!</Link>
                 </MenuItem>
                 <MenuDivider />
-                <MenuItem>Home</MenuItem>
+                <MenuItem>
+                  <Link to="/dashboard" onClick={onClose}>
+                    Home
+                  </Link>
+                </MenuItem>
                 <MenuItem>
                   <Link to="/routines" onClick={onClose}>
                     Rotinas
