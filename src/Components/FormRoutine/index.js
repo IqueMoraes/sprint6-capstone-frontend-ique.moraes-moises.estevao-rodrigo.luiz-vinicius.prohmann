@@ -13,10 +13,7 @@ import {
   Input,
   Flex,
   Text,
-  VStack
-} from "@chakra-ui/react"
-
-
+} from "@chakra-ui/react";
 
 export const FormRoutine = () => {
   const {
@@ -27,18 +24,26 @@ export const FormRoutine = () => {
     createRoutines,
   } = useRoutines();
 
-
-  const { isOpen, onOpen, onClose } = useDisclosure()
-
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const handleCreateRoutine = () => {
-    createRoutines()
-    onClose()
+    createRoutines();
+    onClose();
   };
 
-return (
-  <>
-      <Button bg="#FEA800" color="white" fontSize="18px" lineHeight="27px" border="2px solid #FEA800" borderRadius="47px" mt={4} _hover={{bg:"#FEA800"}} onClick={onOpen}>
+  return (
+    <>
+      <Button
+        bg="#FEA800"
+        color="white"
+        fontSize="18px"
+        lineHeight="27px"
+        border="2px solid #FEA800"
+        borderRadius="47px"
+        mt={4}
+        _hover={{ bg: "#FEA800" }}
+        onClick={onOpen}
+      >
         Criar rotina
       </Button>
       <Modal isOpen={isOpen} onClose={onClose}>
@@ -56,36 +61,60 @@ return (
             />
             <Flex alignItems="center">
               <Text> De: </Text>
-            <Input
-              placeholder="Horário"
-              type="time"
-              onChange={(e) => setTimeStart(e.target.value)}
-              required
-              min={Date.now()}
-            />
-            <Text> Até: </Text>
-            <Input
-              placeholder="Horário"
-              type="time"
-              onChange={(e) => setTimeFinish(e.target.value)}
-              required
-            />
-            <Text> Descrição </Text>
-            <Input
-              placeholder="Descrição"
-              type="text"
-              onChange={(e) => setDescription(e.target.value)}
-              required
-            />
+              <Input
+                placeholder="Horário"
+                type="time"
+                onChange={(e) => setTimeStart(e.target.value)}
+                required
+                min={Date.now()}
+              />
+              <Text> Até: </Text>
+              <Input
+                placeholder="Horário"
+                type="time"
+                onChange={(e) => setTimeFinish(e.target.value)}
+                required
+              />
+              <Text> Descrição </Text>
+              <Input
+                placeholder="Descrição"
+                type="text"
+                onChange={(e) => setDescription(e.target.value)}
+                required
+              />
             </Flex>
           </ModalBody>
           <ModalFooter bg="white" borderBottomRadius="20px">
-            <Button bg="#FEA800" color="white" w="150px" mr={4} fontSize="18px" lineHeight="27px" border="2px solid #FEA800" borderRadius="47px" _hover={{bg:"#FEA800"}} onClick={handleCreateRoutine}> Criar </Button>
-            <Button bg="white" color="#FEA800" w="150px" fontSize="18px" lineHeight="27px" border="2px solid #FEA800" borderRadius="47px" onClick={onClose}>
+            <Button
+              bg="#FEA800"
+              color="white"
+              w="150px"
+              mr={4}
+              fontSize="18px"
+              lineHeight="27px"
+              border="2px solid #FEA800"
+              borderRadius="47px"
+              _hover={{ bg: "#FEA800" }}
+              onClick={handleCreateRoutine}
+            >
+              {" "}
+              Criar{" "}
+            </Button>
+            <Button
+              bg="white"
+              color="#FEA800"
+              w="150px"
+              fontSize="18px"
+              lineHeight="27px"
+              border="2px solid #FEA800"
+              borderRadius="47px"
+              onClick={onClose}
+            >
               Cancelar
             </Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
-      </>
-)}
+    </>
+  );
+};
