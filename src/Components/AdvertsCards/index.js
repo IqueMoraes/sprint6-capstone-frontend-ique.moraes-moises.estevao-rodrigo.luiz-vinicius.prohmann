@@ -1,5 +1,3 @@
-import { Box, Grid } from "@chakra-ui/layout";
-
 export const AdvertsCards = ({
   index,
   name,

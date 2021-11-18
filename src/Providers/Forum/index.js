@@ -1,9 +1,8 @@
-import { createContext, useContext, useEffect, useState } from "react"
-import { api } from "../../Services"
+import { createContext, useContext, useEffect, useState } from "react";
+import { api } from "../../Services";
 import { useAuthToken } from "../AuthToken";
 
-
-const ForumContext = createContext({})
+const ForumContext = createContext({});
 
 export const ForumProvider = ({ children }) => {
 
