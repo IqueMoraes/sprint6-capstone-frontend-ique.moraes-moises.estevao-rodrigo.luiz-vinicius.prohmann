@@ -3,7 +3,6 @@ import { useHistory } from "react-router-dom";
 
 import { toast } from "react-toastify";
 import { api } from "../../Services";
-import { useAchievment } from "../Achievment";
 
 const AuthTokenContext = createContext({});
 
@@ -44,8 +43,8 @@ export const AuthTokenProvider = ({ children }) => {
         const idUser = res.data.user.id;
         const dataUserProfile = res.data.user;
         window.localStorage.clear();
-        window.localStorage.setItem("@tm/token", res.data.accessToken);
-        window.localStorage.setItem("@tm/userId", res.data.user.id);
+        window.localStorage.setItem("@tm/token", token);
+        window.localStorage.setItem("@tm/userId", idUser);
         window.localStorage.setItem(
           "@tm/userProfile",
           JSON.stringify(dataUserProfile)

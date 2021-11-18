@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { AchievmentCard } from "../../Components/Achievments";
 import { useAuthToken } from "../../Providers/AuthToken";
 import { Flex, Heading } from "@chakra-ui/react";
-
+import ProgressBar from "@ramonak/react-progress-bar";
 
 export const Dashboard = () => {
   const UserAge = (birthUser) => {
@@ -39,13 +39,16 @@ export const Dashboard = () => {
 
   return (
     <div>
+      <div>
+        <ProgressBar />
+      </div>
       { userProfile && <Flex>
         <div style={{marginRight:"50px"}}>
         <Heading as="h3" size="lg" color="#1B2357" p="15px 0 5px">
           {userProfile.name}
   </Heading>
-          <Heading as="h4" size="md" color="#1B2357">{UserAge(userProfile.birth)} anos</Heading>
-          <Heading as="h4" size="md" color="#1B2357">Fora desde {OutSince(userProfile.outSince)}</Heading>
+          {userProfile.birth && <Heading as="h4" size="md" color="#1B2357">{UserAge(userProfile.birth)} anos</Heading>}
+          {userProfile.outSince && <Heading as="h4" size="md" color="#1B2357">Fora desde {OutSince(userProfile.outSince)}</Heading>}
           <Heading as="h4" size="md" color="#1B2357">Bio: {userProfile.bio}</Heading>
         </div>
         <div>

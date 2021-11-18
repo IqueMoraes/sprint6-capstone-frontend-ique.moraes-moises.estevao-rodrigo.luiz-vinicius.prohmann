@@ -9,6 +9,7 @@ const UserProfileContext = createContext();
 
 export const UserProfileProvider = ({ children }) => {
   const { userId, authToken, setUserProfile } = useAuthToken();
+  
 
   const EditProfile = (bodyJson, toastMessage) => {
     api

@@ -2,7 +2,7 @@ import {
     Button, 
     Box, 
     Text, 
-    Checkbox,
+    // Checkbox,
     AlertDialog,
     AlertDialogBody,
     AlertDialogFooter,
@@ -62,7 +62,7 @@ export const RoutineCard = () => {
                 return <Box as="section" display="flex" key={item.id}>
                             <Box display="flex" margin="10" boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25)" w="100%" position="relative">
                                 <Flex flexDirection="column" mr="5" border="1px solid #573353" borderRadius="24px" w="100px" h="100px"> 
-                                    <Text backgroundColor="#1B2357" color="#FEA800" borderTopRadius="48px" h="41px" display="flex" justifyContent="center" alignItems="center" fontSize="18px" textTransform="uppercase"> {item.month} </Text>
+                                    <Text backgroundColor="#1B2357" color="#FEA800" borderTopRadius="24px" h="41px" display="flex" justifyContent="center" alignItems="center" fontSize="18px" textTransform="uppercase"> {item.month} </Text>
                                     <Text display="flex" justifyContent="center" alignItems="center" h="59px" fontSize="32px" > {item.day} </Text>
                                 </Flex>
                                 <Text> {item.timeStart} - {item.timeFinish} {item.description} </Text>
