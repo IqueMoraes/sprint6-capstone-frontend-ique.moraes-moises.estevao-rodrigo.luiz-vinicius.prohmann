@@ -18,22 +18,21 @@ import {
 } from "@chakra-ui/modal";
 import { Box, Grid } from "@chakra-ui/layout";
 import React from "react";
-import { useState } from "react";
 import { useEffect } from "react";
 import { AdvertsCards } from "../../Components/AdvertsCards";
 import { useAuthToken } from "../../Providers/AuthToken";
-import { api } from "../../Services";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useAdverts } from "../../Providers/Adverts";
 
 export const Adverts = () => {
-  const { authToken, userId } = useAuthToken();
+  const { userId } = useAuthToken();
   const { adverts, getAdverts, postAdverts, deletAdverts } = useAdverts();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   useEffect(() => {
     getAdverts();
+    // eslint-disable-next-line
   }, []);
 
   const formSchema = yup.object().shape({
@@ -62,6 +61,7 @@ export const Adverts = () => {
       date: dataNow,
       userId,
     };
+    console.log(data);
     postAdverts(advertsData);
   };
   const initialRef = React.useRef();

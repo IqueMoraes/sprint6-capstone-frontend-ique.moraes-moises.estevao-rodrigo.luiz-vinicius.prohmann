@@ -1,4 +1,3 @@
-import { Button } from "@chakra-ui/button";
 import { useDisclosure } from "@chakra-ui/hooks";
 import { Badge, Box, Flex, Grid } from "@chakra-ui/layout";
 import {
@@ -25,7 +24,7 @@ export const AdvertsProfile = ({
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
-    <>
+    <Box>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
@@ -37,15 +36,10 @@ export const AdvertsProfile = ({
         </ModalContent>
       </Modal>
 
-      <Grid
-        templateColumns="repeat(7, 1fr)"
-        gap={6}
-        bg="white"
-        borderRadius="10px"
-        alignItems="center"
-        mt="5px"
-      >
+      <Flex bg="white" borderRadius="10px" alignItems="center" mt="5px">
         <Flex
+          m="0 10px"
+          minWidth="100px"
           onClick={onOpen}
           alignItems="center"
           justifyContent="center"
@@ -53,10 +47,18 @@ export const AdvertsProfile = ({
         >
           <Badge>{category} </Badge>
         </Flex>
-        <Box onClick={onOpen} fontSize="14px" cursor="pointer">
+        <Box
+          m="0 10px"
+          minWidth="100px"
+          onClick={onOpen}
+          fontSize="14px"
+          cursor="pointer"
+        >
           {name}
         </Box>
         <Box
+          m="0 10px"
+          minWidth="100px"
           onClick={onOpen}
           fontSize="14px"
           fontWeight="Bold"
@@ -64,15 +66,24 @@ export const AdvertsProfile = ({
         >
           {localization}
         </Box>
-        <Box onClick={onOpen} fontSize="14px" cursor="pointer">
-          {category}
-        </Box>
-        <Box onClick={onOpen} fontSize="14px" cursor="pointer">
+
+        <Box
+          m="0 10px"
+          minWidth="100px"
+          onClick={onOpen}
+          fontSize="14px"
+          cursor="pointer"
+        >
           {date}
         </Box>
 
-        <FaTrashAlt onClick={() => delet(id)} cursor="pointer" />
-      </Grid>
-    </>
+        <FaTrashAlt
+          m="0 10px"
+          minWidth="20px"
+          onClick={() => delet(id)}
+          cursor="pointer"
+        />
+      </Flex>
+    </Box>
   );
 };

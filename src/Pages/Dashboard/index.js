@@ -3,7 +3,6 @@ import { AchievmentCard } from "../../Components/Achievments";
 import { useAuthToken } from "../../Providers/AuthToken";
 import { Flex, Heading } from "@chakra-ui/react";
 import { useAdverts } from "../../Providers/Adverts";
-import { AdvertsCards } from "../../Components/AdvertsCards";
 import { useEffect } from "react";
 import { AdvertsProfile } from "../../Components/AdvertsProfile";
 import { Box, Grid } from "@chakra-ui/layout";
@@ -20,6 +19,7 @@ export const Dashboard = () => {
   };
   useEffect(() => {
     getMyAdverts();
+    // eslint-disable-next-line
   }, []);
   const OutSince = (leavingDate) => {
     const monthArray = [
@@ -43,11 +43,16 @@ export const Dashboard = () => {
   const { userProfile } = useAuthToken();
 
   return (
-    <div>
+    <Box w="100vw" h="100vh" p="15px 15px 55px 15px" mb="20px">
       {userProfile && (
-        <Flex>
-          <div style={{ marginRight: "50px" }}>
-            <Heading as="h3" size="lg" color="#1B2357" p="15px 0 5px">
+        <Flex
+          w="100"
+          p="10px 20px"
+          justifyContent="space-between"
+          alignItems="center"
+        >
+          <div>
+            <Heading as="h3" size="lg" color="aliceblue" pb="5px">
               {userProfile.name}
             </Heading>
             <Heading as="h4" size="md" color="#1B2357">
@@ -60,6 +65,7 @@ export const Dashboard = () => {
               Bio: {userProfile.bio}
             </Heading>
           </div>
+
           <div>
             <Heading as="h2" size="4xl" h="100%" lineHeight="" color="#FEA800">
               {userProfile.level}
@@ -67,16 +73,14 @@ export const Dashboard = () => {
           </div>
         </Flex>
       )}
-      <br />
-      <div>{/* <Link to="/routines">Minha rotina</Link> */}</div>
-      <br />
-      <div>
+      <Box p="0 15px" minWidth="100%">
         <Heading as="h3" size="md" color="#1B2357" p="15px 0">
           Minhas conquistas
         </Heading>
         <Flex
           overflowX="scroll"
-          w="100%"
+          minWidth="100%"
+          overflou="auto"
           bg="#E0DFFD"
           borderRadius="10px"
           p="20px 0 0 20px"
@@ -98,9 +102,9 @@ export const Dashboard = () => {
             </>
           )}
         </Flex>
-      </div>
+      </Box>
 
-      <div>
+      <Box p="0 15px" mb="20px">
         <h3>Meus anúncios</h3>
         <Flex
           flexDirection="column"
@@ -108,40 +112,55 @@ export const Dashboard = () => {
           p="5px"
           borderRadius="8px"
           mb="20px"
+          minWidth="100%"
+          overflow="auto"
         >
-          <Grid
-            templateColumns="repeat(7, 1fr)"
-            gap={6}
-            bg="gray.100"
-            borderRadius="10px"
-            alignItems="center"
-          >
-            <Flex alignItems="center" justifyContent="center">
-              <Box>Categoria: </Box>
-            </Flex>
-            <Box fontSize="14px">Titulo</Box>
-            <Box fontSize="14px" fontWeight="Bold">
-              Local:
+          <div>
+            <Box
+              bg="#e3e"
+              borderRadius="10px"
+              w="100%"
+              display="flex"
+              alignItems="center"
+            >
+              <Box minWidth="100px" m="0 10px" fontSize="14px">
+                Categoria
+              </Box>
+              <Box minWidth="100px" m="0 10px" fontSize="14px">
+                Titulo
+              </Box>
+              <Box
+                minWidth="100px"
+                m="0 10px"
+                fontSize="14px"
+                fontWeight="Bold"
+              >
+                Local:
+              </Box>
+              <Box minWidth="100px" m="0 10px" fontSize="14px">
+                Criado em:
+              </Box>
+              <Box minWidth="100px" m="0 10px" fontSize="14px">
+                Excluir
+              </Box>
             </Box>
-            <Box fontSize="14px"> Categoria:</Box>
-            <Box fontSize="14px">Criado em: </Box>
-            <Box>Excluir</Box>
-          </Grid>
-          {myAdverts.map((item, index) => (
-            <AdvertsProfile
-              index={index}
-              name={item.name}
-              date={item.date}
-              localization={item.localization}
-              category={item.category}
-              id={item.id}
-              userId={item.userId}
-              description={item.description}
-              delet={deletAdverts}
-            />
-          ))}
+            {myAdverts.map((item, index) => (
+              <AdvertsProfile
+                index={index}
+                name={item.name}
+                date={item.date}
+                localization={item.localization}
+                category={item.category}
+                id={item.id}
+                userId={item.userId}
+                description={item.description}
+                delet={deletAdverts}
+              />
+            ))}
+          </div>
         </Flex>
-      </div>
-    </div>
+      </Box>
+      <Box h="10px" w="100%"></Box>
+    </Box>
   );
 };

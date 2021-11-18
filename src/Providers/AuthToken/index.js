@@ -3,7 +3,6 @@ import { useHistory } from "react-router-dom";
 
 import { toast } from "react-toastify";
 import { api } from "../../Services";
-import { useAchievment } from "../Achievment";
 
 const AuthTokenContext = createContext({});
 

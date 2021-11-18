@@ -13,11 +13,6 @@ import {
   Menu,
   MenuList,
   MenuItem,
-  MenuItemOption,
-  MenuGroup,
-  MenuOptionGroup,
-  MenuIcon,
-  MenuCommand,
   MenuDivider,
 } from "@chakra-ui/react";
 import { HamburgerIcon } from "@chakra-ui/icons";
@@ -32,13 +27,21 @@ export const NavigationMenu = () => {
 
   return (
     <>
-      <Button ref={btnRef} colorScheme="teal" onClick={onOpen}>
+      <Button
+        ref={btnRef}
+        colorScheme="teal"
+        onClick={onOpen}
+        position="absolute"
+        right="5px"
+        top="5px"
+        zIndex="1"
+      >
         <HamburgerIcon />
       </Button>
 
       <Drawer
         isOpen={isOpen}
-        placement="left"
+        placement="right"
         onClose={onClose}
         finalFocusRef={btnRef}
       >
@@ -54,35 +57,34 @@ export const NavigationMenu = () => {
                   <Link to="/">App Tchau, mamãe!</Link>
                 </MenuItem>
                 <MenuDivider />
+                <MenuItem>Home</MenuItem>
                 <MenuItem>
-                  <Link to="/dashboard">Home</Link>
+                  <Link to="/routines" onClick={onClose}>
+                    Rotinas
+                  </Link>
                 </MenuItem>
                 <MenuItem>
-                  <Link to="/routines">Rotinas</Link>
+                  <Link to="/forum" onClick={onClose}>
+                    Fórum
+                  </Link>
                 </MenuItem>
                 <MenuItem>
-                  <Link to="/forum">Fórum</Link>
+                  <Link to="/adverts" onClick={onClose}>
+                    Anúncios
+                  </Link>
                 </MenuItem>
                 <MenuItem>
-                  <Link to="/adverts">Anúncios</Link>
+                  <Link to="/achievments" onClick={onClose}>
+                    Conquistas
+                  </Link>
                 </MenuItem>
-                <MenuItem>
-                  <Link to="/achievments">Conquistas</Link>
-                </MenuItem>
-                <MenuItem>
-                  <Link to="/members">Membros</Link>
-                </MenuItem>
-                <MenuItem></MenuItem>
-                <MenuDivider />
-                <MenuItem onClick={() => handleLogout()}>Sair</MenuItem>
               </MenuList>
             </Menu>
           </DrawerBody>
 
           <DrawerFooter>
-            <Button variant="outline" mr={3} onClick={onClose}>
-              Fechar menu
-            </Button>
+            <MenuDivider />
+            <Button onClick={() => handleLogout()}>Sair</Button>
           </DrawerFooter>
         </DrawerContent>
       </Drawer>

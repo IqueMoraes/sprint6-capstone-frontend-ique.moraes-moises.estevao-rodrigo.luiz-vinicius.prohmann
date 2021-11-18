@@ -9,7 +9,7 @@ import {
 } from "react-icons/fa";
 import achievmentFront from "../../assets/images/achievmentFront.png";
 import achievmentBack from "../../assets/images/achievment-back.svg";
-import { Box, Button } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 
 export const AchievmentCard = ({ category, title, onClick, ...rest }) => {
   const [frontFace, setFrontFace] = useState(true);
@@ -17,6 +17,7 @@ export const AchievmentCard = ({ category, title, onClick, ...rest }) => {
   return (
     <Box
       w="100px"
+      minWidth="100px"
       h="124px"
       color="#000000ad"
       bg={achievmentFront}
