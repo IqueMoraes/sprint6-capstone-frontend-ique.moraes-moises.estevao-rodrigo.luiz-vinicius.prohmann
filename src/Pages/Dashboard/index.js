@@ -3,7 +3,6 @@ import { AchievmentCard } from "../../Components/Achievments";
 import { useAuthToken } from "../../Providers/AuthToken";
 import { Flex, Heading } from "@chakra-ui/react";
 import { useAdverts } from "../../Providers/Adverts";
-import { AdvertsCards } from "../../Components/AdvertsCards";
 import { useEffect } from "react";
 import { AdvertsProfile } from "../../Components/AdvertsProfile";
 import { Box, Grid } from "@chakra-ui/layout";
@@ -20,6 +19,7 @@ export const Dashboard = () => {
   };
   useEffect(() => {
     getMyAdverts();
+    // eslint-disable-next-line
   }, []);
   const OutSince = (leavingDate) => {
     const monthArray = [
