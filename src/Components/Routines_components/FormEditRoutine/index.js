@@ -16,23 +16,11 @@ import { useRoutines } from "../../Providers/Routines";
 export const ModalEditRoutine = () => {
 
     const {
-        title,
-        setTitle,
-        date,
-        setDate,
-        timeStart,
-        setTimeStart,
-        timeFinish,
-        setTimeFinish,
-        userRotines,
-        createRoutines,
+        userRoutines,
         editRoutine,
-        deleteRoutine,
       } = useRoutines();
 
     const { isOpen, onOpen, onClose } = useDisclosure()
-    
-
 
     return (
         <>
@@ -48,7 +36,6 @@ export const ModalEditRoutine = () => {
             <Input
               variant="outline"
               placeholder="Título"
-              value={title}
               type="text"
               onChange={(e) => setTitle(e.target.value)}
               required

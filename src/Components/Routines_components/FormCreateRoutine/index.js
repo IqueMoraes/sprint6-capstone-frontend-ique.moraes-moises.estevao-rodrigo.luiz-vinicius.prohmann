@@ -1,4 +1,4 @@
-import { useRoutines } from "../../Providers/Routines";
+import { useRoutines } from "../../../Providers/Routines";
 
 import {
   Modal,
@@ -15,9 +15,9 @@ import {
   Text,
 } from "@chakra-ui/react";
 
-import { useAuthToken } from "../../Providers/AuthToken";
+import { useAuthToken } from "../../../Providers/AuthToken";
 import { useEffect, useState } from "react";
-import { CreateDate } from "../../Providers/Routines/stringfydate";
+import { CreateDate } from "../../../Providers/Routines/stringfydate";
 
 export const FormRoutine = () => {
   const { createRoutines } = useRoutines();
