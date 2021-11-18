@@ -1,18 +1,14 @@
-import { createContext, useContext, useEffect, useState } from "react"
-import { api } from "../../Services"
+import { createContext, useContext, useEffect, useState } from "react";
+import { api } from "../../Services";
 import { useAuthToken } from "../AuthToken";
 
-
-const ForumContext = createContext({})
+const ForumContext = createContext({});
 
 export const ForumProvider = ({ children }) => {
 
     const [topics, setTopics] = useState([])
 
     const [searchTopic, setSearchTopic] = useState("")
-
-    // const [comments, setComments] = useState({})
-    const [allComments, setAllComments] = useState({})
 
     const [inputField, setInputField] = useState([{
         assistantSites: ""
@@ -73,8 +69,6 @@ export const ForumProvider = ({ children }) => {
             inputField,
             setInputField,
             createComment,
-            // setComments,
-            // comments
         }}>
             {children}
         </ForumContext.Provider>

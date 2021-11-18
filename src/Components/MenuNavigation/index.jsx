@@ -13,24 +13,17 @@ import {
   Menu,
   MenuList,
   MenuItem,
-  MenuItemOption,
-  MenuGroup,
-  MenuOptionGroup,
-  MenuIcon,
-  MenuCommand,
   MenuDivider,
 } from "@chakra-ui/react";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import { useDisclosure } from "@chakra-ui/hooks";
 
-
-
 export const NavigationMenu = () => {
   const { handleLogout } = useAuthToken();
 
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const btnRef = React.useRef()
+  const btnRef = React.useRef();
 
   return (
     <>
@@ -53,10 +46,12 @@ export const NavigationMenu = () => {
         <li>
           <Link to="/achievments">Conquistas</Link>
         </li>
-        <h5 onClick={() => handleLogout()} style={{cursor:"pointer"}}>Sair</h5>
+        <h5 onClick={() => handleLogout()} style={{ cursor: "pointer" }}>
+          Sair
+        </h5>
       </ul>
       <Button ref={btnRef} colorScheme="teal" onClick={onOpen}>
-        <HamburgerIcon/>
+        <HamburgerIcon />
       </Button>
       <Drawer
         isOpen={isOpen}
@@ -72,27 +67,38 @@ export const NavigationMenu = () => {
           <DrawerBody>
             <Menu isOpen={isOpen}>
               <MenuList>
-                <MenuItem><Link to="/">App Tchau, mamãe!</Link></MenuItem>
-                <MenuDivider/>
-                <MenuItem>Home</MenuItem>
-                <MenuItem><Link to="/routines">Rotinas</Link></MenuItem>
-                <MenuItem><Link to="/forum">Fórum</Link></MenuItem>
-                <MenuItem><Link to="/adverts">Anúncios</Link></MenuItem>
-                <MenuItem><Link to="/achievments">Conquistas</Link></MenuItem>
-                <MenuItem><Link to="/members">Membros</Link></MenuItem>
+                <MenuItem>
+                  <Link to="/">App Tchau, mamãe!</Link>
+                </MenuItem>
+
+                <MenuItem to="/routines">Home</MenuItem>
+
+                <MenuItem>
+                  <Link to="/routines">Rotinas</Link>
+                </MenuItem>
+                <MenuItem>
+                  <Link to="/forum">Fórum</Link>
+                </MenuItem>
+                <MenuItem>
+                  <Link to="/adverts">Anúncios</Link>
+                </MenuItem>
+                <MenuItem>
+                  <Link to="/achievments">Conquistas</Link>
+                </MenuItem>
+                <MenuItem>
+                  <Link to="/members">Membros</Link>
+                </MenuItem>
                 <MenuItem></MenuItem>
-                <MenuDivider/>
+                <MenuDivider />
                 <MenuItem onClick={() => handleLogout()}>Sair</MenuItem>
               </MenuList>
             </Menu>
-
           </DrawerBody>
 
           <DrawerFooter>
             <Button variant="outline" mr={3} onClick={onClose}>
               Fechar menu
             </Button>
-            
           </DrawerFooter>
         </DrawerContent>
       </Drawer>

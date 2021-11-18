@@ -16,24 +16,23 @@ import {
   ModalHeader,
   ModalOverlay,
 } from "@chakra-ui/modal";
-import { Grid } from "@chakra-ui/layout";
+import { Box, Grid } from "@chakra-ui/layout";
 import React from "react";
-import { useState } from "react";
 import { useEffect } from "react";
 import { AdvertsCards } from "../../Components/AdvertsCards";
 import { useAuthToken } from "../../Providers/AuthToken";
-import { api } from "../../Services";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useAdverts } from "../../Providers/Adverts";
 
 export const Adverts = () => {
-  const { authToken, userId } = useAuthToken();
+  const { userId } = useAuthToken();
   const { adverts, getAdverts, postAdverts, deletAdverts } = useAdverts();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   useEffect(() => {
     getAdverts();
+    // eslint-disable-next-line
   }, []);
 
   const formSchema = yup.object().shape({
@@ -62,6 +61,7 @@ export const Adverts = () => {
       date: dataNow,
       userId,
     };
+    console.log(data);
     postAdverts(advertsData);
   };
   const initialRef = React.useRef();
@@ -146,19 +146,29 @@ export const Adverts = () => {
         </Modal>
       </>
 
-      {adverts.map((item, index) => (
-        <AdvertsCards
-          index={index}
-          name={item.name}
-          date={item.date}
-          localization={item.localization}
-          category={item.category}
-          id={item.id}
-          userId={item.userId}
-          description={item.description}
-          delet={deletAdverts}
-        />
-      ))}
+      <Box
+        as="ul"
+        w="100%"
+        height="100%"
+        display="flex"
+        flexWrap="wrap"
+        alignItems="flex-start"
+        justifyContent="center"
+      >
+        {adverts.map((item, index) => (
+          <AdvertsCards
+            index={index}
+            name={item.name}
+            date={item.date}
+            localization={item.localization}
+            category={item.category}
+            id={item.id}
+            userId={item.userId}
+            description={item.description}
+            delet={deletAdverts}
+          />
+        ))}
+      </Box>
     </div>
   );
 };

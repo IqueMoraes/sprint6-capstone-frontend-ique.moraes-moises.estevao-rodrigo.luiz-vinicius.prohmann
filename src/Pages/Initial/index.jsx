@@ -7,7 +7,7 @@ const Initial = () => {
     <FullScreen>
       <section className="top_section">
         <figure>
-          <img src="#" alt="#" />
+          <img src="" alt="#" />
           <figcaption>#</figcaption>
         </figure>
 
