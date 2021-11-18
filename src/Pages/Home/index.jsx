@@ -22,15 +22,7 @@ const Home = () => {
   return (
     <FullScreen>
       <section className="top_section">
-        <div className="text_open">
-          <h1>Tchau Mamãe</h1>
-          {/* <p>
-            O Tchau Mamãe é um espaço coletivo de debates e compartilhamento de
-            experiencias. Aqui você vai poder conhecer vários segredos da vida
-            de morar sozinho que podem ajudar você a se organizar nesse novo
-            momento.
-          </p> */}
-        </div>
+        <h1>Tchau Mamãe</h1>
       </section>
 
       <BoxBody>
@@ -64,7 +56,6 @@ const Home = () => {
           <div className="section_min_cards_box">
             <figure>
               <img src={imageSectionAbout1} />
-              <figcaption>#</figcaption>
             </figure>
 
             <p>
@@ -76,7 +67,6 @@ const Home = () => {
           <div className="section_min_cards_box">
             <figure>
               <img src={imageSectionAbout2} />
-              <figcaption>#</figcaption>
             </figure>
 
             <p>Compartilhe e adquira novos "Life Hacks" na nosso Forum.</p>
@@ -85,7 +75,6 @@ const Home = () => {
           <div className="section_min_cards_box">
             <figure>
               <img src={imageSectionAbout3} />
-              <figcaption>#</figcaption>
             </figure>
 
             <p>
@@ -135,7 +124,10 @@ const Home = () => {
 
         <section className="section_start">
           <h2>Começe Agora</h2>
-          <p>Faça login ou cadastre-se para começar agora</p>
+          <p>
+            Faça <span>login</span> ou <span> cadastre-se</span> para começar
+            agora
+          </p>
 
           <HStack spacing="24px" mt="20px">
             <Button

@@ -27,10 +27,11 @@ export const FullScreen = styled.main`
     flex-direction: column;
     align-items: center;
 
-    .text_open {
-      width: 80%;
-      text-align: center;
+    h1 {
       color: aliceblue;
+      font-size: 26px;
+      font-weight: 600;
+      margin-bottom: 50px;
     }
   }
 
@@ -89,6 +90,7 @@ export const BoxBody = styled.article`
   .section_tean {
     width: 100%;
     background-color: aliceblue;
+    border-radius: 20px;
 
     display: flex;
     flex-direction: column;
@@ -102,6 +104,14 @@ export const BoxBody = styled.article`
       flex-wrap: wrap;
     }
   }
+  .section_start,
+  .section_tean {
+    h2 {
+      font-size: 22px;
+      font-weight: 500;
+      line-height: 200%;
+    }
+  }
 
   .section_start {
     width: 90%;
@@ -110,6 +120,11 @@ export const BoxBody = styled.article`
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    span {
+      font-size: 17px;
+      font-weight: 600;
+    }
   }
 
   @media (min-width: 800px) {
@@ -130,6 +145,7 @@ export const BarNavigation = styled.nav`
     min-width: 100%;
     min-height: 80px;
     background-color: aliceblue;
+    border-radius: 20px;
 
     display: flex;
     flex-wrap: wrap;
