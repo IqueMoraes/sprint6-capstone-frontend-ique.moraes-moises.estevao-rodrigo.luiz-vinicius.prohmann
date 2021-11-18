@@ -27,19 +27,6 @@ export const FullScreen = styled.main`
     flex-direction: column;
     align-items: center;
 
-    img,
-    figure {
-      min-width: 80px;
-      min-height: 40px;
-    }
-
-    figure {
-      display: flex;
-      align-items: center;
-      margin-bottom: 10px;
-      justify-content: center;
-    }
-
     .text_open {
       width: 80%;
       text-align: center;
@@ -47,7 +34,7 @@ export const FullScreen = styled.main`
     }
   }
 
-  @media (min-width: 800px) {
+  @media (min-width: 768px) {
     nav {
       display: flex;
     }
@@ -68,8 +55,20 @@ export const BoxBody = styled.article`
   justify-content: center;
 
   .section_about {
-    width: 50%;
+    width: 100%;
+    max-width: 600px;
     margin: 20px 0;
+
+    h3 {
+      font-size: 23px;
+      font-weight: 500;
+      line-height: 200%;
+    }
+
+    img {
+      width: 100%;
+      max-width: 400px;
+    }
   }
 
   .section_min_cards {
@@ -83,7 +82,7 @@ export const BoxBody = styled.article`
     .section_min_cards_box {
       min-width: 200px;
       width: 200px;
-      margin: 30px;
+      margin: 18px;
     }
   }
 

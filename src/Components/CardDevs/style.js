@@ -23,6 +23,10 @@ export const BoxDevs = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    img {
+      border-radius: 50%;
+    }
   }
 
   .SocialBox {
