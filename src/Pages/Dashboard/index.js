@@ -6,6 +6,7 @@ import { useAdverts } from "../../Providers/Adverts";
 import { useEffect } from "react";
 import { AdvertsProfile } from "../../Components/AdvertsProfile";
 import { Box, Grid } from "@chakra-ui/layout";
+import ProgressBar from "@ramonak/react-progress-bar";
 
 export const Dashboard = () => {
   const { myAdverts, deletAdverts, getMyAdverts } = useAdverts();
@@ -20,6 +21,7 @@ export const Dashboard = () => {
   };
 
   const userLevel = parseInt(userProfile.points / 100);
+  const progressPoints = userProfile.points - userLevel * 100;
 
   useEffect(() => {
     getMyAdverts();
@@ -63,6 +65,15 @@ export const Dashboard = () => {
             <Heading as="h4" size="md" color="#1B2357">
               Bio: {userProfile.bio}
             </Heading>
+            <ProgressBar
+              completed={progressPoints}
+              bgColor="#74c21a"
+              height="15px"
+              width="100px"
+              labelAlignment="left"
+              baseBgColor="#237c95"
+              labelColor="#fcfbfb"
+            />
           </div>
           <div>
             <Heading as="h2" size="4xl" h="100%" lineHeight="" color="#FEA800">
