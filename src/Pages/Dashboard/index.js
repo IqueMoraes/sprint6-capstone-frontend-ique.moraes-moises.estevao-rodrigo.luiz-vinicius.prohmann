@@ -9,6 +9,7 @@ import { Box, Grid } from "@chakra-ui/layout";
 
 export const Dashboard = () => {
   const { myAdverts, deletAdverts, getMyAdverts } = useAdverts();
+  const { userProfile, userId } = useAuthToken();
   const UserAge = (birthUser) => {
     const birthArray = birthUser.split("/").map((str) => Number(str));
     const birthDate = new Date(birthArray[2], birthArray[0], birthUser[1]);
@@ -20,7 +21,7 @@ export const Dashboard = () => {
   useEffect(() => {
     getMyAdverts();
     // eslint-disable-next-line
-  }, []);
+  }, [userId]);
   const OutSince = (leavingDate) => {
     const monthArray = [
       "Janeiro",
@@ -40,7 +41,6 @@ export const Dashboard = () => {
 
     return monthArray[leavingDateArray[0]] + " de " + leavingDateArray[2];
   };
-  const { userProfile } = useAuthToken();
 
   return (
     <div>
