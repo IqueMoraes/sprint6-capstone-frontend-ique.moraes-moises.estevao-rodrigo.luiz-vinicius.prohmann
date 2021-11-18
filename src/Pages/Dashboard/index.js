@@ -18,10 +18,14 @@ export const Dashboard = () => {
 
     return Math.abs(age_ms.getUTCFullYear() - 1970);
   };
+
+  const userLevel = parseInt(userProfile.points / 100);
+
   useEffect(() => {
     getMyAdverts();
     // eslint-disable-next-line
   }, [userId]);
+
   const OutSince = (leavingDate) => {
     const monthArray = [
       "Janeiro",
@@ -62,7 +66,7 @@ export const Dashboard = () => {
           </div>
           <div>
             <Heading as="h2" size="4xl" h="100%" lineHeight="" color="#FEA800">
-              {userProfile.level}
+              {userLevel}
             </Heading>
           </div>
         </Flex>
