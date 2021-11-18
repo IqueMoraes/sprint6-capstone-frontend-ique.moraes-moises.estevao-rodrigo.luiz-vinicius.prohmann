@@ -12,6 +12,7 @@ export const RoutinesProvider = ({ children }) => {
 
   // const [ arrayData, setArrayData ] = useState([])
 
+
   const { authToken, userId } = useAuthToken();
 
   useEffect(() => {
@@ -23,6 +24,7 @@ export const RoutinesProvider = ({ children }) => {
         setUserRoutines(res.data);
       })
       .catch((_) => console.log("não pegou minhas rotinas"));
+
   }, [userId]);
 
   const createRoutines = (info) => {
@@ -38,6 +40,7 @@ export const RoutinesProvider = ({ children }) => {
       })
       .catch((_) => toast.error("Não foi possível criar a rotina"));
   };
+
 
   const editRoutine = (routineId, data) => {
     api

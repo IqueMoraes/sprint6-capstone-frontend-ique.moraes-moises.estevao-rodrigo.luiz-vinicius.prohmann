@@ -62,6 +62,7 @@ export const AuthTokenProvider = ({ children }) => {
 
   const handleLogout = () => {
     window.localStorage.clear();
+
     history.push("/");
   };
 

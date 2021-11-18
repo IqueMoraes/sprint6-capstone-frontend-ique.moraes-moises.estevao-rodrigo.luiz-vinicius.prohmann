@@ -13,6 +13,7 @@ export const Routines = () => {
         <Heading as="h1" color="#FEA800">
           Minha rotina
         </Heading>
+
         <Flex direction="column">
           <Heading as="h4" size="20px" textAlign="center">
             Concluído de hoje
@@ -35,7 +36,7 @@ export const Routines = () => {
       <Box as="section">
 
         <RoutineCard />
-        
+
       </Box>
     </Box>
   );

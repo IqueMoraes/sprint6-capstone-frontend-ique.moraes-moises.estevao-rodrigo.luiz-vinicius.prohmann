@@ -1,43 +1,43 @@
-import { createContext, useContext, useEffect, useState } from "react"
-import { api } from "../../Services"
+import { createContext, useContext, useEffect, useState } from "react";
+import { api } from "../../Services";
+import { useAuthToken } from "../AuthToken";
 
-
-const ForumContext = createContext({})
+const ForumContext = createContext({});
 
 export const ForumProvider = ({ children }) => {
+  const [topics, setTopics] = useState([]);
+  const [searchTopic, setSearchTopic] = useState("");
 
-    const [topics, setTopics] = useState([])
+  const { authToken } = useAuthToken();
 
+  useEffect(() => {
+    api
+      .get(`/forum`)
+      .then((res) => {
+        setTopics([...res.data]);
+      })
+      .catch((_) => console.log("não pegou os tópicos"));
+  }, []);
 
-    useEffect(() => {
-        api
-            .get(`/forum`)
-            .then(res => {
-                setTopics([...res.data])
-                console.log(res.data)
-            })
-            .catch(_ => console.log("não pegou os tópicos"))
-    }, [])
+  const createTopic = (data) => {
+    api
+      .post("/forum", data, {
+        headers: { Authorization: "Bearer " + authToken },
+      })
+      .then((res) => {
+        setTopics([...topics, res.data]);
+        console.log(res.data);
+      })
+      .catch((_) => console.log("não criou tópicos"));
+  };
 
-    const createTopic = (data) => {
-        api
-            .post("/forum", data)
-            .then(res => setTopics([...topics, res.data]))
-            .catch(_ => console.log("não criou tópicos"))
-    }
+  return (
+    <ForumContext.Provider
+      value={{ topics, createTopic, setSearchTopic, searchTopic }}
+    >
+      {children}
+    </ForumContext.Provider>
+  );
+};
 
-    const getTopics = () => {
-        api
-            .get("/forum")
-            .then(res => setTopics([...topics, res.data]))
-            .catch(_ => console.log("não pegou os tópicos"))
-    }
-
-    return (
-        <ForumContext.Provider value={{ topics }}>
-            {children}
-        </ForumContext.Provider>
-    )
-}
-
-export const useForum = () => useContext(ForumContext)
+export const useForum = () => useContext(ForumContext);
