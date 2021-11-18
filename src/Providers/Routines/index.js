@@ -8,6 +8,7 @@ const RoutinesContext = createContext({});
 export const RoutinesProvider = ({ children }) => {
   const [userRotines, setUserRoutines] = useState([]);
   const [date, setDate] = useState("");
+  const [ completedTaskNumber, setCompletedTaskNumber ] = useState(0);
 
   // const [ arrayData, setArrayData ] = useState([])
 
@@ -73,6 +74,11 @@ export const RoutinesProvider = ({ children }) => {
       .catch((_) => toast.error("Não foi possível deletar a rotina"));
   };
 
+
+  const handleCompleteTask = () => {
+      
+  }
+
   return (
     <RoutinesContext.Provider
       value={{
@@ -87,6 +93,8 @@ export const RoutinesProvider = ({ children }) => {
         // setTimeStart,
         // timeFinish,
         // setTimeFinish,
+        completedTaskNumber,
+        setCompletedTaskNumber
       }}
     >
       {children}

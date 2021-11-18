@@ -2,17 +2,20 @@ import { Box, Heading, Flex } from "@chakra-ui/react";
 import { useRoutines } from "../../Providers/Routines";
 import { RoutineCard } from "../../Components/FormRoutine/RoutineCard";
 import { FormRoutine } from "../../Components/FormRoutine";
+import ProgressBar from "@ramonak/react-progress-bar";
 
 export const Routines = () => {
-  const { userRotines } = useRoutines();
-  console.log(userRotines, "console de userRotines");
+  const { userRotines, completedTaskNumber } = useRoutines();
   return (
     <Box>
       <Flex as="section" justifyContent="space-between">
         <Heading as="h1" color="#FEA800">
-          {" "}
-          Minha rotina{" "}
+          Minha rotina
         </Heading>
+        <Flex direction="column">
+<Heading as="h4" size="20px" textAlign="center">Concluído de hoje</Heading>
+        <ProgressBar completed={`${completedTaskNumber}`} maxCompleted="5" customLabel={`${completedTaskNumber}`} bgColor="#573353" baseBgColor="#B1AFE9" width="150px" height="22px" labelSize="14px" />
+        </Flex>
         <FormRoutine />
       </Flex>
       <Box as="section">

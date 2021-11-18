@@ -2,7 +2,7 @@ import {
     Button, 
     Box, 
     Text, 
-    // Checkbox,
+    Checkbox,
     AlertDialog,
     AlertDialogBody,
     AlertDialogFooter,
@@ -22,6 +22,9 @@ import {
 import React from "react"
 import { useRoutines } from "../../Providers/Routines"
 import { AiTwotoneDelete, AiFillEdit } from "react-icons/ai"
+import { CreateDate } from "../../Providers/Routines/stringfydate"
+import { useState } from "react"
+import { useEffect } from "react"
 
 export const RoutineCard = () => {
 
@@ -42,7 +45,8 @@ export const RoutineCard = () => {
         timeFinish,
         setTimeFinish,
         description,
-        setDescription
+        setDescription,
+        setCompletedTaskNumber
       } = useRoutines();
 
       const handleDelete = (idRoutine) => {
@@ -55,18 +59,58 @@ export const RoutineCard = () => {
         onClose()
       }
 
+      const handleComplete = (idRoutine, taskId) => {
+        // editRoutine(idRoutine)
+        
+
+        setCompletedTaskNumber(progressBarValue())
+      }
+
+      const progressBarValue = () =>{
+          const today = new Date();
+          const matchDay = today.getDate().toString();
+          const matchMonth = (today.getMonth()+1).toString();
+          const matchYear = today.getFullYear().toString();
+          
+          const todaysRoutine = userRotines?.filter(item => item.day === matchDay && item.month === matchMonth && item.year === matchYear)
+        if(todaysRoutine.length === 1){
+            const completedNumber = todaysRoutine[0].tasks.filter(task=> task.isCompleted).length;
+        setCompletedTaskNumber(completedNumber);
+        return completedNumber;}
+        else{ return 0}
+      }
+
+      useEffect(()=> {
+          progressBarValue()
+      }, [])
+
+      
+
     return (
         <>
         {
-            userRotines.map(item => {
+            userRotines
+            // .filter(item => {
+            //     const today = new Date();
+            //     const itemDate = new Date(item.year + item.month + Number(item.day -1));
+            //    return itemDate >= today && item
+            // })
+            .sort((a,b)=> a.day-b.day).map(item => {
                 return <Box as="section" display="flex" key={item.id}>
-                            <Box display="flex" margin="10" boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25)" w="100%" position="relative">
+                            <Box display="flex" alignItems="center" flexWrap="wrap" margin="10" boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25)" w="100%" position="relative" borderRadius="20px" p="15px" borderTop="3px solid #FEA800">
                                 <Flex flexDirection="column" mr="5" border="1px solid #573353" borderRadius="24px" w="100px" h="100px"> 
                                     <Text backgroundColor="#1B2357" color="#FEA800" borderTopRadius="24px" h="41px" display="flex" justifyContent="center" alignItems="center" fontSize="18px" textTransform="uppercase"> {item.month} </Text>
                                     <Text display="flex" justifyContent="center" alignItems="center" h="59px" fontSize="32px" > {item.day} </Text>
                                 </Flex>
-                                <Text> {item.timeStart} - {item.timeFinish} {item.description} </Text>
-                                <Box position="absolute" right="30px">
+                                <Flex direction="column">
+                                {item.tasks?.map(task=>
+                                <Flex key={task.taskId}>
+                                <Checkbox isChecked={task.isCompleted} onChange={()=> handleComplete(item.id, task.taskId)}/>
+                                <Text marginLeft="15px"> {task.startTime} - {task.endTime} {task.description} </Text>
+                                </Flex>
+                                )}
+                                </Flex> 
+                                <Box position="absolute" right="45px" cursor="pointer">
                                     <AiFillEdit mt={4} onClick={onOpen} />
                                 </Box>
                                 <Modal isOpen={isOpen} onClose={onClose}>
@@ -117,7 +161,7 @@ export const RoutineCard = () => {
                                 </ModalContent>
                                 </Modal>
                             
-                                <Box position="absolute" right="0">
+                                <Box position="absolute" right="15px" cursor="pointer">
                                     <AiTwotoneDelete  onClick={() => setIsOpenDelete(true)} />
                                 </Box>
 

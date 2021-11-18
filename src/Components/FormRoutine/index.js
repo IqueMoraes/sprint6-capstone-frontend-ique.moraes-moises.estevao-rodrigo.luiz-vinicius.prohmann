@@ -63,11 +63,11 @@ export const FormRoutine = () => {
   //   userId: userId,
   // };
   const [arrayDataTasks, setArrayDataTasks] = useState([
-    { taskId: 1, description: "", startTime: "", endTime: "" },
-    { taskId: 2, description: "", startTime: "", endTime: "" },
-    { taskId: 3, description: "", startTime: "", endTime: "" },
-    { taskId: 4, description: "", startTime: "", endTime: "" },
-    { taskId: 5, description: "", startTime: "", endTime: "" },
+    { taskId: 1, description: "", startTime: "", endTime: "", isCompleted: false },
+    { taskId: 2, description: "", startTime: "", endTime: "", isCompleted: false },
+    { taskId: 3, description: "", startTime: "", endTime: "", isCompleted: false },
+    { taskId: 4, description: "", startTime: "", endTime: "", isCompleted: false },
+    { taskId: 5, description: "", startTime: "", endTime: "", isCompleted: false },
   ]);
   const [date, setDate] = useState("");
   const [dataForm, setDataForm] = useState({});

@@ -18,7 +18,7 @@ export const CreateDate = (date) => {
 
   return {
     day: newDate[2],
-    month: monthList[Number(newDate[1])],
+    month: newDate[1],
     year: newDate[0],
   };
 };
