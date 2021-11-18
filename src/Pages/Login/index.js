@@ -4,7 +4,10 @@ import { VStack } from "@chakra-ui/layout";
 export const Login = () => {
   return (
     <>
-      <Flex height="100vh" bgGradient="linear(to-r, bg.200 60%, white 40%)">
+      <Flex 
+        height="100vh" 
+        bgGradient="linear(to-r, bg.200 60%, white 40%)"
+      >
         <Flex
           alignItems="center"
           justifyContent="center"
