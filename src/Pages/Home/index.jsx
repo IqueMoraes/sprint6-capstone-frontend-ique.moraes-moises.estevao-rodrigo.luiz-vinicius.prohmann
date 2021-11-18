@@ -116,7 +116,7 @@ const Home = () => {
               name="Rodrigo Luiz"
               devOffice="Q.A"
               devGithub="https://github.com/rodrigorugal"
-              devLinkedin="www.linkedin.com/in/rodrigo-andrade-a02898197"
+              devLinkedin="https://www.linkedin.com/in/rodrigo-andrade-a02898197"
             />
 
             <CardDevs

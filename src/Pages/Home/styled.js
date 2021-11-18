@@ -6,6 +6,7 @@ export const FullScreen = styled.main`
   background-color: beige;
   background-image: linear-gradient(#5f4d93, #db7483);
   padding-top: 50px;
+  padding-bottom: 50px;
 
   figcaption {
     display: none;
