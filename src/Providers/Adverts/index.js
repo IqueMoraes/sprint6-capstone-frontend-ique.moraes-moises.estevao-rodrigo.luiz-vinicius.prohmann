@@ -1,7 +1,7 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useState } from "react";
+
 import { toast } from "react-toastify";
 import { api } from "../../Services";
-import { useAchievment } from "../Achievment";
 import { useAuthToken } from "../AuthToken";
 
 const AdvertsToken = createContext({});
@@ -37,9 +37,9 @@ export const AdvertsProvider = ({ children }) => {
       .post("/adverts", data, {
         headers: { Authorization: "Bearer " + authToken },
       })
-      .then((response) => toast.success("Atividade Criada"))
+      .then((response) => toast.success("Anúncio Criado"))
       .then((_) => getAdverts())
-      .catch((err) => console.log(err));
+      .catch((err) => toast.error("Não foi possivel criar o Anuncio"));
   };
 
   const deletAdverts = (id) => {
@@ -47,7 +47,7 @@ export const AdvertsProvider = ({ children }) => {
       .delete(`/adverts/${id}`, {
         headers: { Authorization: "Bearer " + authToken },
       })
-      .then((response) => toast.success("Atividade Apagada"))
+      .then((response) => toast.error("Anúncio Apagado"))
       .then((_) => getAdverts())
       .catch((err) => console.log(err));
   };

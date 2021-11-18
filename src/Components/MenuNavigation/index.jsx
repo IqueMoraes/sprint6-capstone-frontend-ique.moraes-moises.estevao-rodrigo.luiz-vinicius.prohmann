@@ -13,11 +13,6 @@ import {
   Menu,
   MenuList,
   MenuItem,
-  MenuItemOption,
-  MenuGroup,
-  MenuOptionGroup,
-  MenuIcon,
-  MenuCommand,
   MenuDivider,
 } from "@chakra-ui/react";
 import { HamburgerIcon } from "@chakra-ui/icons";
@@ -75,10 +70,9 @@ export const NavigationMenu = () => {
                 <MenuItem>
                   <Link to="/">App Tchau, mamãe!</Link>
                 </MenuItem>
-                <MenuDivider />
-                <MenuItem>
-                  <Link to="/dashboard">Home</Link>
-                </MenuItem>
+
+                <MenuItem to="/routines">Home</MenuItem>
+
                 <MenuItem>
                   <Link to="/routines">Rotinas</Link>
                 </MenuItem>

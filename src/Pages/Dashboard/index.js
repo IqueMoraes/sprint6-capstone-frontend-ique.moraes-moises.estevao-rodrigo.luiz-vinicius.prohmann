@@ -3,13 +3,13 @@ import { AchievmentCard } from "../../Components/Achievments";
 import { useAuthToken } from "../../Providers/AuthToken";
 import { Flex, Heading } from "@chakra-ui/react";
 import { useAdverts } from "../../Providers/Adverts";
-import { AdvertsCards } from "../../Components/AdvertsCards";
 import { useEffect } from "react";
 import { AdvertsProfile } from "../../Components/AdvertsProfile";
 import { Box, Grid } from "@chakra-ui/layout";
 
 export const Dashboard = () => {
   const { myAdverts, deletAdverts, getMyAdverts } = useAdverts();
+  const { userProfile, userId } = useAuthToken();
   const UserAge = (birthUser) => {
     const birthArray = birthUser.split("/").map((str) => Number(str));
     const birthDate = new Date(birthArray[2], birthArray[0], birthUser[1]);
@@ -20,7 +20,8 @@ export const Dashboard = () => {
   };
   useEffect(() => {
     getMyAdverts();
-  }, []);
+    // eslint-disable-next-line
+  }, [userId]);
   const OutSince = (leavingDate) => {
     const monthArray = [
       "Janeiro",
@@ -40,7 +41,6 @@ export const Dashboard = () => {
 
     return monthArray[leavingDateArray[0]] + " de " + leavingDateArray[2];
   };
-  const { userProfile } = useAuthToken();
 
   return (
     <div>
@@ -110,7 +110,7 @@ export const Dashboard = () => {
           mb="20px"
         >
           <Grid
-            templateColumns="repeat(7, 1fr)"
+            templateColumns="repeat(6, 1fr)"
             gap={6}
             bg="gray.100"
             borderRadius="10px"
@@ -123,7 +123,6 @@ export const Dashboard = () => {
             <Box fontSize="14px" fontWeight="Bold">
               Local:
             </Box>
-            <Box fontSize="14px"> Categoria:</Box>
             <Box fontSize="14px">Criado em: </Box>
             <Box>Excluir</Box>
           </Grid>

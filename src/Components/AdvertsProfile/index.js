@@ -1,4 +1,3 @@
-import { Button } from "@chakra-ui/button";
 import { useDisclosure } from "@chakra-ui/hooks";
 import { Badge, Box, Flex, Grid } from "@chakra-ui/layout";
 import {
@@ -38,7 +37,7 @@ export const AdvertsProfile = ({
       </Modal>
 
       <Grid
-        templateColumns="repeat(7, 1fr)"
+        templateColumns="repeat(6, 1fr)"
         gap={6}
         bg="white"
         borderRadius="10px"
@@ -64,9 +63,7 @@ export const AdvertsProfile = ({
         >
           {localization}
         </Box>
-        <Box onClick={onOpen} fontSize="14px" cursor="pointer">
-          {category}
-        </Box>
+
         <Box onClick={onOpen} fontSize="14px" cursor="pointer">
           {date}
         </Box>
