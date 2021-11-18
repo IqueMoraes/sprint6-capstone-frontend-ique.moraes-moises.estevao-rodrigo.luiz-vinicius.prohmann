@@ -7,10 +7,12 @@ const RoutinesContext = createContext({});
 
 export const RoutinesProvider = ({ children }) => {
   const [userRotines, setUserRoutines] = useState([]);
+
   const [date, setDate] = useState("");
   const [ completedTaskNumber, setCompletedTaskNumber ] = useState(0);
 
   // const [ arrayData, setArrayData ] = useState([])
+
 
   const { authToken, userId } = useAuthToken();
 
@@ -23,22 +25,26 @@ export const RoutinesProvider = ({ children }) => {
         setUserRoutines(res.data);
       })
       .catch((_) => console.log("não pegou minhas rotinas"));
+
   }, [userId]);
 
 
   const createRoutines = (info) => {
       const data = info;
+
     api
       .post("/routines", data, {
         headers: { Authorization: "Bearer " + authToken },
       })
       .then((res) => {
         console.log(res);
+
         setUserRoutines([...userRotines, res.data]);
         toast.success("Rotina criada com sucesso");
       })
       .catch((_) => toast.error("Não foi possível criar a rotina"));
   };
+
 
   const editRoutine = (routineId, data) => {
     // const data = {};
@@ -47,6 +53,7 @@ export const RoutinesProvider = ({ children }) => {
     // if (timeStart) data.timeStart = timeStart;
     // if (timeFinish) data.timeFinish = timeFinish;
     // if (description) data.description = description;
+
 
     api
       .patch(`/routines/${routineId}`, data, {
@@ -74,7 +81,6 @@ export const RoutinesProvider = ({ children }) => {
       .catch((_) => toast.error("Não foi possível deletar a rotina"));
   };
 
-
   const handleCompleteTask = () => {
       
   }
@@ -95,6 +101,7 @@ export const RoutinesProvider = ({ children }) => {
         // setTimeFinish,
         completedTaskNumber,
         setCompletedTaskNumber
+
       }}
     >
       {children}

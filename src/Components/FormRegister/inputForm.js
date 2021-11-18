@@ -54,6 +54,20 @@ export const RegisterForm = ({ handleSignIn, errors, register, loading }) => {
           error={errors.urlSocialMedia}
           {...register("urlSocialMedia")}
         />
+        <Input
+          icon={FaGlobeAmericas}
+          type="date"
+          label="Data de nascimento"
+          error={errors.birth}
+          {...register("birth")}
+        />
+        <Input
+          icon={FaGlobeAmericas}
+          type="date"
+          label="Quando Sai de casa:"
+          error={errors.outSince}
+          {...register("outSince")}
+        />
 
         <Input
           placeholder="Digite sua Senha"
@@ -66,7 +80,7 @@ export const RegisterForm = ({ handleSignIn, errors, register, loading }) => {
         <Input
           placeholder="Confirme sua Senha"
           icon={FaLock}
-          label="Senha"
+          label="Confirmação de senha"
           type="password"
           error={errors.passwordConfirmation}
           {...register("passwordConfirmation")}

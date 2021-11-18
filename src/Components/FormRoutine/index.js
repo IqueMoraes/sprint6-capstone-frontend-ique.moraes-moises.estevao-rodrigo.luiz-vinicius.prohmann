@@ -19,6 +19,7 @@ import { useAuthToken } from "../../Providers/AuthToken";
 import { useEffect, useState } from "react";
 import { CreateDate } from "../../Providers/Routines/stringfydate";
 
+
 export const FormRoutine = () => {
   const { createRoutines } = useRoutines();
 
@@ -85,6 +86,7 @@ export const FormRoutine = () => {
       userId: Number(userId),
     });
   }, [arrayDataTasks]);
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const handleCreateRoutine = () => {
     createRoutines();
@@ -137,6 +139,7 @@ export const FormRoutine = () => {
           onOpen();
           setDataForm({});
         }}
+
       >
         Criar rotina
       </Button>
@@ -208,6 +211,7 @@ export const FormRoutine = () => {
                   </Flex>
                 </>
               ))}
+
           </ModalBody>
           <ModalFooter bg="white" borderBottomRadius="20px">
             <Button

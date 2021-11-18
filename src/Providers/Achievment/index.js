@@ -28,9 +28,8 @@ export const AchievmentProvider = ({ children }) => {
 
   useEffect(() => {
     GetAchievments();
-    console.log("useEffect do provider ");
+    // eslint-disable-next-line
   }, []);
-
 
   const AddAchievments = (achievmentObject) => {
     const newAchievments = [...userProfile.achievments, achievmentObject];
@@ -56,7 +55,12 @@ export const AchievmentProvider = ({ children }) => {
 
   return (
     <AchievmentContext.Provider
-      value={{ achievmentsList, AddAchievments, RemoveAchievments, GetAchievments }}
+      value={{
+        achievmentsList,
+        AddAchievments,
+        RemoveAchievments,
+        GetAchievments,
+      }}
     >
       {children}
     </AchievmentContext.Provider>

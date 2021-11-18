@@ -64,7 +64,7 @@ export const LoginForm = ({ handleSignIn, errors, register, loading }) => {
         <Button
           bg="gray.100"
           color="gray.400"
-          onClick={() => history.push("/cadastro")}
+          onClick={() => history.push("/register")}
           mt="20px"
           _hover={{ background: "gray.200" }}
         >

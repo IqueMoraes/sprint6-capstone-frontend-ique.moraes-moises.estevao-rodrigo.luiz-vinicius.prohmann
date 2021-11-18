@@ -18,49 +18,21 @@ import {
 } from "@chakra-ui/modal";
 import { Grid } from "@chakra-ui/layout";
 import React from "react";
-import { useState } from "react";
 import { useEffect } from "react";
 import { AdvertsCards } from "../../Components/AdvertsCards";
 import { useAuthToken } from "../../Providers/AuthToken";
-import { api } from "../../Services";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useAdverts } from "../../Providers/Adverts";
 
 export const Adverts = () => {
-  const { authToken, userId } = useAuthToken();
-  const [adverts, setAdverts] = useState([]);
+  const { userId } = useAuthToken();
+  const { adverts, getAdverts, postAdverts, deletAdverts } = useAdverts();
   const { isOpen, onOpen, onClose } = useDisclosure();
-
-  const getAdverts = () => {
-    api
-      .get("/adverts", {
-        headers: { Authorization: "Bearer " + authToken },
-      })
-      .then((response) => {
-        setAdverts(response.data);
-      });
-  };
-  const postAdverts = (data) => {
-    api
-      .post("/adverts", data, {
-        headers: { Authorization: "Bearer " + authToken },
-      })
-      .then((response) => console.log(response))
-      .then((_) => getAdverts())
-      .catch((err) => console.log(err));
-  };
-  const deletAdverts = (id) => {
-    api
-      .delete(`/adverts/${id}`, {
-        headers: { Authorization: "Bearer " + authToken },
-      })
-      .then((response) => console.log(response))
-      .then((_) => getAdverts())
-      .catch((err) => console.log(err));
-  };
 
   useEffect(() => {
     getAdverts();
+    // eslint-disable-next-line
   }, []);
 
   const formSchema = yup.object().shape({
@@ -89,6 +61,7 @@ export const Adverts = () => {
       date: dataNow,
       userId,
     };
+    console.log(data);
     postAdverts(advertsData);
   };
   const initialRef = React.useRef();
