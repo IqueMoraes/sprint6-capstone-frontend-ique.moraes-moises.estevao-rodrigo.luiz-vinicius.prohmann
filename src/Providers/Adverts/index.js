@@ -1,6 +1,4 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
-
 import { toast } from "react-toastify";
 import { api } from "../../Services";
 import { useAchievment } from "../Achievment";
@@ -19,6 +17,7 @@ export const AdvertsProvider = ({ children }) => {
         headers: { Authorization: "Bearer " + authToken },
       })
       .then((response) => {
+        console.log("testando resposta dos anuncios", response.data);
         setAdverts(response.data);
       });
   };

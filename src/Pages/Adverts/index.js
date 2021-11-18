@@ -146,19 +146,21 @@ export const Adverts = () => {
         </Modal>
       </>
 
-      {adverts.map((item, index) => (
-        <AdvertsCards
-          index={index}
-          name={item.name}
-          date={item.date}
-          localization={item.localization}
-          category={item.category}
-          id={item.id}
-          userId={item.userId}
-          description={item.description}
-          delet={deletAdverts}
-        />
-      ))}
+      <ul>
+        {adverts.map((item, index) => (
+          <AdvertsCards
+            index={index}
+            name={item.name}
+            date={item.date}
+            localization={item.localization}
+            category={item.category}
+            id={item.id}
+            userId={item.userId}
+            description={item.description}
+            delet={deletAdverts}
+          />
+        ))}
+      </ul>
     </div>
   );
 };
