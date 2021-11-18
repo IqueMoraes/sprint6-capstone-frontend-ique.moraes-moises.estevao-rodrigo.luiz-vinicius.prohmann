@@ -1,5 +1,4 @@
-import { Box, Grid } from "@chakra-ui/layout";
-import { BoxAdvert } from "./style";
+import { Box } from "@chakra-ui/layout";
 
 export const AdvertsCards = ({
   index,
@@ -17,7 +16,7 @@ export const AdvertsCards = ({
       bg="aliceblue"
       w="236px"
       p={5}
-      m={10}
+      m="10px"
       minHeight="320px"
       maxHeight="320px"
       borderRadius={10}

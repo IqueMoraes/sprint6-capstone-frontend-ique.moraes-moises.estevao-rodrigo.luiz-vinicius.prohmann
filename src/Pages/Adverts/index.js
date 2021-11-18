@@ -16,7 +16,7 @@ import {
   ModalHeader,
   ModalOverlay,
 } from "@chakra-ui/modal";
-import { Grid } from "@chakra-ui/layout";
+import { Box, Grid } from "@chakra-ui/layout";
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -146,7 +146,15 @@ export const Adverts = () => {
         </Modal>
       </>
 
-      <ul>
+      <Box
+        as="ul"
+        w="100%"
+        height="100%"
+        display="flex"
+        flexWrap="wrap"
+        alignItems="flex-start"
+        justifyContent="center"
+      >
         {adverts.map((item, index) => (
           <AdvertsCards
             index={index}
@@ -160,7 +168,7 @@ export const Adverts = () => {
             delet={deletAdverts}
           />
         ))}
-      </ul>
+      </Box>
     </div>
   );
 };
