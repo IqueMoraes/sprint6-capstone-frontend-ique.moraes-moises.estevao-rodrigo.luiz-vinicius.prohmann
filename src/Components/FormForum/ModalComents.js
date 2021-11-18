@@ -15,27 +15,72 @@ import {
 import { useForm } from "react-hook-form";
 import * as yup from "yup"
 import { yupResolver } from "@hookform/resolvers/yup"
+import { useForum } from "../../Providers/Forum";
+import { useAuthToken } from "../../Providers/AuthToken";
+import { useState, setState, useEffect } from "react";
 
-export const ModalComent = () => {
+export const ModalComents = () => {
+
+    const [comments, setComments] = useState([])
 
     const { isOpen, onOpen, onClose } = useDisclosure()
 
-    const createTopicSchema = yup.object().shape({
-        comment: yup.string().required("Campo obrigatório")
+    const { createComment } = useForum()
+
+    const { userId, userProfile } = useAuthToken()
+
+    const createCommentsSchema = yup.object().shape({
+        message: yup.string().required("Campo obrigatório")
     })
 
     const { formState: { errors }, register, handleSubmit } = useForm({
-        resolver: yupResolver(createTopicSchema)
+        resolver: yupResolver(createCommentsSchema)
     })
 
-    const handleCreateComent = (data) => {
-        console.log(data)
+    const createNewComment = (data)  =>  {
+        const newData =
+            {
+                ...data,
+                userId: userId,
+                author: userProfile.name
+            }
+
+        setComments({comments: [newData]})
+        
+        
     }
+
+    useEffect(() => {
+    }, [])
+
+
+    const handleCreateComent = (data) => {
+        const newData =
+            {
+                ...data,
+                userId: userId,
+                author: userProfile.name
+            }
+
+        setComments({comments: [newData]})
+        createComment(comments)
+        console.log(comments)
+    }
+    
 
     return (
         <>
-            <Button bg="#FEA800" color="white" fontSize="18px" lineHeight="27px" border="2px solid #FEA800" borderRadius="47px" _hover={{bg:"#FEA800"}} mt={4} onClick={onOpen}>
-                Comentar
+            <Button 
+                bg="#FEA800" 
+                color="white" 
+                fontSize="18px" 
+                lineHeight="27px" 
+                border="2px solid #FEA800" 
+                borderRadius="47px" 
+                _hover={{bg:"#FEA800"}} 
+                mt={4} 
+                onClick={onOpen}
+            >Comentar
             </Button>
             <Modal isOpen={isOpen} onClose={onClose} size="xl" isCentered >
                 <ModalOverlay />
@@ -48,8 +93,8 @@ export const ModalComent = () => {
                             rows="10"
                             placeholder="Escreva seu comentário"
                             type="text"
-                            {...register("comment")}
-                            errors={(errors.comment?.message)}
+                            {...register("message")}
+                            errors={(errors.message?.message)}
                         />
                     </VStack>
                 </ModalBody>
@@ -65,7 +110,7 @@ export const ModalComent = () => {
                         borderRadius="47px"
                         _hover={{bg:"#FEA800"}}
                         type="submit"
-                        >Enviar
+                    >Enviar
                     </Button>
                     <Button 
                         bg="white" 
@@ -76,7 +121,7 @@ export const ModalComent = () => {
                         border="2px solid #FEA800" 
                         borderRadius="47px" 
                         onClick={onClose}
-                        >Cancelar
+                    >Cancelar
                     </Button>
                 </ModalFooter>
                 </ModalContent>

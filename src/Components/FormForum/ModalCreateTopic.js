@@ -9,7 +9,6 @@ import {
   useDisclosure,
   Button,
   Input,
-  Box,
   Text,
   VStack,
   Select,
@@ -20,23 +19,14 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { useForum } from "../../Providers/Forum"
-import { useState } from "react";
-import { useAuthToken } from "../../Providers/AuthToken";
 import { MdRemoveCircle } from "react-icons/md"
-
 
 
 export const ModalCreateTopic = () => {
 
     const { isOpen, onOpen, onClose } = useDisclosure()
 
-    const { createTopic } = useForum()
-
-    const { userProfile } = useAuthToken()
-
-    const [inputField, setInputField] = useState([{
-        assistantSites: ""
-    }])
+    const { createTopic, setInputField, inputField } = useForum()
 
     const createTopicSchema = yup.object().shape({
         subject: yup.string().required("Campo obrigatório"),
@@ -69,20 +59,7 @@ export const ModalCreateTopic = () => {
     }
 
     const handleCreateTopic = (data) => {
-        
-        const date = new Date()
-        
-        const newData = {
-            ...data,
-            author: userProfile.name,
-            date: `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`,
-            comments: [],
-            likes: 0,
-            important: 0,
-            assistantSites: inputField
-        }
-        
-        createTopic(newData)
+        createTopic(data)
         onClose()
     };
 

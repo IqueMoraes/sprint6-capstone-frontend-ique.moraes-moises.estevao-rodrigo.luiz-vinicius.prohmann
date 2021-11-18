@@ -1,11 +1,12 @@
 import { Box, Accordion, AccordionItem, AccordionButton, AccordionIcon, AccordionPanel, Text  } from "@chakra-ui/react"
 import { useForum } from "../../Providers/Forum"
 import { AiFillLike, AiFillStar } from "react-icons/ai"
-import { ModalComent } from "./ModalComent"
+import { ModalComents } from "./ModalComents"
 
 export const CardTopics = () => {
 
     const { topics, searchTopic } = useForum()
+
 
     return (
         <>
@@ -71,14 +72,21 @@ export const CardTopics = () => {
                                             <AccordionPanel pb={4} bg="#E0DFFD" border="2px solid black">
                                                 <Box>
                                                     {
-                                                        item.comments &&
-                                                            <>
-                                                                <Text> {item.comments.author} </Text>
-                                                                <Text> {item.comments.text} </Text>  
-                                                            </>
+                                                        item.comments && (
+                                                            item.comments.map((item, index) => {
+                                                                return (
+                                                                    <Box key={index}>
+                                                                        <Text> {item.message} </Text>
+                                                                        <Text> {item.author} </Text>  
+                                                                    </Box>
+                                                                    
+                                                                    )
+                                                                })
+                                                                )
                                                     } 
                                                 </Box>
-                                                <ModalComent />
+
+                                                <ModalComents />
 
                                             </AccordionPanel>
                                         </AccordionItem>
