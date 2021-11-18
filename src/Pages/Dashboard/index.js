@@ -110,7 +110,7 @@ export const Dashboard = () => {
           mb="20px"
         >
           <Grid
-            templateColumns="repeat(7, 1fr)"
+            templateColumns="repeat(6, 1fr)"
             gap={6}
             bg="gray.100"
             borderRadius="10px"
@@ -123,7 +123,6 @@ export const Dashboard = () => {
             <Box fontSize="14px" fontWeight="Bold">
               Local:
             </Box>
-            <Box fontSize="14px"> Categoria:</Box>
             <Box fontSize="14px">Criado em: </Box>
             <Box>Excluir</Box>
           </Grid>
