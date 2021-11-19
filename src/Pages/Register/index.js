@@ -8,13 +8,12 @@ export const Register = () => {
     <div>
       <Flex
         height="100%"
-        p="25px"
-        bgGradient="linear(to-r, bg.200 60%, white 40%)"
+        bg="linear-gradient(to-left, 180deg, rgba(95, 77, 147, 0.85) 0%, rgba(95, 77, 147, 0.85) 0.01%, rgba(219, 116, 131, 0.85) 50%)"
+        justifyContent="center"
       >
         <Flex
           alignItems="center"
           justifyContent="center"
-          padding="15px 15px"
           height={["auto", "auto"]}
         >
           <Flex
