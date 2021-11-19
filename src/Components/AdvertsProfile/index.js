@@ -36,7 +36,15 @@ export const AdvertsProfile = ({
         </ModalContent>
       </Modal>
 
-      <Flex bg="#e3e3" borderRadius="10px" alignItems="center" mt="5px">
+      <Flex
+        bg="#B1AFE970"
+        borderRadius="10px"
+        alignItems="center"
+        mt="5px"
+        display="flex"
+        alignItems="center"
+        justifyContent="space-evenly"
+      >
         <Flex
           m="0 10px"
           minWidth="150px"
@@ -45,7 +53,15 @@ export const AdvertsProfile = ({
           justifyContent="center"
           cursor="pointer"
         >
-          <Badge>{category} </Badge>
+          <Badge
+            p="5px 2px"
+            borderRadius="30px"
+            textAlign="center"
+            minWidth="100%"
+            maxWidth="100%"
+          >
+            {category}
+          </Badge>
         </Flex>
         <Box
           m="0 10px"
@@ -57,27 +73,32 @@ export const AdvertsProfile = ({
         >
           {name}
         </Box>
-        <Box
+        <Flex
           m="0 10px"
           minWidth="100px"
+          minHeight="50px"
           onClick={onOpen}
           fontSize="14px"
-          fontWeight="Bold"
+          fontWeight="bold"
           cursor="pointer"
+          alignItems="center"
+          justifyContent="center"
         >
           {localization}
-        </Box>
+        </Flex>
 
-        <Box
+        <Flex
           m="0 10px"
           minWidth="100px"
           minHeight="50px"
           onClick={onOpen}
           fontSize="14px"
           cursor="pointer"
+          alignItems="center"
+          justifyContent="center"
         >
           {date}
-        </Box>
+        </Flex>
 
         <Box m="0 10px" minWidth="70px" display="flex" justifyContent="center">
           <FaTrashAlt
