@@ -117,6 +117,7 @@ export const RoutineCard = () => {
         jsonBody,
         "Parabéns! Você ganhou 15 pontos!"
       );
+      handleDelete(todaysRoutine.id)
     }
     // eslint-disable-next-line
   },[completedTaskNumber])
