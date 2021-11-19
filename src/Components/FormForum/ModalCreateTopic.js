@@ -21,7 +21,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForum } from "../../Providers/Forum";
 import { useState } from "react";
 import { useAuthToken } from "../../Providers/AuthToken";
-import { MdRemoveCircle } from "react-icons/md";
+import { AddIcon, MinusIcon } from "@chakra-ui/icons"
 
 export const ModalCreateTopic = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -94,15 +94,15 @@ export const ModalCreateTopic = () => {
         color="white"
         fontSize="18px"
         lineHeight="27px"
-        border="2px solid #FEA800"
+        w="200px"
         borderRadius="47px"
-        _hover={{ bg: "#FEA800" }}
+        _hover={{ bg: "#eda008" }}
         mt={4}
         onClick={onOpen}
       >
         Criar tópico
       </Button>
-      <Modal isOpen={isOpen} onClose={onClose} size="xl">
+      <Modal isOpen={isOpen} onClose={onClose} size="4xl">
         <ModalOverlay />
         <ModalContent
           bg="#FEA800"
@@ -122,8 +122,8 @@ export const ModalCreateTopic = () => {
                 errors={errors.subject?.message}
               />
               <span style={{ color: "red", fontSize: "10px" }}>
-                {" "}
-                {errors.subject?.message}{" "}
+                
+                {errors.subject?.message}
               </span>
               <Text> Categoria </Text>
               <Select
@@ -138,23 +138,24 @@ export const ModalCreateTopic = () => {
                 <option value="Contas">Contas</option>
               </Select>
               <span style={{ color: "red", fontSize: "10px" }}>
-                {" "}
-                {errors.category?.message}{" "}
+                
+                {errors.category?.message}
               </span>
               <Text> Texto </Text>
               <Textarea
                 placeholder="Texto"
                 type="text"
+                rows="8"
                 {...register("text")}
                 size="md"
                 errors={errors.text?.message}
               />
               <span style={{ color: "red", fontSize: "10px" }}>
-                {" "}
-                {errors.text?.message}{" "}
+                
+                {errors.text?.message}
               </span>
               <Text> Links auxiliares </Text>
-              <VStack spacing="3">
+              <VStack spacing="3" display="flex" alignItems="flex-end" mb="4" position="relative">
                 {inputField.map((item, index) => {
                   return (
                     <Flex key={index}>
@@ -166,16 +167,35 @@ export const ModalCreateTopic = () => {
                         onChange={(e) => handleInput(e, index)}
                       />
                       {index > 0 && (
-                        <MdRemoveCircle
+                        <MinusIcon
+                          position="absolute"
+                          right="-20px"
+                          cursor="pointer"
                           onClick={(e) => handleRemoveInput(e, index)}
                         />
                       )}
                     </Flex>
                   );
                 })}
-                <Button onClick={(e) => handleCreateInput(e)}>
-                  {" "}
-                  Adicionar link{" "}
+                <Button
+                  bg="#FEA800"
+                  color="white"
+                  w="58px"
+                  h="18px"
+                  mr={4}
+                  fontSize="12px"
+                  lineHeight="27px"
+                  border="2px solid #FEA800"
+                  borderRadius="47px"
+                  _hover={{ bg: "#FEA800" }} 
+                  onClick={(e) => handleCreateInput(e)}
+                  
+                >
+                  <AddIcon 
+                    fontSize="11px"
+                    mr="5px"
+                  />
+                    Link
                 </Button>
               </VStack>
             </VStack>
