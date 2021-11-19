@@ -21,7 +21,7 @@ import {
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { useRoutines } from "../../../Providers/Routines";
-import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
+import { DeleteIcon } from "@chakra-ui/icons";
 
 import { useEffect } from "react";
 import { useAuthToken } from "../../../Providers/AuthToken";
@@ -34,11 +34,16 @@ export const RoutineCard = () => {
   const [idToDelete, setIdToDelete] = useState(0);
   const [todaysRoutine, setTodaysRoutine] = useState({});
 
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpen, onClose } = useDisclosure();
   const { userProfile } = useAuthToken();
   const { EditProfile } = useUserProfile();
-  const { userRoutines, editRoutine, deleteRoutine, completedTaskNumber,setCompletedTaskNumber } =
-    useRoutines();
+  const {
+    userRoutines,
+    editRoutine,
+    deleteRoutine,
+    completedTaskNumber,
+    setCompletedTaskNumber,
+  } = useRoutines();
 
   const monthList = [
     "índiceZero",
@@ -109,18 +114,15 @@ export const RoutineCard = () => {
     // eslint-disable-next-line
   }, []);
 
-  useEffect(()=>{
+  useEffect(() => {
     progressBarValue();
     const jsonBody = { points: userProfile.points + 15 };
     if (completedTaskNumber === 5) {
-      EditProfile(
-        jsonBody,
-        "Parabéns! Você ganhou 15 pontos!"
-      );
-      handleDelete(todaysRoutine.id)
+      EditProfile(jsonBody, "Parabéns! Você ganhou 15 pontos!");
+      handleDelete(todaysRoutine.id);
     }
     // eslint-disable-next-line
-  },[completedTaskNumber])
+  }, [completedTaskNumber]);
 
   return (
     <>

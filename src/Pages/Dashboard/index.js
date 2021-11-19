@@ -109,7 +109,7 @@ export const Dashboard = () => {
             <Flex
               overflowX="scroll"
               minWidth="100%"
-              overflou="auto"
+              overflow="auto"
               bg="#E0DFFD"
               borderRadius="10px"
               p="5px 20px"
