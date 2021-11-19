@@ -46,10 +46,11 @@ const Home = () => {
           <div>
             <h3>Sobre o aplicativo</h3>
             <p>
-              O Tchau Mamãe é um espaço coletivo de debates e compartilhamento
-              de experiencias. Aqui você vai poder conhecer vários segredos da
-              vida de morar sozinho que podem ajudar você a se organizar nesse
-              novo momento.
+              O Tchau Mamãe é um espaço coletivo e compartilhamento
+              de experiências. Aqui você vai poder conhecer vários segredos da
+              vida de morar sozinho que podem ajudar você a se organizar nessa
+              nova fase.
+              
             </p>
           </div>
         </section>
@@ -71,7 +72,7 @@ const Home = () => {
               <img src={imageSectionAbout2} alt="img2" />
             </figure>
 
-            <p>Compartilhe e adquira novos "Life Hacks" na nosso Forum.</p>
+            <p>Compartilhe e adquira novos "Life Hacks" em nosso mural.</p>
           </div>
 
           <div className="section_min_cards_box">
@@ -80,8 +81,7 @@ const Home = () => {
             </figure>
 
             <p>
-              Crie e visualize os anúncios que podem facilitar sua vida
-              doméstica.
+              Crie e visualize os anúncios que podem facilitar suas tarefas!
             </p>
           </div>
         </section>

@@ -22,7 +22,7 @@ export const UserProfileProvider = ({ children }) => {
         );
       })
       .catch((_) => {
-        toast.error("Não foi possível atualizar o perfil");
+        console.log("Não foi possível atualizar o perfil");
       });
   };
 

@@ -1,4 +1,5 @@
 import { Box } from "@chakra-ui/layout";
+import { useAuthToken } from "../../Providers/AuthToken";
 
 export const AdvertsCards = ({
   index,
@@ -7,10 +8,11 @@ export const AdvertsCards = ({
   localization,
   category,
   id,
-  userId,
+  ownerId,
   description,
   delet,
 }) => {
+  const { userId } = useAuthToken();
   return (
     <Box
       bg="aliceblue"
@@ -55,6 +57,7 @@ export const AdvertsCards = ({
           {description}
         </Box>
       </Box>
+
       <Box
         as="botton"
         borderRadius={5}
@@ -63,6 +66,7 @@ export const AdvertsCards = ({
         p={2}
         _hover={{ background: "secondary.100" }}
         onClick={() => delet(id)}
+        cursor="pointer"
       >
         Delete
       </Box>

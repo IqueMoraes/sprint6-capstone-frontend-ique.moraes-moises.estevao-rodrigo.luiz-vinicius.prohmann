@@ -24,7 +24,6 @@ export const Routes = () => {
         {!!authToken ? (
           <>
             <Redirect to="/dashboard" />
-            {/* {toast.warn("Você já está logado em sua conta.")} */}
           </>
         ) : (
           <>
@@ -37,7 +36,6 @@ export const Routes = () => {
         {!!authToken ? (
           <>
             <Redirect to="/dashboard" />
-            {/* {toast.warn("Você já está cadastrado e logado em sua conta.")} */}
           </>
         ) : (
           <>
@@ -55,7 +53,6 @@ export const Routes = () => {
         ) : (
           <>
             <Redirect to="/login" />
-            {/* {toast.warn("Faça o login para acessar sua página.")} */}
           </>
         )}
       </Route>
@@ -69,7 +66,6 @@ export const Routes = () => {
         ) : (
           <>
             <Redirect to="/login" />
-            {/* {toast.warn("Faça o login para acessar sua página.")} */}
           </>
         )}
       </Route>
@@ -83,7 +79,6 @@ export const Routes = () => {
         ) : (
           <>
             <Redirect to="/login" />
-            {/* {toast.warn("Faça o login para acessar sua página.")} */}
           </>
         )}
       </Route>
@@ -97,7 +92,6 @@ export const Routes = () => {
         ) : (
           <>
             <Redirect to="/login" />
-            {/* {toast.warn("Faça o login para acessar sua página.")} */}
           </>
         )}
       </Route>
