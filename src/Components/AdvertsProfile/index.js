@@ -1,5 +1,5 @@
 import { useDisclosure } from "@chakra-ui/hooks";
-import { Badge, Box, Flex, Grid } from "@chakra-ui/layout";
+import { Badge, Box, Flex } from "@chakra-ui/layout";
 import {
   Modal,
   ModalBody,
@@ -42,7 +42,6 @@ export const AdvertsProfile = ({
         alignItems="center"
         mt="5px"
         display="flex"
-        alignItems="center"
         justifyContent="space-evenly"
       >
         <Flex

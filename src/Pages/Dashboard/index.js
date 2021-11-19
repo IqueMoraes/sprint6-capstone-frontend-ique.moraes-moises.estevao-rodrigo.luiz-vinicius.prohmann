@@ -10,7 +10,7 @@ import { useEffect } from "react";
 import { AdvertsProfile } from "../../Components/AdvertsProfile";
 
 import { Box } from "@chakra-ui/layout";
-// import ProgressBar from "@ramonak/react-progress-bar";
+
 
 export const Dashboard = () => {
   const { myAdverts, deletAdverts, getMyAdverts } = useAdverts();
