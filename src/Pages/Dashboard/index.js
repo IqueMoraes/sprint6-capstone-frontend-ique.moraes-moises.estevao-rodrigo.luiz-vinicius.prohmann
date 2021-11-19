@@ -10,7 +10,7 @@ import ProgressBar from "@ramonak/react-progress-bar";
 
 export const Dashboard = () => {
   const { myAdverts, deletAdverts, getMyAdverts } = useAdverts();
-  const { userProfile, userId } = useAuthToken();
+  const { userProfile, userId, userLevel, progressPoints } = useAuthToken();
   const UserAge = (birthUser) => {
     const birthArray = birthUser.split("/").map((str) => Number(str));
     const birthDate = new Date(birthArray[2], birthArray[0], birthUser[1]);
@@ -19,9 +19,6 @@ export const Dashboard = () => {
 
     return Math.abs(age_ms.getUTCFullYear() - 1970);
   };
-
-  const userLevel = parseInt(userProfile.points / 100);
-  const progressPoints = userProfile.points - userLevel * 100;
 
   useEffect(() => {
     getMyAdverts();
