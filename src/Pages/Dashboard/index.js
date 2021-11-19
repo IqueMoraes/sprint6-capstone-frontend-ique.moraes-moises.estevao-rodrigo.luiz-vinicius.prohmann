@@ -9,8 +9,6 @@ import { useAdverts } from "../../Providers/Adverts";
 import { useEffect } from "react";
 import { AdvertsProfile } from "../../Components/AdvertsProfile";
 import { Box, Grid } from "@chakra-ui/layout";
-import ProgressBar from "@ramonak/react-progress-bar";
-
 
 export const Dashboard = () => {
   const { myAdverts, deletAdverts, getMyAdverts } = useAdverts();
@@ -51,7 +49,6 @@ export const Dashboard = () => {
 
   return (
     <div>
-
       {userProfile && (
         <Flex>
           <div style={{ marginRight: "50px" }}>
