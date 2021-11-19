@@ -64,6 +64,7 @@ export const Adverts = () => {
     };
     console.log(data);
     postAdverts(advertsData);
+    onClose()
   };
   const initialRef = React.useRef();
   const finalRef = React.useRef();

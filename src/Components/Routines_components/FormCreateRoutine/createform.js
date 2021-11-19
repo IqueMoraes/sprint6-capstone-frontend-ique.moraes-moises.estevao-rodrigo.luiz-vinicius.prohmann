@@ -14,7 +14,7 @@ import { CreateDate } from "../../../Providers/Routines/stringfydate";
 import { useAuthToken } from "../../../Providers/AuthToken";
 import { useRoutines } from "../../../Providers/Routines";
 
-export const CreateForm = () => {
+export const CreateForm = ({toClose}) => {
   const { userId } = useAuthToken();
   const { createRoutines } = useRoutines();
   const [tasksNum] = useState([2, 3, 4, 5]);
@@ -72,6 +72,7 @@ export const CreateForm = () => {
     };
     console.log(submitData);
     createRoutines(submitData);
+    toClose()
   };
 
   return (
@@ -196,12 +197,19 @@ export const CreateForm = () => {
             </>
           ))}
         <Button
-          mt={4}
-          colorScheme="teal"
+           bg="#FEA800"
+           color="white"
+           w="150px"
+           mr={4}
+           fontSize="18px"
+           lineHeight="27px"
+           border="2px solid #FEA800"
+           borderRadius="47px"
+           _hover={{ bg: "#FEA800" }}
           isLoading={isSubmitting}
           type="submit"
         >
-          Submit
+          Criar
         </Button>
       </FormControl>
     </form>

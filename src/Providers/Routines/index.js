@@ -52,7 +52,7 @@ export const RoutinesProvider = ({ children }) => {
         toast.success("Rotina atualizada!");
         console.log(data);
       })
-      .catch((_) => toast.error("Não foi possível atualizar a rotina"));
+      .catch((_) => console.log("Não foi possível atualizar a rotina"));
   };
 
   const deleteRoutine = (routineId) => {

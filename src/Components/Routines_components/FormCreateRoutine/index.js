@@ -38,10 +38,10 @@ export const FormCreateRoutine = () => {
           <ModalHeader color="white">Criar rotina</ModalHeader>
           <ModalCloseButton color="white" />
           <ModalBody bg="white" borderTopRadius="20px" paddingTop="20px">
-            <CreateForm />
+            <CreateForm toClose={onClose} />
           </ModalBody>
           <ModalFooter bg="white" borderBottomRadius="20px">
-            <Button
+            {/* <Button
               bg="#FEA800"
               color="white"
               w="150px"
@@ -54,7 +54,7 @@ export const FormCreateRoutine = () => {
             >
               
               Criar
-            </Button>
+            </Button> */}
             <Button
               bg="white"
               color="#FEA800"
