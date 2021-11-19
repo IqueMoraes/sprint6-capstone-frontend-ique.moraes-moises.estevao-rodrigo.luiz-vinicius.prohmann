@@ -2,11 +2,15 @@ import { Link } from "react-router-dom";
 import { AchievmentCard } from "../../Components/Achievments";
 import { useAuthToken } from "../../Providers/AuthToken";
 import { Flex, Heading } from "@chakra-ui/react";
+
+import ProgressBar from "@ramonak/react-progress-bar";
+
 import { useAdverts } from "../../Providers/Adverts";
 import { useEffect } from "react";
 import { AdvertsProfile } from "../../Components/AdvertsProfile";
 import { Box, Grid } from "@chakra-ui/layout";
 import ProgressBar from "@ramonak/react-progress-bar";
+
 
 export const Dashboard = () => {
   const { myAdverts, deletAdverts, getMyAdverts } = useAdverts();
@@ -47,6 +51,7 @@ export const Dashboard = () => {
 
   return (
     <div>
+
       {userProfile && (
         <Flex>
           <div style={{ marginRight: "50px" }}>
@@ -79,6 +84,7 @@ export const Dashboard = () => {
           </div>
         </Flex>
       )}
+
       <br />
       <div>{/* <Link to="/routines">Minha rotina</Link> */}</div>
       <br />

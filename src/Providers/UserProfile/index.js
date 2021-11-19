@@ -7,7 +7,10 @@ const UserProfileContext = createContext();
 
 export const UserProfileProvider = ({ children }) => {
   const { userId, authToken, setUserProfile } = useAuthToken();
-
+  
+const mudaLevel= () => {
+  // ele capta os pontos do usuário, calcula o level e retorna uma edição. EditProfile.
+}
   const EditProfile = (bodyJson, toastMessage) => {
     api
       .patch(`/users/${userId}`, bodyJson, {
