@@ -50,7 +50,6 @@ export const Dashboard = () => {
     <div>
 
       <div>
-        <ProgressBar />
       </div>
       { userProfile && <Flex>
         <div style={{marginRight:"50px"}}>

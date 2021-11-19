@@ -14,7 +14,6 @@ import {
 } from "@chakra-ui/react";
 import { useDisclosure } from "@chakra-ui/hooks";
 import { FormControl, FormLabel } from "@chakra-ui/form-control";
-// import { Input } from "@chakra-ui/input";
 import { Checkbox, Text, Button, Flex } from "@chakra-ui/react";
 import { toast } from "react-toastify";
 
@@ -22,14 +21,16 @@ export const Achievments = () => {
   const { achievmentsList, AddAchievments, RemoveAchievments } =
     useAchievment();
   const { userProfile } = useAuthToken();
-  const userList = userProfile.achievments;
+  const userList = userProfile.achievments; 
   console.log(userList);
+
   const [achievmentInfo, setAchievmentInfo] = useState({
     title: "Trocar lâmpada",
     category: "eletricity",
     id: 1,
   });
   const [changeCheckbox, setChangeCheckbox] = useState(false);
+
   console.log(changeCheckbox);
 
   const translateCategory = () => {

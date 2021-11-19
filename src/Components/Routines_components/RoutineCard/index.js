@@ -3,12 +3,6 @@ import {
   Box,
   Text,
   Checkbox,
-  AlertDialog,
-  AlertDialogBody,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogContent,
-  AlertDialogOverlay,
   Modal,
   ModalOverlay,
   ModalContent,
@@ -18,12 +12,20 @@ import {
   ModalCloseButton,
   useDisclosure,
   Flex,
+  AlertDialog,
+  AlertDialogBody,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogContent,
+  AlertDialogOverlay,
 } from "@chakra-ui/react";
 import React from "react";
 import { useRoutines } from "../../../Providers/Routines";
 import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
 
 import { useEffect } from "react";
+import { DeleteModalExported } from "../DeleteModal";
+import { ModalEditRoutine } from "../FormEditRoutine";
 
 export const RoutineCard = () => {
   const [isOpenDelete, setIsOpenDelete] = React.useState(false);
@@ -32,28 +34,22 @@ export const RoutineCard = () => {
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const { userRoutines, deleteRoutine, editRoutine, setCompletedTaskNumber } =
-    useRoutines();
-    const monthList = [
-      "índiceZero",
-      "Jan",
-      "Fev",
-      "Mar",
-      "Abr",
-      "Mai",
-      "Jun",
-      "Jul",
-      "Ago",
-      "Set",
-      "Out",
-      "Nov",
-      "Dez",
-    ];
-
-  const handleDelete = (idRoutine) => {
-    deleteRoutine(idRoutine);
-    onCloseDelete();
-  };
+  const { userRoutines, editRoutine, deleteRoutine, setCompletedTaskNumber } = useRoutines();
+  const monthList = [
+    "índiceZero",
+    "Jan",
+    "Fev",
+    "Mar",
+    "Abr",
+    "Mai",
+    "Jun",
+    "Jul",
+    "Ago",
+    "Set",
+    "Out",
+    "Nov",
+    "Dez",
+  ];
 
   const handleEdit = (idRoutine) => {
     editRoutine(idRoutine);
@@ -92,7 +88,11 @@ export const RoutineCard = () => {
     progressBarValue();
   }, []);
 
+  const handleDelete = (id) => {
+    deleteRoutine(id);
+    onCloseDelete();
 
+}
 
   return (
     <>
@@ -113,6 +113,7 @@ export const RoutineCard = () => {
                   borderRadius="20px"
                   p="15px"
                   borderTop="3px solid #FEA800"
+                  bgColor="white"
                 >
                   <Flex
                     flexDirection="column"
@@ -151,7 +152,9 @@ export const RoutineCard = () => {
                       <Flex key={task.taskId}>
                         <Checkbox
                           isChecked={task.isCompleted}
-                          onChange={() => handleComplete(routineDay.id, task.taskId)}
+                          onChange={() =>
+                            handleComplete(routineDay.id, task.taskId)
+                          }
                         />
                         <Text marginLeft="15px">
                           {" "}
@@ -161,40 +164,47 @@ export const RoutineCard = () => {
                     ))}
                   </Flex>
 
-                  <Flex minW="80px" p="0px" alignSelf="flex-start" justifyContent="space-between">
-                  <Box cursor="pointer">
-                    <EditIcon w="6" h="6" onClick={onOpen} />
-                  </Box>
-                  <Modal isOpen={isOpen} onClose={onClose}>
-                    <ModalOverlay />
-                    <ModalContent>
-                      <ModalHeader>Editar</ModalHeader>
-                      <ModalCloseButton />
-                      <ModalBody>
-                        <p>construindo o formulario de edição</p>
-                      </ModalBody>
+                  <Flex
+                    minW="80px"
+                    p="0px"
+                    alignSelf="flex-start"
+                    justifyContent="space-between"
+                  >
+                    <Box cursor="pointer">
+                      <EditIcon w="6" h="6" onClick={onOpen} />
+                    </Box>
+                    <Modal isOpen={isOpen} onClose={onClose}>
+                      <ModalOverlay />
+                      <ModalContent>
+                        <ModalHeader>Editar</ModalHeader>
+                        <ModalCloseButton />
+                        <ModalBody>
+                          <p> entrar o formulário de edição </p>
+                        </ModalBody>
 
-                      <ModalFooter>
-                        <Button colorScheme="blue" mr={3} onClick={onClose}>
-                          Cancelar
-                        </Button>
-                        <Button
-                          colorScheme="teal"
-                          size="sm"
-                          onClick={() => handleEdit(routineDay.id)}
-                        >
-                          {" "}
-                          Editar{" "}
-                        </Button>
-                      </ModalFooter>
-                    </ModalContent>
-                  </Modal>
+                        <ModalFooter>
+                          <Button colorScheme="blue" mr={3} onClick={onClose}>
+                            Cancelar
+                          </Button>
+                          <Button
+                            colorScheme="teal"
+                            size="sm"
+                            onClick={() => handleEdit(routineDay.id)}
+                          >
+                            Editar
+                          </Button>
+                        </ModalFooter>
+                      </ModalContent>
+                    </Modal>
 
-                  <Box cursor="pointer">
-                    <DeleteIcon w="6" h="6" onClick={() => setIsOpenDelete(true)} />
-                  </Box>
+                    <Box cursor="pointer">
+                      <DeleteIcon
+                        w="6"
+                        h="6"
+                        onClick={() => setIsOpenDelete(true)}
+                      />
+                    </Box>
                   </Flex>
-
                   <AlertDialog
                     isOpen={isOpenDelete}
                     leastDestructiveRef={cancelRef}
