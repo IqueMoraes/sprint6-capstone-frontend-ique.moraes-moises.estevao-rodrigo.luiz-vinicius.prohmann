@@ -1,10 +1,15 @@
-import './App.css';
+import GlobalStyles from "./styles/globalStyle";
+import { Routes } from "./Routes";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
-    <div>
-      Tchau, mamãe
-    </div>
+    <>
+      <ToastContainer />
+      <GlobalStyles />
+      <Routes />
+    </>
   );
 }
 
