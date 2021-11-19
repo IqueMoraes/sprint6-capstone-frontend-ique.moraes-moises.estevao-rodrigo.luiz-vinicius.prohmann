@@ -31,7 +31,7 @@ export const NavigationMenu = () => {
 
   return (
     <>
-      {widthScreen > 768 ? (
+      {widthScreen > 780 ? (
         <Box
           position="absolute"
           w="30%"
