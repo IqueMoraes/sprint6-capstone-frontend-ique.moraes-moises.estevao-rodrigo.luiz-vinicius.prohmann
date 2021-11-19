@@ -31,6 +31,7 @@ export const NavigationMenu = () => {
 
   return (
     <>
+
       {widthScreen >= 768 ? (
         <Box
           position="absolute"
@@ -94,6 +95,7 @@ export const NavigationMenu = () => {
           >
             <HamburgerIcon />
           </Button>
+
 
           <Drawer
             isOpen={isOpen}

@@ -19,6 +19,20 @@ export const AuthTokenProvider = ({ children }) => {
     JSON.parse(localStorage.getItem("@tm/userProfile" || ""))
   );
 
+  const [userLevel, setUserLevel] = useState(0);
+  const [progressPoints, setProgressPoints] = useState(0);
+
+  const attPoints = () => {
+    !!userProfile && setUserLevel(parseInt(userProfile.points / 100));
+  };
+
+  const attProgress = () => {
+    !!userProfile && setProgressPoints(userProfile.points - userLevel * 100);
+  };
+
+  setInterval(() => attPoints(), 3000);
+  setInterval(() => attProgress(), 3000);
+
   const history = useHistory();
 
   const handleRegister = (data) => {
@@ -76,6 +90,8 @@ export const AuthTokenProvider = ({ children }) => {
         userId,
         userProfile,
         setUserProfile,
+        userLevel,
+        progressPoints,
       }}
     >
       {children}

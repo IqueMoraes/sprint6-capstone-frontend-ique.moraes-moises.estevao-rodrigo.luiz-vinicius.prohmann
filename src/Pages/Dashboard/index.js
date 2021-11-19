@@ -2,15 +2,20 @@ import { Link } from "react-router-dom";
 import { AchievmentCard } from "../../Components/Achievments";
 import { useAuthToken } from "../../Providers/AuthToken";
 import { Flex, Heading } from "@chakra-ui/react";
+
+import ProgressBar from "@ramonak/react-progress-bar";
+
 import { useAdverts } from "../../Providers/Adverts";
 import { useEffect } from "react";
 import { AdvertsProfile } from "../../Components/AdvertsProfile";
+
 import { Box } from "@chakra-ui/layout";
 import ProgressBar from "@ramonak/react-progress-bar";
 
+
 export const Dashboard = () => {
   const { myAdverts, deletAdverts, getMyAdverts } = useAdverts();
-  const { userProfile, userId } = useAuthToken();
+  const { userProfile, userId, userLevel, progressPoints } = useAuthToken();
   const UserAge = (birthUser) => {
     const birthArray = birthUser.split("/").map((str) => Number(str));
     const birthDate = new Date(birthArray[2], birthArray[0], birthUser[1]);
@@ -19,9 +24,6 @@ export const Dashboard = () => {
 
     return Math.abs(age_ms.getUTCFullYear() - 1970);
   };
-
-  const userLevel = parseInt(userProfile.points / 100);
-  const progressPoints = userProfile.points - userLevel * 100;
 
   useEffect(() => {
     getMyAdverts();
@@ -49,6 +51,7 @@ export const Dashboard = () => {
   };
 
   return (
+
     <Flex
       w="100vw"
       h="100vh"
@@ -106,6 +109,7 @@ export const Dashboard = () => {
                 </Box>
               </Flex>
             </Flex>
+
           )}
           <Box p="0 15px" minWidth="100%">
             <Heading as="h3" size="md" color="#1B2357" p="15px 0">

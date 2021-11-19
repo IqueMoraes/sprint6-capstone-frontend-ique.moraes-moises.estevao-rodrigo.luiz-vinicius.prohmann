@@ -6,17 +6,13 @@ import { useAuthToken } from "../AuthToken";
 const RoutinesContext = createContext({});
 
 export const RoutinesProvider = ({ children }) => {
-  const [userRotines, setUserRoutines] = useState([]);
-  const [description, setDescription] = useState("");
+  const [userRoutines, setUserRoutines] = useState([]);
   const [date, setDate] = useState("");
-  const [day, setDay] = useState("");
-  const [month, setMonth] = useState("");
-  const [timeStart, setTimeStart] = useState("");
-  const [timeFinish, setTimeFinish] = useState("");
+  const [completedTaskNumber, setCompletedTaskNumber] = useState(0);
 
   const { authToken, userId } = useAuthToken();
 
-  useEffect(() => {
+  const getUserRoutines = () => {
     api
       .get(`/routines?userId=${userId}`, {
         headers: { Authorization: "Bearer " + authToken },
@@ -25,101 +21,32 @@ export const RoutinesProvider = ({ children }) => {
         setUserRoutines(res.data);
       })
       .catch((_) => console.log("não pegou minhas rotinas"));
-  }, [userId, authToken]);
-
-  const createDate = () => {
-    const newDate = date.split("-");
-
-    setDay(newDate[2]);
-
-    if (newDate[1] === "01") {
-      setMonth("Jan");
-    }
-
-    if (newDate[1] === "02") {
-      setMonth("Fev");
-    }
-
-    if (newDate[1] === "03") {
-      setMonth("Mar");
-    }
-
-    if (newDate[1] === "04") {
-      setMonth("Abr");
-    }
-
-    if (newDate[1] === "05") {
-      setMonth("Mai");
-    }
-
-    if (newDate[1] === "06") {
-      setMonth("Jun");
-    }
-
-    if (newDate[1] === "07") {
-      setMonth("Jul");
-    }
-
-    if (newDate[1] === "08") {
-      setMonth("Ago");
-    }
-
-    if (newDate[1] === "09") {
-      setMonth("Set");
-    }
-
-    if (newDate[1] === "10") {
-      setMonth("Out");
-    }
-
-    if (newDate[1] === "11") {
-      setMonth("Nov");
-    }
-
-    if (newDate[1] === "12") {
-      setMonth("Dez");
-    }
   };
 
-  const createRoutines = () => {
-    createDate();
+  useEffect(() => {
+    getUserRoutines();
+  }, [userId]);
 
-    const data = {
-      month: month,
-      day: day,
-      timeStart: timeStart,
-      timeFinish: timeFinish,
-      description: description,
-      userId: userId,
-    };
-
-    console.log(data);
-
+  const createRoutines = (info) => {
+    const data = info;
     api
       .post("/routines", data, {
         headers: { Authorization: "Bearer " + authToken },
       })
       .then((res) => {
-        setUserRoutines([...userRotines, res.data]);
+        setUserRoutines([...userRoutines, res.data]);
         toast.success("Rotina criada com sucesso");
       })
       .catch((_) => toast.error("Não foi possível criar a rotina"));
   };
 
-  const editRoutine = (routineId) => {
-    const data = {};
-    if (month) data.month = month;
-    if (day) data.day = day;
-    if (timeStart) data.timeStart = timeStart;
-    if (timeFinish) data.timeFinish = timeFinish;
-    if (description) data.description = description;
-
+  const editRoutine = (routineId, data) => {
     api
       .patch(`/routines/${routineId}`, data, {
         headers: { Authorization: "Bearer " + authToken },
       })
       .then((res) => {
-        const edited = userRotines.filter((item) => item.id !== routineId);
+        const edited = userRoutines.filter((item) => item.id !== routineId);
         setUserRoutines([...edited, res.data]);
         toast.success("Rotina editada com sucesso!");
         console.log(data);
@@ -133,27 +60,25 @@ export const RoutinesProvider = ({ children }) => {
         headers: { Authorization: "Bearer " + authToken },
       })
       .then((_) => {
-        const deleted = userRotines.filter((item) => item.id !== routineId);
-        setUserRoutines([...deleted]);
+        getUserRoutines()
         toast.success("Rotina excluída com sucesso");
       })
       .catch((_) => toast.error("Não foi possível deletar a rotina"));
   };
 
+  const handleCompleteTask = () => {};
+
   return (
     <RoutinesContext.Provider
       value={{
-        userRotines,
+        userRoutines,
         createRoutines,
         editRoutine,
         deleteRoutine,
-        setDescription,
         date,
         setDate,
-        timeStart,
-        setTimeStart,
-        timeFinish,
-        setTimeFinish,
+        completedTaskNumber,
+        setCompletedTaskNumber,
       }}
     >
       {children}
