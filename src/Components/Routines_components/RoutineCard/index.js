@@ -19,7 +19,7 @@ import {
   AlertDialogContent,
   AlertDialogOverlay,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useState } from "react";
 import { useRoutines } from "../../../Providers/Routines";
 import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
 
@@ -29,11 +29,15 @@ export const RoutineCard = () => {
   const [isOpenDelete, setIsOpenDelete] = React.useState(false);
   const onCloseDelete = () => setIsOpenDelete(false);
   const cancelRef = React.useRef();
+  const [idToDelete, setIdToDelete ] = useState(0);
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const { userRoutines, editRoutine, deleteRoutine, setCompletedTaskNumber } =
     useRoutines();
+
+    console.log(userRoutines,"normal");
+    console.log(userRoutines.sort((a,b)=> a.day - b.day));
   const monthList = [
     "índiceZero",
     "Jan",
@@ -89,6 +93,7 @@ export const RoutineCard = () => {
   }, []);
 
   const handleDelete = (id) => {
+    console.log(id);
     deleteRoutine(id);
     onCloseDelete();
   };
@@ -97,8 +102,8 @@ export const RoutineCard = () => {
     <>
       {userRoutines &&
         userRoutines
-          .sort((a, b) => a.day - b.day)
-          .map((routineDay) => {
+          // .sort((a, b) => a.day - b.day)
+          .map((routineDay) => { 
             return (
               <Box as="section" display="flex" key={routineDay.id}>
                 <Box
@@ -200,7 +205,9 @@ export const RoutineCard = () => {
                       <DeleteIcon
                         w="6"
                         h="6"
-                        onClick={() => setIsOpenDelete(true)}
+                        onClick={() => {
+                          setIdToDelete(routineDay.id);
+                          setIsOpenDelete(true)}}
                       />
                     </Box>
                   </Flex>
@@ -225,7 +232,8 @@ export const RoutineCard = () => {
                           </Button>
                           <Button
                             colorScheme="red"
-                            onClick={() => handleDelete(routineDay.id)}
+                            onClick={() =>{
+                              handleDelete(idToDelete)}}
                             ml={3}
                           >
                             Excluir
