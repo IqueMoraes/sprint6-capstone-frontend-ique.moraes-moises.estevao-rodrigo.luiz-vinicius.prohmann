@@ -24,7 +24,7 @@ export const AdvertsProfile = ({
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
-    <>
+    <Box>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
@@ -36,40 +36,79 @@ export const AdvertsProfile = ({
         </ModalContent>
       </Modal>
 
-      <Grid
-        templateColumns="repeat(6, 1fr)"
-        gap={6}
-        bg="white"
+      <Flex
+        bg="#B1AFE970"
         borderRadius="10px"
         alignItems="center"
         mt="5px"
+        display="flex"
+        alignItems="center"
+        justifyContent="space-evenly"
       >
         <Flex
+          m="0 10px"
+          minWidth="150px"
           onClick={onOpen}
           alignItems="center"
           justifyContent="center"
           cursor="pointer"
         >
-          <Badge>{category} </Badge>
+          <Badge
+            p="5px 2px"
+            borderRadius="30px"
+            textAlign="center"
+            minWidth="100%"
+            maxWidth="100%"
+          >
+            {category}
+          </Badge>
         </Flex>
-        <Box onClick={onOpen} fontSize="14px" cursor="pointer">
-          {name}
-        </Box>
         <Box
+          m="0 10px"
+          minWidth="100px"
+          maxWidth="100px"
           onClick={onOpen}
           fontSize="14px"
-          fontWeight="Bold"
           cursor="pointer"
         >
+          {name}
+        </Box>
+        <Flex
+          m="0 10px"
+          minWidth="100px"
+          minHeight="50px"
+          onClick={onOpen}
+          fontSize="14px"
+          fontWeight="bold"
+          cursor="pointer"
+          alignItems="center"
+          justifyContent="center"
+        >
           {localization}
-        </Box>
+        </Flex>
 
-        <Box onClick={onOpen} fontSize="14px" cursor="pointer">
+        <Flex
+          m="0 10px"
+          minWidth="100px"
+          minHeight="50px"
+          onClick={onOpen}
+          fontSize="14px"
+          cursor="pointer"
+          alignItems="center"
+          justifyContent="center"
+        >
           {date}
-        </Box>
+        </Flex>
 
-        <FaTrashAlt onClick={() => delet(id)} cursor="pointer" />
-      </Grid>
-    </>
+        <Box m="0 10px" minWidth="70px" display="flex" justifyContent="center">
+          <FaTrashAlt
+            m="0 10px"
+            minWidth="20px"
+            onClick={() => delet(id)}
+            cursor="pointer"
+          />
+        </Box>
+      </Flex>
+    </Box>
   );
 };

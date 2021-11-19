@@ -17,6 +17,7 @@ export const AchievmentCard = ({ category, title, onClick, ...rest }) => {
   return (
     <Box
       w="100px"
+      minWidth="100px"
       h="124px"
       color="#000000ad"
       bg={achievmentFront}
