@@ -1,4 +1,3 @@
-import { useRoutines } from "../../../Providers/Routines";
 import {
   Modal,
   ModalOverlay,
@@ -11,20 +10,10 @@ import {
   Button,
 } from "@chakra-ui/react";
 
-import { useAuthToken } from "../../../Providers/AuthToken";
-import { useState } from "react";
 import { CreateForm } from "./createform";
 
 export const FormCreateRoutine = () => {
-  const { createRoutines } = useRoutines();
-
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { userId } = useAuthToken();
-
-  const submitCreate = (data) => {
-    console.log(data);
-    // onClose();
-  };
 
   return (
     <>
@@ -49,11 +38,7 @@ export const FormCreateRoutine = () => {
           <ModalHeader color="white">Criar rotina</ModalHeader>
           <ModalCloseButton color="white" />
           <ModalBody bg="white" borderTopRadius="20px" paddingTop="20px">
-
-
             <CreateForm />
-
-            
           </ModalBody>
           <ModalFooter bg="white" borderBottomRadius="20px">
             <Button

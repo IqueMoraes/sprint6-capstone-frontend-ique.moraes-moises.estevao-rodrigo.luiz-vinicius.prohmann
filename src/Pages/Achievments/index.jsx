@@ -8,17 +8,14 @@ import {
   ModalOverlay,
   ModalContent,
   ModalHeader,
-  ModalFooter,
   ModalBody,
   ModalCloseButton,
 } from "@chakra-ui/react";
 import { useDisclosure } from "@chakra-ui/hooks";
-import { FormControl, FormLabel } from "@chakra-ui/form-control";
+import { FormLabel } from "@chakra-ui/form-control";
 
 // import { Input } from "@chakra-ui/input";
-import { Checkbox, Text, Button, Flex, VStack } from "@chakra-ui/react";
-
-import { toast } from "react-toastify";
+import { Text, Button, Flex, VStack } from "@chakra-ui/react";
 
 export const Achievments = () => {
   const { achievmentsList, AddAchievments, RemoveAchievments } =
@@ -32,9 +29,6 @@ export const Achievments = () => {
     category: "eletricity",
     id: 1,
   });
-  const [changeCheckbox, setChangeCheckbox] = useState(false);
-
-  console.log(changeCheckbox);
 
   const translateCategory = () => {
     const cat = achievmentInfo.category;

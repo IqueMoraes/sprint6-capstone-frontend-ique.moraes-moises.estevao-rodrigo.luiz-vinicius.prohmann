@@ -6,7 +6,6 @@ import {
   DrawerBody,
   DrawerFooter,
   DrawerHeader,
-  DrawerOverlay,
   DrawerContent,
   DrawerCloseButton,
   Button,
@@ -17,7 +16,7 @@ import {
 } from "@chakra-ui/react";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import { useDisclosure } from "@chakra-ui/hooks";
-import { Box, Flex } from "@chakra-ui/layout";
+import { Box } from "@chakra-ui/layout";
 import { BoxMenu } from "./style";
 
 export const NavigationMenu = () => {
@@ -31,7 +30,6 @@ export const NavigationMenu = () => {
 
   return (
     <>
-
       {widthScreen >= 768 ? (
         <Box
           position="absolute"
@@ -95,7 +93,6 @@ export const NavigationMenu = () => {
           >
             <HamburgerIcon />
           </Button>
-
 
           <Drawer
             isOpen={isOpen}

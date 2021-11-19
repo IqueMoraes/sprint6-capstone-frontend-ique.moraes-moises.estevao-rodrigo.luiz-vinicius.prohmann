@@ -25,6 +25,7 @@ export const RoutinesProvider = ({ children }) => {
 
   useEffect(() => {
     getUserRoutines();
+    // eslint-disable-next-line
   }, [userId]);
 
   const createRoutines = (info) => {
@@ -60,13 +61,11 @@ export const RoutinesProvider = ({ children }) => {
         headers: { Authorization: "Bearer " + authToken },
       })
       .then((_) => {
-        getUserRoutines()
+        getUserRoutines();
         toast.success("Rotina excluída com sucesso");
       })
       .catch((_) => toast.error("Não foi possível deletar a rotina"));
   };
-
-  const handleCompleteTask = () => {};
 
   return (
     <RoutinesContext.Provider

@@ -37,7 +37,7 @@ const Home = () => {
         <section className="section_about">
           <div>
             <figure>
-              <img src={imageSectionTop} />
+              <img src={imageSectionTop} alt="imgSectionTop" />
             </figure>
           </div>
 
@@ -55,7 +55,7 @@ const Home = () => {
         <section className="section_min_cards">
           <div className="section_min_cards_box">
             <figure>
-              <img src={imageSectionAbout1} />
+              <img src={imageSectionAbout1} alt="img1" />
             </figure>
 
             <p>
@@ -66,7 +66,7 @@ const Home = () => {
 
           <div className="section_min_cards_box">
             <figure>
-              <img src={imageSectionAbout2} />
+              <img src={imageSectionAbout2} alt="img2" />
             </figure>
 
             <p>Compartilhe e adquira novos "Life Hacks" na nosso Forum.</p>
@@ -74,7 +74,7 @@ const Home = () => {
 
           <div className="section_min_cards_box">
             <figure>
-              <img src={imageSectionAbout3} />
+              <img src={imageSectionAbout3} alt="img3" />
             </figure>
 
             <p>
@@ -90,7 +90,7 @@ const Home = () => {
           <section className="section_tean_devs">
             <CardDevs
               name="Ique Moraes"
-              devOffice="QA"
+              devOffice="Tech leader"
               image={imageDevIque}
               devGithub="https://github.com/IqueMoraes"
               devLinkedin="https://www.linkedin.com/in/ique-moraes-814129212/"
@@ -99,7 +99,7 @@ const Home = () => {
             <CardDevs
               name="Rodrigo Luiz"
               image={imageDevRodrigo}
-              devOffice="Q.A"
+              devOffice="Product Owner"
               devGithub="https://github.com/rodrigorugal"
               devLinkedin="https://www.linkedin.com/in/rodrigo-andrade-a02898197"
             />
@@ -107,7 +107,7 @@ const Home = () => {
             <CardDevs
               name="Moisés Gaioli"
               image={imageDevMoizes}
-              devOffice="Q.A"
+              devOffice="Quality Assurance"
               devGithub="https://github.com/moisesgaioli"
               devLinkedin="https://www.linkedin.com/in/moises-gaioli-estevao"
             />
@@ -115,7 +115,7 @@ const Home = () => {
             <CardDevs
               name="Vinicius Prohmann"
               image={imageDevVinicius}
-              devOffice="Q.A"
+              devOffice="Scrum Master"
               devGithub="https://github.com/vinapro91"
               devLinkedin="https://www.linkedin.com/in/viniciusprohmann/"
             />

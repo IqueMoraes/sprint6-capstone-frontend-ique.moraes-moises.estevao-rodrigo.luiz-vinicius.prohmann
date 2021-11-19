@@ -14,10 +14,10 @@ import { CreateDate } from "../../../Providers/Routines/stringfydate";
 import { useAuthToken } from "../../../Providers/AuthToken";
 import { useRoutines } from "../../../Providers/Routines";
 
-export const CreateForm = ( ) => {
+export const CreateForm = () => {
   const { userId } = useAuthToken();
-  const { createRoutines } = useRoutines()
-  const [tasksNum, setTasksNum] = useState([2, 3, 4, 5]);
+  const { createRoutines } = useRoutines();
+  const [tasksNum] = useState([2, 3, 4, 5]);
 
   const {
     handleSubmit,
@@ -71,12 +71,19 @@ export const CreateForm = ( ) => {
       userId: Number(userId),
     };
     console.log(submitData);
-    createRoutines(submitData)
+    createRoutines(submitData);
   };
 
   return (
     <form onSubmit={handleSubmit(treatmentData)}>
-      <FormControl isInvalid={errors.date || errors.description1 || errors.startTime1 || errors.endTime1}>
+      <FormControl
+        isInvalid={
+          errors.date ||
+          errors.description1 ||
+          errors.startTime1 ||
+          errors.endTime1
+        }
+      >
         <FormErrorMessage>
           {errors.date && errors.date.message}
         </FormErrorMessage>
@@ -112,7 +119,7 @@ export const CreateForm = ( ) => {
             >
               Tarefa 1
             </FormLabel>
-            <FormErrorMessage>{errors.description1?.message }</FormErrorMessage>
+            <FormErrorMessage>{errors.description1?.message}</FormErrorMessage>
           </Flex>
           <Input
             id="task1"
@@ -140,53 +147,54 @@ export const CreateForm = ( ) => {
               })}
             />
           </Flex>
-            <FormErrorMessage>
+          <FormErrorMessage>
             {errors.startTime1?.message || errors.endTime1?.message}
-            </FormErrorMessage>
+          </FormErrorMessage>
         </Flex>
 
-        {tasksNum && tasksNum.map((item, index) => (
-          <>
-            <Flex
-              alignItems="center"
-              wrap="wrap"
-              w="100%"
-              m="15px 0"
-              key={index + 2}
-            >
-              <FormLabel
-                htmlFor={`task${item}`}
-                bgColor="#1B2357"
-                borderRadius="31px"
-                p="3px 15px"
-                color="white"
+        {tasksNum &&
+          tasksNum.map((item, index) => (
+            <>
+              <Flex
+                alignItems="center"
+                wrap="wrap"
+                w="100%"
+                m="15px 0"
+                key={index + 2}
               >
-                Tarefa {item}
-              </FormLabel>
-              <Input
-                id={`task${item}`}
-                placeholder="Descrição"
-                type="text"
-                {...register(`description${item}`)}
-              />
+                <FormLabel
+                  htmlFor={`task${item}`}
+                  bgColor="#1B2357"
+                  borderRadius="31px"
+                  p="3px 15px"
+                  color="white"
+                >
+                  Tarefa {item}
+                </FormLabel>
+                <Input
+                  id={`task${item}`}
+                  placeholder="Descrição"
+                  type="text"
+                  {...register(`description${item}`)}
+                />
 
-              <Flex w="100%" alignItems="center" m="8px 0">
-                <Text> De: </Text>
-                <Input
-                  placeholder="Horário"
-                  type="time"
-                  {...register(`startTime${item}`)}
-                />
-                <Text> Até: </Text>
-                <Input
-                  placeholder="Horário"
-                  type="time"
-                  {...register(`endTime${item}`)}
-                />
+                <Flex w="100%" alignItems="center" m="8px 0">
+                  <Text> De: </Text>
+                  <Input
+                    placeholder="Horário"
+                    type="time"
+                    {...register(`startTime${item}`)}
+                  />
+                  <Text> Até: </Text>
+                  <Input
+                    placeholder="Horário"
+                    type="time"
+                    {...register(`endTime${item}`)}
+                  />
+                </Flex>
               </Flex>
-            </Flex>
-          </>
-        ))}
+            </>
+          ))}
         <Button
           mt={4}
           colorScheme="teal"

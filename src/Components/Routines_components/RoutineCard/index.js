@@ -24,8 +24,6 @@ import { useRoutines } from "../../../Providers/Routines";
 import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
 
 import { useEffect } from "react";
-import { DeleteModalExported } from "../DeleteModal";
-import { ModalEditRoutine } from "../FormEditRoutine";
 
 export const RoutineCard = () => {
   const [isOpenDelete, setIsOpenDelete] = React.useState(false);
@@ -34,7 +32,8 @@ export const RoutineCard = () => {
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const { userRoutines, editRoutine, deleteRoutine, setCompletedTaskNumber } = useRoutines();
+  const { userRoutines, editRoutine, deleteRoutine, setCompletedTaskNumber } =
+    useRoutines();
   const monthList = [
     "índiceZero",
     "Jan",
@@ -86,13 +85,13 @@ export const RoutineCard = () => {
 
   useEffect(() => {
     progressBarValue();
+    // eslint-disable-next-line
   }, []);
 
   const handleDelete = (id) => {
     deleteRoutine(id);
     onCloseDelete();
-
-}
+  };
 
   return (
     <>
@@ -165,7 +164,7 @@ export const RoutineCard = () => {
                   </Flex>
 
                   <Flex
-                    minW="80px"
+                    minWidth="80px"
                     p="0px"
                     alignSelf="flex-start"
                     justifyContent="space-between"

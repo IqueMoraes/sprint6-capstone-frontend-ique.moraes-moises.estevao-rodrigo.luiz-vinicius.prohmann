@@ -1,26 +1,14 @@
 import {
-  // Modal,
-  // ModalOverlay,
-  // ModalContent,
-  // ModalHeader,
-  // ModalFooter,
-  // ModalBody,
-  // ModalCloseButton,
-  useDisclosure,
   Button,
   Input,
   FormErrorMessage,
   FormLabel,
   FormControl,
 } from "@chakra-ui/react";
-// import { useRoutines } from "../../Providers/Routines";
+
 import { useForm } from "react-hook-form";
 
 export const ModalEditRoutine = () => {
-  // const { userRoutines, editRoutine } = useRoutines();
-
-  // const { isOpen, onOpen, onClose } = useDisclosure();
-
   const {
     handleSubmit,
     register,

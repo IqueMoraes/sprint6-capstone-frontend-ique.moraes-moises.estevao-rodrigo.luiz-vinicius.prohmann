@@ -10,8 +10,7 @@ import { useEffect } from "react";
 import { AdvertsProfile } from "../../Components/AdvertsProfile";
 
 import { Box } from "@chakra-ui/layout";
-import ProgressBar from "@ramonak/react-progress-bar";
-
+// import ProgressBar from "@ramonak/react-progress-bar";
 
 export const Dashboard = () => {
   const { myAdverts, deletAdverts, getMyAdverts } = useAdverts();
@@ -51,7 +50,6 @@ export const Dashboard = () => {
   };
 
   return (
-
     <Flex
       w="100vw"
       h="100vh"
@@ -109,7 +107,6 @@ export const Dashboard = () => {
                 </Box>
               </Flex>
             </Flex>
-
           )}
           <Box p="0 15px" minWidth="100%">
             <Heading as="h3" size="md" color="#1B2357" p="15px 0">
@@ -199,6 +196,7 @@ export const Dashboard = () => {
                 </Box>
                 {myAdverts.map((item, index) => (
                   <AdvertsProfile
+                    key={index}
                     index={index}
                     name={item.name}
                     date={item.date}
