@@ -13,6 +13,7 @@ import {
   MenuList,
   MenuItem,
   MenuDivider,
+  Heading
 } from "@chakra-ui/react";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import { useDisclosure } from "@chakra-ui/hooks";
@@ -52,6 +53,7 @@ export const NavigationMenu = () => {
             alignItems="center"
             justifyContent="space-evenly"
           >
+            <Heading as="h3" color="#1B2357" fontSize="26px" border="3px solid #FEA800"  borderRadius="40px" padding="8px" fontFamily="Comfortaa">Tchau, mamãe</Heading>
             <BoxMenu>
               <Link to="/dashboard" height="100%" width="100%">
                 Home
