@@ -6,7 +6,6 @@ import {
   DrawerBody,
   DrawerFooter,
   DrawerHeader,
-  DrawerOverlay,
   DrawerContent,
   DrawerCloseButton,
   Button,
@@ -17,6 +16,8 @@ import {
 } from "@chakra-ui/react";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import { useDisclosure } from "@chakra-ui/hooks";
+import { Box } from "@chakra-ui/layout";
+import { BoxMenu } from "./style";
 
 export const NavigationMenu = () => {
   const { handleLogout } = useAuthToken();
@@ -25,60 +26,135 @@ export const NavigationMenu = () => {
 
   const btnRef = React.useRef();
 
+  const widthScreen = window.screen.width;
+
   return (
     <>
-      <Button ref={btnRef} colorScheme="teal" onClick={onOpen}>
-        <HamburgerIcon />
-      </Button>
-      <Drawer
-        isOpen={isOpen}
-        placement="left"
-        onClose={onClose}
-        finalFocusRef={btnRef}
-      >
-        <DrawerOverlay />
-        <DrawerContent>
-          <DrawerCloseButton />
-          <DrawerHeader>Menu</DrawerHeader>
+      {widthScreen >= 768 ? (
+        <Box
+          position="absolute"
+          w="300px"
+          h="100vh"
+          left={0}
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          justifyContent="center"
+        >
+          <Box
+            as="ul"
+            w="100%"
+            h="90%"
+            bg="#e3e3e333"
+            borderRadius="0 20px 20px 0"
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            justifyContent="space-evenly"
+          >
+            <BoxMenu>
+              <Link to="/dashboard" height="100%" width="100%">
+                Home
+              </Link>
+            </BoxMenu>
+            <BoxMenu>
+              <Link to="/routines" height="100%" width="100%">
+                Rotinas
+              </Link>
+            </BoxMenu>
+            <BoxMenu>
+              <Link to="/forum" height="100%" width="100%">
+                Fórum
+              </Link>
+            </BoxMenu>
+            <BoxMenu>
+              <Link to="/adverts" height="100%" width="100%">
+                Anúncios
+              </Link>
+            </BoxMenu>
+            <BoxMenu>
+              <Link to="/achievments" height="100%" width="100%">
+                Conquistas
+              </Link>
+            </BoxMenu>
+            <Button onClick={() => handleLogout()}>Sair</Button>
+          </Box>
+        </Box>
+      ) : (
+        <>
+          <Button
+            ref={btnRef}
+            colorScheme="teal"
+            onClick={onOpen}
+            position="absolute"
+            right="5px"
+            top="5px"
+            zIndex="1"
+          >
+            <HamburgerIcon />
+          </Button>
 
-          <DrawerBody>
-            <Menu isOpen={isOpen}>
-              <MenuList>
-                <MenuItem>
-                  <Link to="/">App Tchau, mamãe!</Link>
-                </MenuItem>
+          <Drawer
+            isOpen={isOpen}
+            placement="right"
+            onClose={onClose}
+            finalFocusRef={btnRef}
+          >
+            {/* <DrawerOverlay /> */}
+            <DrawerContent>
+              <DrawerCloseButton />
+              <DrawerHeader>Menu</DrawerHeader>
 
-                <MenuItem to="/routines">Home</MenuItem>
+              <DrawerBody>
+                <Menu isOpen={isOpen}>
+                  <MenuList>
+                    <MenuItem>
+                      <Link to="/">App Tchau, mamãe!</Link>
+                    </MenuItem>
 
-                <MenuItem>
-                  <Link to="/routines">Rotinas</Link>
-                </MenuItem>
-                <MenuItem>
-                  <Link to="/forum">Fórum</Link>
-                </MenuItem>
-                <MenuItem>
-                  <Link to="/adverts">Anúncios</Link>
-                </MenuItem>
-                <MenuItem>
-                  <Link to="/achievments">Conquistas</Link>
-                </MenuItem>
-                <MenuItem>
-                  <Link to="/members">Membros</Link>
-                </MenuItem>
-                <MenuItem></MenuItem>
+                    <MenuDivider />
+
+                    <MenuItem>
+                      <Link to="/dashboard" onClick={onClose}>
+                        Home
+                      </Link>
+                    </MenuItem>
+
+                    <MenuItem>
+                      <Link to="/routines" onClick={onClose}>
+                        Rotinas
+                      </Link>
+                    </MenuItem>
+
+                    <MenuItem>
+                      <Link to="/forum" onClick={onClose}>
+                        Fórum
+                      </Link>
+                    </MenuItem>
+
+                    <MenuItem>
+                      <Link to="/adverts" onClick={onClose}>
+                        Anúncios
+                      </Link>
+                    </MenuItem>
+
+                    <MenuItem>
+                      <Link to="/achievments" onClick={onClose}>
+                        Conquistas
+                      </Link>
+                    </MenuItem>
+                  </MenuList>
+                </Menu>
+              </DrawerBody>
+
+              <DrawerFooter>
                 <MenuDivider />
-                <MenuItem onClick={() => handleLogout()}>Sair</MenuItem>
-              </MenuList>
-            </Menu>
-          </DrawerBody>
-
-          <DrawerFooter>
-            <Button variant="outline" mr={3} onClick={onClose}>
-              Fechar menu
-            </Button>
-          </DrawerFooter>
-        </DrawerContent>
-      </Drawer>
+                <Button onClick={() => handleLogout()}>Sair</Button>
+              </DrawerFooter>
+            </DrawerContent>
+          </Drawer>
+        </>
+      )}
     </>
   );
 };

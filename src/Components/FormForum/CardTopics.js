@@ -2,9 +2,7 @@ import { Box, Accordion, AccordionItem, AccordionButton, AccordionIcon, Accordio
 import { useForum } from "../../Providers/Forum"
 
 export const CardTopics = () => {
-
-    const { topics, searchTopic } = useForum()
-
+  const { topics, searchTopic } = useForum();
 
     return (
         <>

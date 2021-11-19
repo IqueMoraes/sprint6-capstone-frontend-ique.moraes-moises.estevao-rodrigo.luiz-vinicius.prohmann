@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
 import { BoxDevs } from "./style";
 
 import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { Box } from "@chakra-ui/layout";
 
 const CardDevs = ({ image, name, devOffice, devLinkedin, devGithub }) => {
   const handlerLinkedin = () => {
@@ -25,15 +25,15 @@ const CardDevs = ({ image, name, devOffice, devLinkedin, devGithub }) => {
 
       <ul className="SocialBox">
         <li>
-          <Link onClick={handlerGithub}>
+          <Box cursor="pointer" onClick={handlerGithub}>
             <FaGithub size={30} style={{ fill: "#5f4d93" }} />
-          </Link>
+          </Box>
         </li>
 
         <li>
-          <Link onClick={handlerLinkedin}>
+          <Box cursor="pointer" onClick={handlerLinkedin}>
             <FaLinkedin size={30} style={{ fill: "#5f4d93" }} />
-          </Link>
+          </Box>
         </li>
       </ul>
     </BoxDevs>

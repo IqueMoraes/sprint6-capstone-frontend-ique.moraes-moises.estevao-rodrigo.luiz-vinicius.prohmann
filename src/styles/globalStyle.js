@@ -9,10 +9,12 @@ const GlobalStyles = createGlobalStyle`
 	 font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
  }
+ 
  body{
   background: linear-gradient(#5F4D93, #DB7483);
   background-attachment: fixed;
 }
+
  :root{
         --darkBlue: #1B2357;
         --seablue: #237C95;

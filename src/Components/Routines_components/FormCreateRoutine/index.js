@@ -1,5 +1,3 @@
-import { useRoutines } from "../../Providers/Routines";
-
 import {
   Modal,
   ModalOverlay,
@@ -10,26 +8,12 @@ import {
   ModalCloseButton,
   useDisclosure,
   Button,
-  Input,
-  Flex,
-  Text,
 } from "@chakra-ui/react";
 
-export const FormRoutine = () => {
-  const {
-    setDescription,
-    setDate,
-    setTimeStart,
-    setTimeFinish,
-    createRoutines,
-  } = useRoutines();
+import { CreateForm } from "./createform";
 
+export const FormCreateRoutine = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-
-  const handleCreateRoutine = () => {
-    createRoutines();
-    onClose();
-  };
 
   return (
     <>
@@ -42,7 +26,9 @@ export const FormRoutine = () => {
         borderRadius="47px"
         mt={4}
         _hover={{ bg: "#FEA800" }}
-        onClick={onOpen}
+        onClick={() => {
+          onOpen();
+        }}
       >
         Criar rotina
       </Button>
@@ -51,38 +37,8 @@ export const FormRoutine = () => {
         <ModalContent bg="#FEA800" padding="6px">
           <ModalHeader color="white">Criar rotina</ModalHeader>
           <ModalCloseButton color="white" />
-          <ModalBody bg="white" borderTopRadius="20px">
-            <Text> Dia </Text>
-            <Input
-              placeholder="Dia"
-              type="date"
-              onChange={(e) => setDate(e.target.value)}
-              required
-            />
-            <Flex alignItems="center">
-              <Text> De: </Text>
-              <Input
-                placeholder="Horário"
-                type="time"
-                onChange={(e) => setTimeStart(e.target.value)}
-                required
-                min={Date.now()}
-              />
-              <Text> Até: </Text>
-              <Input
-                placeholder="Horário"
-                type="time"
-                onChange={(e) => setTimeFinish(e.target.value)}
-                required
-              />
-              <Text> Descrição </Text>
-              <Input
-                placeholder="Descrição"
-                type="text"
-                onChange={(e) => setDescription(e.target.value)}
-                required
-              />
-            </Flex>
+          <ModalBody bg="white" borderTopRadius="20px" paddingTop="20px">
+            <CreateForm />
           </ModalBody>
           <ModalFooter bg="white" borderBottomRadius="20px">
             <Button
@@ -95,7 +51,6 @@ export const FormRoutine = () => {
               border="2px solid #FEA800"
               borderRadius="47px"
               _hover={{ bg: "#FEA800" }}
-              onClick={handleCreateRoutine}
             >
               
               Criar
