@@ -43,7 +43,7 @@ export const Routines = () => {
                 bgColor="white"
                 labelColor="#FEA800"
                 baseBgColor="#B1AFE9"
-                labelAlignment="end"
+                labelAlignment="left"
                 width="150px"
                 height="22px"
                 labelSize="14px"

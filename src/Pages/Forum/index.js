@@ -1,4 +1,4 @@
-import { Box, Heading, Divider } from "@chakra-ui/react";
+import { Box, Heading } from "@chakra-ui/react";
 import { Flex } from "@chakra-ui/layout";
 import { CardTopics } from "../../Components/FormForum/CardTopics";
 import { ModalCreateTopic } from "../../Components/FormForum/ModalCreateTopic";

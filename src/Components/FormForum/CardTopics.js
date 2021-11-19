@@ -16,6 +16,7 @@ export const CardTopics = () => {
   return (
     <>
       {topics
+        // eslint-disable-next-line
         .filter((value) => {
           if (searchTopic === "") {
             return value;
