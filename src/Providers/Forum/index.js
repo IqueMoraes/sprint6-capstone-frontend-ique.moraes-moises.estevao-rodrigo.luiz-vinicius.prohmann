@@ -5,39 +5,73 @@ import { useAuthToken } from "../AuthToken";
 const ForumContext = createContext({});
 
 export const ForumProvider = ({ children }) => {
-  const [topics, setTopics] = useState([]);
-  const [searchTopic, setSearchTopic] = useState("");
 
-  const { authToken } = useAuthToken();
+    const [topics, setTopics] = useState([])
 
-  useEffect(() => {
-    api
-      .get(`/forum`)
-      .then((res) => {
-        setTopics([...res.data]);
-      })
-      .catch((_) => console.log("não pegou os tópicos"));
-  }, []);
+    const [searchTopic, setSearchTopic] = useState("")
 
-  const createTopic = (data) => {
-    api
-      .post("/forum", data, {
-        headers: { Authorization: "Bearer " + authToken },
-      })
-      .then((res) => {
-        setTopics([...topics, res.data]);
-        console.log(res.data);
-      })
-      .catch((_) => console.log("não criou tópicos"));
-  };
+    const [inputField, setInputField] = useState([{
+        assistantSites: ""
+    }])
 
-  return (
-    <ForumContext.Provider
-      value={{ topics, createTopic, setSearchTopic, searchTopic }}
-    >
-      {children}
-    </ForumContext.Provider>
-  );
-};
+    const { authToken, userProfile } = useAuthToken()
 
-export const useForum = () => useContext(ForumContext);
+
+    useEffect(() => {
+        api
+            .get(`/forum`)
+            .then(res => {
+                setTopics([...res.data])
+            })
+            .catch(_ => console.log("não pegou os tópicos"))
+    }, [])
+
+    const createTopic = (data) => { 
+
+        const date = new Date()
+        
+        const newData = {
+            ...data,
+            author: userProfile.name,
+            date: `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`,
+            likes: 0,
+            important: 0,
+            comments: []
+        }
+
+        api
+            .post("/forum", newData,  {
+                headers: { Authorization: "Bearer " + authToken },
+            })
+            .then(res => {
+                setTopics([...topics, res.data])
+            })
+            .catch(_ => console.log("não criou tópicos"))
+    }
+
+    const createComment = (data) => {
+
+        api
+            .patch(`/forum/2`, data , {
+                headers: { Authorization: "Bearer " + authToken },
+            })
+            .catch(err => console.log(err))    
+    }
+
+
+    return (
+        <ForumContext.Provider value={{ 
+            topics, 
+            createTopic, 
+            setSearchTopic, 
+            searchTopic,
+            inputField,
+            setInputField,
+            createComment,
+        }}>
+            {children}
+        </ForumContext.Provider>
+    )
+}
+
+export const useForum = () => useContext(ForumContext)
