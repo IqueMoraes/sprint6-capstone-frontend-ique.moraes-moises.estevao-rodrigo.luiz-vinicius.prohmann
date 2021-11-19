@@ -9,10 +9,12 @@ import { useAdverts } from "../../Providers/Adverts";
 import { useEffect } from "react";
 import { AdvertsProfile } from "../../Components/AdvertsProfile";
 import { Box, Grid } from "@chakra-ui/layout";
+import ProgressBar from "@ramonak/react-progress-bar";
 
 
 export const Dashboard = () => {
   const { myAdverts, deletAdverts, getMyAdverts } = useAdverts();
+  const { userProfile, userId, userLevel, progressPoints } = useAuthToken();
   const UserAge = (birthUser) => {
     const birthArray = birthUser.split("/").map((str) => Number(str));
     const birthDate = new Date(birthArray[2], birthArray[0], birthUser[1]);
@@ -21,10 +23,12 @@ export const Dashboard = () => {
 
     return Math.abs(age_ms.getUTCFullYear() - 1970);
   };
+
   useEffect(() => {
     getMyAdverts();
     // eslint-disable-next-line
-  }, []);
+  }, [userId]);
+
   const OutSince = (leavingDate) => {
     const monthArray = [
       "Janeiro",
@@ -44,26 +48,42 @@ export const Dashboard = () => {
 
     return monthArray[leavingDateArray[0]] + " de " + leavingDateArray[2];
   };
-  const { userProfile } = useAuthToken();
 
   return (
     <div>
 
-      <div>
-      </div>
-      { userProfile && <Flex>
-        <div style={{marginRight:"50px"}}>
-        <Heading as="h3" size="lg" color="#1B2357" p="15px 0 5px">
-          {userProfile.name}
-  </Heading>
-          {userProfile.birth && <Heading as="h4" size="md" color="#1B2357">{UserAge(userProfile.birth)} anos</Heading>}
-          {userProfile.outSince && <Heading as="h4" size="md" color="#1B2357">Fora desde {OutSince(userProfile.outSince)}</Heading>}
-          <Heading as="h4" size="md" color="#1B2357">Bio: {userProfile.bio}</Heading>
-        </div>
-        <div>
-          <Heading as="h2" size="4xl" h="100%" lineHeight="" color="#FEA800">{userProfile.level}</Heading>
-        </div>
-      </Flex>}
+      {userProfile && (
+        <Flex>
+          <div style={{ marginRight: "50px" }}>
+            <Heading as="h3" size="lg" color="#1B2357" p="15px 0 5px">
+              {userProfile.name}
+            </Heading>
+            <Heading as="h4" size="md" color="#1B2357">
+              {UserAge(userProfile.birth)} anos
+            </Heading>
+            <Heading as="h4" size="md" color="#1B2357">
+              Fora desde {OutSince(userProfile.outSince)}
+            </Heading>
+            <Heading as="h4" size="md" color="#1B2357">
+              Bio: {userProfile.bio}
+            </Heading>
+            <ProgressBar
+              completed={progressPoints}
+              bgColor="#74c21a"
+              height="15px"
+              width="100px"
+              labelAlignment="left"
+              baseBgColor="#237c95"
+              labelColor="#fcfbfb"
+            />
+          </div>
+          <div>
+            <Heading as="h2" size="4xl" h="100%" lineHeight="" color="#FEA800">
+              {userLevel}
+            </Heading>
+          </div>
+        </Flex>
+      )}
 
       <br />
       <div>{/* <Link to="/routines">Minha rotina</Link> */}</div>

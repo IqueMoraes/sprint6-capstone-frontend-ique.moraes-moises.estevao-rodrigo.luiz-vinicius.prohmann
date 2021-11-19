@@ -6,6 +6,7 @@ export const FullScreen = styled.main`
   background-color: beige;
   background-image: linear-gradient(#5f4d93, #db7483);
   padding-top: 50px;
+  padding-bottom: 50px;
 
   figcaption {
     display: none;
@@ -26,27 +27,15 @@ export const FullScreen = styled.main`
     flex-direction: column;
     align-items: center;
 
-    img,
-    figure {
-      min-width: 80px;
-      min-height: 40px;
-    }
-
-    figure {
-      display: flex;
-      align-items: center;
-      margin-bottom: 10px;
-      justify-content: center;
-    }
-
-    .text_open {
-      width: 80%;
-      text-align: center;
+    h1 {
       color: aliceblue;
+      font-size: 26px;
+      font-weight: 600;
+      margin-bottom: 50px;
     }
   }
 
-  @media (min-width: 800px) {
+  @media (min-width: 768px) {
     nav {
       display: flex;
     }
@@ -67,8 +56,20 @@ export const BoxBody = styled.article`
   justify-content: center;
 
   .section_about {
-    width: 50%;
+    width: 100%;
+    max-width: 600px;
     margin: 20px 0;
+
+    h3 {
+      font-size: 23px;
+      font-weight: 500;
+      line-height: 200%;
+    }
+
+    img {
+      width: 100%;
+      max-width: 400px;
+    }
   }
 
   .section_min_cards {
@@ -82,13 +83,14 @@ export const BoxBody = styled.article`
     .section_min_cards_box {
       min-width: 200px;
       width: 200px;
-      margin: 30px;
+      margin: 18px;
     }
   }
 
   .section_tean {
     width: 100%;
     background-color: aliceblue;
+    border-radius: 20px;
 
     display: flex;
     flex-direction: column;
@@ -102,6 +104,14 @@ export const BoxBody = styled.article`
       flex-wrap: wrap;
     }
   }
+  .section_start,
+  .section_tean {
+    h2 {
+      font-size: 22px;
+      font-weight: 500;
+      line-height: 200%;
+    }
+  }
 
   .section_start {
     width: 90%;
@@ -110,6 +120,11 @@ export const BoxBody = styled.article`
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    span {
+      font-size: 17px;
+      font-weight: 600;
+    }
   }
 
   @media (min-width: 800px) {
@@ -130,6 +145,7 @@ export const BarNavigation = styled.nav`
     min-width: 100%;
     min-height: 80px;
     background-color: aliceblue;
+    border-radius: 20px;
 
     display: flex;
     flex-wrap: wrap;

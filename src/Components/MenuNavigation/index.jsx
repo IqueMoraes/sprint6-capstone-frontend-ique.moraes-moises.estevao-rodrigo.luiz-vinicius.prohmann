@@ -48,8 +48,9 @@ export const NavigationMenu = () => {
                 <MenuItem>
                   <Link to="/">App Tchau, mamãe!</Link>
                 </MenuItem>
-                <MenuDivider />
-                <MenuItem>Home</MenuItem>
+
+                <MenuItem to="/routines">Home</MenuItem>
+
                 <MenuItem>
                   <Link to="/routines">Rotinas</Link>
                 </MenuItem>

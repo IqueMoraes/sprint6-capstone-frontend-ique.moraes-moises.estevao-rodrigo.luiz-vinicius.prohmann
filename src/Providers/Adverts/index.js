@@ -17,6 +17,7 @@ export const AdvertsProvider = ({ children }) => {
         headers: { Authorization: "Bearer " + authToken },
       })
       .then((response) => {
+        console.log("testando resposta dos anuncios", response.data);
         setAdverts(response.data);
       });
   };
