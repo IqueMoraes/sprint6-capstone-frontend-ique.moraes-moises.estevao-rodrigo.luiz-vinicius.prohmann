@@ -21,7 +21,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForum } from "../../Providers/Forum";
 import { useState } from "react";
 import { useAuthToken } from "../../Providers/AuthToken";
-import { AddIcon, MinusIcon } from "@chakra-ui/icons"
+import { AddIcon, MinusIcon } from "@chakra-ui/icons";
 
 export const ModalCreateTopic = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -94,10 +94,10 @@ export const ModalCreateTopic = () => {
         color="white"
         fontSize="18px"
         lineHeight="27px"
-        w="200px"
+        w="170px"
+        minWidth="170px"
         borderRadius="47px"
         _hover={{ bg: "#eda008" }}
-        mt={4}
         onClick={onOpen}
       >
         Criar tópico
@@ -122,7 +122,6 @@ export const ModalCreateTopic = () => {
                 errors={errors.subject?.message}
               />
               <span style={{ color: "red", fontSize: "10px" }}>
-                
                 {errors.subject?.message}
               </span>
               <Text> Categoria </Text>
@@ -138,7 +137,6 @@ export const ModalCreateTopic = () => {
                 <option value="Contas">Contas</option>
               </Select>
               <span style={{ color: "red", fontSize: "10px" }}>
-                
                 {errors.category?.message}
               </span>
               <Text> Texto </Text>
@@ -151,11 +149,16 @@ export const ModalCreateTopic = () => {
                 errors={errors.text?.message}
               />
               <span style={{ color: "red", fontSize: "10px" }}>
-                
                 {errors.text?.message}
               </span>
               <Text> Links auxiliares </Text>
-              <VStack spacing="3" display="flex" alignItems="flex-end" mb="4" position="relative">
+              <VStack
+                spacing="3"
+                display="flex"
+                alignItems="flex-end"
+                mb="4"
+                position="relative"
+              >
                 {inputField.map((item, index) => {
                   return (
                     <Flex key={index}>
@@ -187,15 +190,11 @@ export const ModalCreateTopic = () => {
                   lineHeight="27px"
                   border="2px solid #FEA800"
                   borderRadius="47px"
-                  _hover={{ bg: "#FEA800" }} 
+                  _hover={{ bg: "#FEA800" }}
                   onClick={(e) => handleCreateInput(e)}
-                  
                 >
-                  <AddIcon 
-                    fontSize="11px"
-                    mr="5px"
-                  />
-                    Link
+                  <AddIcon fontSize="11px" mr="5px" />
+                  Link
                 </Button>
               </VStack>
             </VStack>

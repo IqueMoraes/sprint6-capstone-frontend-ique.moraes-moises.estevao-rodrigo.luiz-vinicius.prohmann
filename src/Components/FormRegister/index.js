@@ -61,13 +61,13 @@ export const FormRegister = () => {
   };
 
   return (
-    <div>
+    <>
       <RegisterForm
         errors={errors}
         handleSignIn={handleSubmit(submitData)}
         loading={loading}
         register={register}
       />
-    </div>
+    </>
   );
 };

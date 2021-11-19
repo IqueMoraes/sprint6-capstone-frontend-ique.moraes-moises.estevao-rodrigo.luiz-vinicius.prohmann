@@ -11,6 +11,7 @@ import imageSectionTop from "../../assets/images/UnDrawFollow.png";
 import imageSectionAbout1 from "../../assets/images/achievmentFront1.png";
 import imageSectionAbout2 from "../../assets/images/undraw_Collaborators_re_hont.png";
 import imageSectionAbout3 from "../../assets/images/undraw_web_shopping_re_owap.png";
+import { Heading } from '@chakra-ui/react';
 
 const Home = () => {
   const history = useHistory();
@@ -22,7 +23,8 @@ const Home = () => {
   return (
     <FullScreen>
       <section className="top_section">
-        <h1>Tchau Mamãe</h1>
+      <Heading as="h3" color="white" fontSize="36px" mb="30px" border="3px solid #FEA800"  borderRadius="40px" padding="15px 30px" fontFamily="Comfortaa">Tchau, mamãe</Heading>
+        
       </section>
 
       <BoxBody>
