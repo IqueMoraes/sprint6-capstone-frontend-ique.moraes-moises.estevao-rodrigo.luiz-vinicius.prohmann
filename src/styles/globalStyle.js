@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
  * {
@@ -66,3 +66,18 @@ table {
 }
 `;
 export default GlobalStyles;
+
+export const BoxMain = styled.div`
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 950px;
+  height: 90%;
+  border-radius: 20px;
+  padding: 10px;
+
+  @media (min-width: 790px) {
+    & {
+      width: 70%;
+    }
+  }
+`;
