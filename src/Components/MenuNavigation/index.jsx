@@ -30,10 +30,10 @@ export const NavigationMenu = () => {
 
   return (
     <>
-      {widthScreen >= 768 ? (
+      {widthScreen > 768 ? (
         <Box
           position="absolute"
-          w="300px"
+          w="30%"
           h="100vh"
           left={0}
           display="flex"
@@ -87,8 +87,8 @@ export const NavigationMenu = () => {
             colorScheme="teal"
             onClick={onOpen}
             position="absolute"
-            right="5px"
-            top="5px"
+            right="25px"
+            top="40px"
             zIndex="1"
           >
             <HamburgerIcon />
