@@ -87,7 +87,7 @@ export const NavigationMenu = () => {
             colorScheme="teal"
             onClick={onOpen}
             position="absolute"
-            left="5px"
+            right="5px"
             top="5px"
             zIndex="1"
           >
@@ -96,7 +96,7 @@ export const NavigationMenu = () => {
 
           <Drawer
             isOpen={isOpen}
-            placement="left"
+            placement="right"
             onClose={onClose}
             finalFocusRef={btnRef}
           >

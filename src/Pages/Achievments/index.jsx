@@ -13,9 +13,10 @@ import {
 } from "@chakra-ui/react";
 import { useDisclosure } from "@chakra-ui/hooks";
 import { FormLabel } from "@chakra-ui/form-control";
+import { Box, Flex, Heading } from "@chakra-ui/layout";
 
 // import { Input } from "@chakra-ui/input";
-import { Text, Button, Flex, VStack } from "@chakra-ui/react";
+import { Text, Button, VStack } from "@chakra-ui/react";
 
 export const Achievments = () => {
   const { achievmentsList, AddAchievments, RemoveAchievments } =
@@ -54,66 +55,91 @@ export const Achievments = () => {
   const finalRef = React.useRef();
 
   return (
-    <div>
-      <div>
-        <h2>Conquistas</h2>
-        <h3>
-          {userList.length}/{achievmentsList.length}
-        </h3>
-      </div>
-      <div>
-        <Flex overflow="auto" p="15px" wrap="wrap">
-          {achievmentsList.map((item) => (
-            <AchievmentCard
-              key={item.id}
-              category={item.category}
-              title={item.title}
-              onClick={() => {
-                onOpen();
-                setAchievmentInfo(item);
-              }}
-            />
-          ))}
-        </Flex>
-      </div>
-
-      <Modal
-        initialFocusRef={initialRef}
-        finalFocusRef={finalRef}
-        isOpen={isOpen}
-        onClose={onClose}
+    <Flex
+      w="100vw"
+      h="100vh"
+      alignItems="center"
+      justifyContent="flex-end"
+      p="0 10px 0 0"
+    >
+      <Box
+        w="100%"
+        maxWidth="950px"
+        h="90%"
+        maxHeight="90%"
+        bg="#ffffff"
+        borderRadius="20px"
+        p="10px"
       >
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Conquista</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody pb={6}>
-            <VStack mt={4} spacing={5}>
-              <Text fontSize="2xl">{achievmentInfo.title}</Text>
-              <Text fontSize="xl">{translateCategory()}</Text>
+        <Box
+          w="100%"
+          h="10%"
+          bg="#ffffff"
+          borderBottom="2px solid #e3e3e390"
+          textAlign="center"
+        >
+          <Heading as="h2" fontSize="24px" color="#FEA800">
+            Conquistas
+          </Heading>
+          <Heading as="h3" fontSize="18px" color="#1B2357">
+            {userList.length}/{achievmentsList.length}
+          </Heading>
+        </Box>
 
-              <FormLabel>15 pontos!</FormLabel>
-              {isAlreadyInUser() ? (
-                <Button
-                  bg="red"
-                  color="white"
-                  onClick={() => RemoveAchievments(achievmentInfo)}
-                >
-                  Excluir
-                </Button>
-              ) : (
-                <Button
-                  color="white"
-                  bg="green"
-                  onClick={() => AddAchievments(achievmentInfo)}
-                >
-                  Adicionar
-                </Button>
-              )}
-            </VStack>
-          </ModalBody>
-        </ModalContent>
-      </Modal>
-    </div>
+        <Box w="100%" h="90%" overflow="auto">
+          <Flex overflow="auto" p="15px" wrap="wrap">
+            {achievmentsList.map((item) => (
+              <AchievmentCard
+                key={item.id}
+                category={item.category}
+                title={item.title}
+                onClick={() => {
+                  onOpen();
+                  setAchievmentInfo(item);
+                }}
+              />
+            ))}
+          </Flex>
+        </Box>
+
+        <Modal
+          initialFocusRef={initialRef}
+          finalFocusRef={finalRef}
+          isOpen={isOpen}
+          onClose={onClose}
+        >
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader>Conquista</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody pb={6}>
+              <VStack mt={4} spacing={5}>
+                <Text fontSize="2xl">{achievmentInfo.title}</Text>
+                <Text fontSize="xl">{translateCategory()}</Text>
+
+                <FormLabel>15 pontos!</FormLabel>
+                {isAlreadyInUser() ? (
+                  <Button
+                    bg="red"
+                    color="white"
+                    onClick={() => RemoveAchievments(achievmentInfo)}
+                  >
+                    Excluir
+                  </Button>
+                ) : (
+                  <Button
+                    color="white"
+                    bg="green"
+                    onClick={() => AddAchievments(achievmentInfo)}
+                  >
+                    Adicionar
+                  </Button>
+                )}
+              </VStack>
+            </ModalBody>
+          </ModalContent>
+        </Modal>
+      </Box>
+    </Flex>
   );
 };
