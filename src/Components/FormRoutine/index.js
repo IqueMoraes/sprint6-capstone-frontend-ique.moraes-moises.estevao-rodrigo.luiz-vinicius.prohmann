@@ -97,8 +97,8 @@ export const FormRoutine = () => {
               _hover={{ bg: "#FEA800" }}
               onClick={handleCreateRoutine}
             >
-              {" "}
-              Criar{" "}
+              
+              Criar
             </Button>
             <Button
               bg="white"

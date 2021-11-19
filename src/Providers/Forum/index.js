@@ -36,7 +36,6 @@ export const ForumProvider = ({ children }) => {
             date: `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`,
             likes: 0,
             important: 0,
-            assistantSites: inputField,
             comments: []
         }
 
