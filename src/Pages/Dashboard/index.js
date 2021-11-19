@@ -10,6 +10,7 @@ import { useEffect } from "react";
 import { AdvertsProfile } from "../../Components/AdvertsProfile";
 
 import { Box } from "@chakra-ui/layout";
+import { BoxMain } from "../../styles/globalStyle";
 // import ProgressBar from "@ramonak/react-progress-bar";
 
 export const Dashboard = () => {
@@ -55,16 +56,9 @@ export const Dashboard = () => {
       h="100vh"
       alignItems="center"
       justifyContent="flex-end"
-      p="0 10px 0 0"
+      p="0 10px"
     >
-      <Box
-        w="100%"
-        maxWidth="950px"
-        h="90%"
-        bg="#ffffff"
-        borderRadius="20px"
-        p="10px"
-      >
+      <BoxMain>
         <Box w="100%" h="100%" overflow="auto">
           {userProfile && (
             <Flex
@@ -213,7 +207,7 @@ export const Dashboard = () => {
           </Box>
           <Box h="10px" w="100%"></Box>
         </Box>
-      </Box>
+      </BoxMain>
     </Flex>
   );
 };

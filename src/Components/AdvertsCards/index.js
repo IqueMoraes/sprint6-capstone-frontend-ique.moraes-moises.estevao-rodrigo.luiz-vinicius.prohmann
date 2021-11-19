@@ -14,7 +14,8 @@ export const AdvertsCards = ({
   return (
     <Box
       bg="aliceblue"
-      w="236px"
+      w="100%"
+      maxWidth="265px"
       p={5}
       m="10px"
       minHeight="320px"

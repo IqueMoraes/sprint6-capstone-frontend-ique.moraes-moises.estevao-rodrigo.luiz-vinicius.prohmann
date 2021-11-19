@@ -17,6 +17,7 @@ import { Box, Flex, Heading } from "@chakra-ui/layout";
 
 // import { Input } from "@chakra-ui/input";
 import { Text, Button, VStack } from "@chakra-ui/react";
+import { BoxMain } from "../../styles/globalStyle";
 
 export const Achievments = () => {
   const { achievmentsList, AddAchievments, RemoveAchievments } =
@@ -60,20 +61,12 @@ export const Achievments = () => {
       h="100vh"
       alignItems="center"
       justifyContent="flex-end"
-      p="0 10px 0 0"
+      p="0 10px"
     >
-      <Box
-        w="100%"
-        maxWidth="950px"
-        h="90%"
-        maxHeight="90%"
-        bg="#ffffff"
-        borderRadius="20px"
-        p="10px"
-      >
+      <BoxMain>
         <Box
           w="100%"
-          h="10%"
+          h="12%"
           bg="#ffffff"
           borderBottom="2px solid #e3e3e390"
           textAlign="center"
@@ -86,7 +79,7 @@ export const Achievments = () => {
           </Heading>
         </Box>
 
-        <Box w="100%" h="90%" overflow="auto">
+        <Box w="100%" h="88%" overflow="auto">
           <Flex overflow="auto" p="15px" wrap="wrap">
             {achievmentsList.map((item) => (
               <AchievmentCard
@@ -139,7 +132,7 @@ export const Achievments = () => {
             </ModalBody>
           </ModalContent>
         </Modal>
-      </Box>
+      </BoxMain>
     </Flex>
   );
 };
