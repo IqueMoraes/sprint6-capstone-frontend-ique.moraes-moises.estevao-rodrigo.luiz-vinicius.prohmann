@@ -71,7 +71,8 @@ export const Adverts = () => {
     <div>
       <>
         <Button
-          bg="bg.200"
+          bg="#DB7483"
+          m="5px"
           color="white"
           onClick={onOpen}
           _hover={{ background: "bg.100" }}
