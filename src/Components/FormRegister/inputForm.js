@@ -121,7 +121,7 @@ export const RegisterForm = ({ handleSignIn, errors, register, loading }) => {
             mt="40px"
             _hover={{ bgGradient: "linear(to-b,  pink.500, bg.200)" }}
           >
-            Entrar
+            Cadastrar
           </Button>
         </VStack>
       </Grid>
