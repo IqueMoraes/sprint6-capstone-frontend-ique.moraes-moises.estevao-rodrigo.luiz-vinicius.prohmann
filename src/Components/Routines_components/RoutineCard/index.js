@@ -24,20 +24,22 @@ import { useRoutines } from "../../../Providers/Routines";
 import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
 
 import { useEffect } from "react";
+import { useAuthToken } from "../../../Providers/AuthToken";
+import { useUserProfile } from "../../../Providers/UserProfile";
 
 export const RoutineCard = () => {
   const [isOpenDelete, setIsOpenDelete] = React.useState(false);
   const onCloseDelete = () => setIsOpenDelete(false);
   const cancelRef = React.useRef();
-  const [idToDelete, setIdToDelete ] = useState(0);
+  const [idToDelete, setIdToDelete] = useState(0);
+  const [todaysRoutine, setTodaysRoutine] = useState({});
 
   const { isOpen, onOpen, onClose } = useDisclosure();
-
-  const { userRoutines, editRoutine, deleteRoutine, setCompletedTaskNumber } =
+  const { userProfile } = useAuthToken();
+  const { EditProfile } = useUserProfile();
+  const { userRoutines, editRoutine, deleteRoutine, completedTaskNumber,setCompletedTaskNumber } =
     useRoutines();
 
-    console.log(userRoutines,"normal");
-    console.log(userRoutines.sort((a,b)=> a.day - b.day));
   const monthList = [
     "índiceZero",
     "Jan",
@@ -54,14 +56,29 @@ export const RoutineCard = () => {
     "Dez",
   ];
 
-  const handleEdit = (idRoutine) => {
-    editRoutine(idRoutine);
+  const handleEdit = (routineId) => {
+    editRoutine(routineId);
     onClose();
   };
 
-  const handleComplete = (idRoutine, taskId) => {
-    // editRoutine(idRoutine)
-    setCompletedTaskNumber(progressBarValue());
+  const handleDelete = (id) => {
+    deleteRoutine(id);
+    onCloseDelete();
+  };
+
+  const handleComplete = (routine, task) => {
+    console.log(routine);
+
+    const checked = task;
+    checked.isCompleted = true;
+    const dataTasks = routine.tasks.filter(
+      (item) => item.taskId !== task.taskId
+    );
+    const editedTask = [...dataTasks, checked];
+
+    editRoutine(routine, { tasks: editedTask });
+
+    progressBarValue();
   };
 
   const progressBarValue = () => {
@@ -70,21 +87,21 @@ export const RoutineCard = () => {
     const matchMonth = (today.getMonth() + 1).toString();
     const matchYear = today.getFullYear().toString();
 
-    const todaysRoutine = userRoutines?.filter(
+    const matchRoutine = userRoutines?.filter(
       (item) =>
         item.day === matchDay &&
         item.month === matchMonth &&
         item.year === matchYear
     );
-    if (todaysRoutine.length === 1) {
-      const completedNumber = todaysRoutine[0].tasks.filter(
-        (task) => task.isCompleted
-      ).length;
+
+    if (matchRoutine.length >= 1) {
+      setTodaysRoutine(matchRoutine[0]);
+
+      const completedNumber = matchRoutine[0].tasks.filter((task) => {
+        return task.isCompleted !== false;
+      }).length;
       setCompletedTaskNumber(completedNumber);
-      return completedNumber;
-    } else {
-      return 0;
-    }
+    } else return null;
   };
 
   useEffect(() => {
@@ -92,18 +109,24 @@ export const RoutineCard = () => {
     // eslint-disable-next-line
   }, []);
 
-  const handleDelete = (id) => {
-    console.log(id);
-    deleteRoutine(id);
-    onCloseDelete();
-  };
+  useEffect(()=>{
+    progressBarValue();
+    const jsonBody = { points: userProfile.points + 15 };
+    if (completedTaskNumber === 5) {
+      EditProfile(
+        jsonBody,
+        "Parabéns! Você ganhou 15 pontos!"
+      );
+    }
+    // eslint-disable-next-line
+  },[completedTaskNumber])
 
   return (
     <>
       {userRoutines &&
         userRoutines
-          // .sort((a, b) => a.day - b.day)
-          .map((routineDay) => { 
+          .sort((a, b) => a.day - b.day)
+          .map((routineDay) => {
             return (
               <Box as="section" display="flex" key={routineDay.id}>
                 <Box
@@ -152,20 +175,21 @@ export const RoutineCard = () => {
                     </Text>
                   </Flex>
                   <Flex direction="column" flexGrow="1">
-                    {routineDay.tasks?.map((task) => (
-                      <Flex key={task.taskId}>
-                        <Checkbox
-                          isChecked={task.isCompleted}
-                          onChange={() =>
-                            handleComplete(routineDay.id, task.taskId)
-                          }
-                        />
-                        <Text marginLeft="15px">
-                          {" "}
-                          {task.startTime} - {task.endTime} {task.description}{" "}
-                        </Text>
-                      </Flex>
-                    ))}
+                    {routineDay.tasks
+                      ?.filter((task) => !!task.description)
+                      .map((task) => (
+                        <Flex key={task.taskId}>
+                          <Checkbox
+                            isChecked={task.isCompleted}
+                            isDisabled={routineDay.id !== todaysRoutine.id}
+                            onChange={() => handleComplete(routineDay, task)}
+                          />
+                          <Text marginLeft="15px">
+                            {" "}
+                            {task.startTime} - {task.endTime} {task.description}{" "}
+                          </Text>
+                        </Flex>
+                      ))}
                   </Flex>
 
                   <Flex
@@ -174,9 +198,9 @@ export const RoutineCard = () => {
                     alignSelf="flex-start"
                     justifyContent="space-between"
                   >
-                    <Box cursor="pointer">
+                    {/* <Box cursor="pointer">
                       <EditIcon w="6" h="6" onClick={onOpen} />
-                    </Box>
+                    </Box> */}
                     <Modal isOpen={isOpen} onClose={onClose}>
                       <ModalOverlay />
                       <ModalContent>
@@ -207,7 +231,8 @@ export const RoutineCard = () => {
                         h="6"
                         onClick={() => {
                           setIdToDelete(routineDay.id);
-                          setIsOpenDelete(true)}}
+                          setIsOpenDelete(true);
+                        }}
                       />
                     </Box>
                   </Flex>
@@ -232,8 +257,9 @@ export const RoutineCard = () => {
                           </Button>
                           <Button
                             colorScheme="red"
-                            onClick={() =>{
-                              handleDelete(idToDelete)}}
+                            onClick={() => {
+                              handleDelete(idToDelete);
+                            }}
                             ml={3}
                           >
                             Excluir

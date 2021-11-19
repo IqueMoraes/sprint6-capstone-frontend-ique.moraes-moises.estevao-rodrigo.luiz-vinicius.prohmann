@@ -28,6 +28,7 @@ export const RoutinesProvider = ({ children }) => {
     // eslint-disable-next-line
   }, [userId]);
 
+
   const createRoutines = (info) => {
     const data = info;
     api
@@ -41,18 +42,17 @@ export const RoutinesProvider = ({ children }) => {
       .catch((_) => toast.error("Não foi possível criar a rotina"));
   };
 
-  const editRoutine = (routineId, data) => {
+  const editRoutine = (routine, data) => {
     api
-      .patch(`/routines/${routineId}`, data, {
+      .patch(`/routines/${routine.id}`, data, {
         headers: { Authorization: "Bearer " + authToken },
       })
       .then((res) => {
-        const edited = userRoutines.filter((item) => item.id !== routineId);
-        setUserRoutines([...edited, res.data]);
-        toast.success("Rotina editada com sucesso!");
+        getUserRoutines();
+        toast.success("Rotina atualizada!");
         console.log(data);
       })
-      .catch((_) => toast.error("Não foi possível editar a rotina"));
+      .catch((_) => toast.error("Não foi possível atualizar a rotina"));
   };
 
   const deleteRoutine = (routineId) => {
